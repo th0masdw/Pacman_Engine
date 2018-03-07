@@ -2,9 +2,9 @@
 #include "Transform.h"
 
 
-void dae::Transform::SetPosition(const float x, const float y, const float z)
+void Transform::SetPosition(const float x, const float y, const float z)
 {
-	mPosition.x = x;
-	mPosition.y = y;
-	mPosition.z = z;
+	m_Position.x = x;
+	m_Position.y = y;
+	m_Position.z = z;
 }

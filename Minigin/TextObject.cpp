@@ -7,16 +7,16 @@
 #include "Font.h"
 #include "Texture2D.h"
 
-dae::TextObject::TextObject(const std::string& text, std::shared_ptr<Font> font) 
-	: mNeedsUpdate(true), mText(text), mFont(font), mTexture(nullptr)
+TextObject::TextObject(const std::string& text, std::shared_ptr<Font> font) 
+	: m_NeedsUpdate(true), m_Text(text), m_Font(font), m_Texture(nullptr)
 { }
 
-void dae::TextObject::Update()
+void TextObject::Update()
 {
-	if (mNeedsUpdate)
+	if (m_NeedsUpdate)
 	{
 		const SDL_Color color = { 255,255,255 }; // only white text is supported now
-		const auto surf = TTF_RenderText_Blended(mFont->GetFont(), mText.c_str(), color);
+		const auto surf = TTF_RenderText_Blended(m_Font->GetFont(), m_Text.c_str(), color);
 		if (surf == nullptr) {
 			std::stringstream ss; ss << "Render text failed: " << SDL_GetError();
 			throw std::runtime_error(ss.str().c_str());
@@ -27,28 +27,28 @@ void dae::TextObject::Update()
 			throw std::runtime_error(ss.str().c_str());
 		}
 		SDL_FreeSurface(surf);
-		mTexture = std::make_shared<Texture2D>(texture);
+		m_Texture = std::make_shared<Texture2D>(texture);
 	}
 }
 
-void dae::TextObject::Render() const
+void TextObject::Render() const
 {
-	if (mTexture != nullptr)
+	if (m_Texture != nullptr)
 	{
-		const auto pos = mTransform.GetPosition();
-		Renderer::GetInstance().RenderTexture(*mTexture, pos.x, pos.y);
+		const auto pos = m_Transform.GetPosition();
+		Renderer::GetInstance().RenderTexture(*m_Texture, pos.x, pos.y);
 	}
 }
 
-void dae::TextObject::SetText(const std::string& text)
+void TextObject::SetText(const std::string& text)
 {
-	mText = text;
-	mNeedsUpdate = true;
+	m_Text = text;
+	m_NeedsUpdate = true;
 }
 
-void dae::TextObject::SetPosition(const float x, const float y)
+void TextObject::SetPosition(const float x, const float y)
 {
-	mTransform.SetPosition(x, y, 0.0f);
+	m_Transform.SetPosition(x, y, 0.0f);
 }
 
 

@@ -3,23 +3,19 @@
 
 struct SDL_Window;
 struct SDL_Renderer;
+class Texture2D;
 
-namespace dae
+class Renderer final : public Singleton<Renderer>
 {
-	class Texture2D;
-	class Renderer final : public Singleton<Renderer>
-	{
-		SDL_Renderer* mRenderer = nullptr;
+	SDL_Renderer* mRenderer = nullptr;
 
-	public:
-		void Init(SDL_Window* window);
-		void Render();
-		void Destroy();
+public:
+	void Init(SDL_Window* window);
+	void Render();
+	void Destroy();
 
-		void RenderTexture(const Texture2D& texture, float x, float y) const;
-		void RenderTexture(const Texture2D& texture, float x, float y, float width, float height) const;
+	void RenderTexture(const Texture2D& texture, float x, float y) const;
+	void RenderTexture(const Texture2D& texture, float x, float y, float width, float height) const;
 
-		SDL_Renderer* GetSDLRenderer() const { return mRenderer; }
-	};
-}
-
+	SDL_Renderer* GetSDLRenderer() const { return mRenderer; }
+};
