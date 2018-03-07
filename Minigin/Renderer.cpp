@@ -6,8 +6,8 @@
 
 void Renderer::Init(SDL_Window * window)
 {
-	mRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-	if (mRenderer == nullptr) {
+	m_Renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	if (m_Renderer == nullptr) {
 		std::stringstream ss; ss << "SDL_CreateRenderer Error: " << SDL_GetError();
 		throw std::runtime_error(ss.str().c_str());
 	}
@@ -15,19 +15,19 @@ void Renderer::Init(SDL_Window * window)
 
 void Renderer::Render()
 {
-	SDL_RenderClear(mRenderer);
+	SDL_RenderClear(m_Renderer);
 
 	SceneManager::GetInstance().Render();
 	
-	SDL_RenderPresent(mRenderer);
+	SDL_RenderPresent(m_Renderer);
 }
 
 void Renderer::Destroy()
 {
-	if (mRenderer != nullptr)
+	if (m_Renderer != nullptr)
 	{
-		SDL_DestroyRenderer(mRenderer);
-		mRenderer = nullptr;
+		SDL_DestroyRenderer(m_Renderer);
+		m_Renderer = nullptr;
 	}
 }
 
