@@ -1,6 +1,7 @@
 #pragma once
 
 #include "SDL.h"
+#include "Structs.h"
 
 class MainGame
 {
@@ -17,6 +18,7 @@ public:
 	MainGame& operator=(MainGame&& other) = delete;
 
 private:
+	static WindowSettings WindowSettings;
 	SDL_Window* m_pWindow;
 
 	void InitWindow();

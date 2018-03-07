@@ -13,6 +13,7 @@
 #include "TextObject.h"
 
 #define MS_PER_FRAME 16		//16: 60 FPS, 33: 30 FPS
+WindowSettings MainGame::WindowSettings{};
 
 MainGame::MainGame()
 	: m_pWindow{}
@@ -60,11 +61,11 @@ void MainGame::InitWindow() {
 	}
 
 	m_pWindow = SDL_CreateWindow(
-		"Programming 4 assignment",
+		WindowSettings.Name.c_str(),
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
-		640,                    
-		480,                    
+		WindowSettings.Width,                    
+		WindowSettings.Height,                    
 		SDL_WINDOW_OPENGL       
 	);
 
