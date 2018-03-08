@@ -2,6 +2,7 @@
 
 #include "SDL.h"
 #include "Structs.h"
+#include <chrono>
 
 class MainGame
 {
@@ -20,6 +21,7 @@ public:
 private:
 	static WindowSettings WindowSettings;
 	SDL_Window* m_pWindow;
+	std::chrono::high_resolution_clock::time_point m_GameTime;
 
 	void InitWindow();
 	void LoadGame();

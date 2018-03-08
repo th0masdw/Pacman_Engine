@@ -10,7 +10,7 @@ class Scene
 public:
 	~Scene();
 
-	void Update();
+	void Update(float deltaTime);
 	void Draw() const;
 	void Add(GameObject* object);
 

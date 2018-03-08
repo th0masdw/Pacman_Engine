@@ -9,7 +9,7 @@ public:
 	Scene& CreateScene(const std::string& name);
 	void Destroy();
 
-	void Update();
+	void Update(float deltaTime);
 	void Draw();
 
 private:

@@ -3,7 +3,6 @@
 
 #include "ResourceManager.h"
 #include "Renderer.h"
-#include <chrono>
 #include <thread>
 #include "InputManager.h"
 #include "SceneManager.h"
@@ -15,6 +14,7 @@
 #include "Structs.h"
 
 #define MS_PER_FRAME 16		//16: 60 FPS, 33: 30 FPS
+#define MAX_ELAPSED_TIME 0.1f
 WindowSettings MainGame::WindowSettings{};
 
 MainGame::MainGame()
@@ -41,20 +41,28 @@ void MainGame::Initialize() {
 void MainGame::Run() {
 	LoadGame();
 
-	auto t = chrono::high_resolution_clock::now();
+	m_GameTime = chrono::high_resolution_clock::now();
 	Renderer& renderer = Renderer::GetInstance();
 	SceneManager& sceneManager = SceneManager::GetInstance();
 	InputManager& input = InputManager::GetInstance();
 	bool doContinue = true;
 
 	while(doContinue)  {
+		auto t = chrono::high_resolution_clock::now();
+		auto timeSpan = chrono::duration_cast<std::chrono::duration<float>>(t - m_GameTime);
+		float elapsedTime = timeSpan.count();
+		m_GameTime = t;
+
+		// Prevent jumps in time caused by break points
+		elapsedTime = Min(elapsedTime, MAX_ELAPSED_TIME);
+
 		doContinue = input.ProcessInput();
 
-		sceneManager.Update();
+		sceneManager.Update(elapsedTime);
 		renderer.Draw();
 
-		t += chrono::milliseconds(MS_PER_FRAME);
-		this_thread::sleep_until(t);
+		//t += chrono::milliseconds(MS_PER_FRAME);
+		//this_thread::sleep_until(t);
 	}
 }
 
@@ -66,8 +74,8 @@ void MainGame::InitWindow() {
 
 	m_pWindow = SDL_CreateWindow(
 		WindowSettings.Name.c_str(),
-		SDL_WINDOWPOS_UNDEFINED,
-		SDL_WINDOWPOS_UNDEFINED,
+		SDL_WINDOWPOS_CENTERED,
+		SDL_WINDOWPOS_CENTERED,
 		WindowSettings.Width,                    
 		WindowSettings.Height,                    
 		SDL_WINDOW_OPENGL       

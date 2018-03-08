@@ -5,7 +5,9 @@
 
 TextureObject::~TextureObject() = default;
 
-void TextureObject::Update(){}
+void TextureObject::Update(float deltaTime) {
+	UNREFERENCED_PARAMETER(deltaTime);
+}
 
 void TextureObject::Draw() const
 {

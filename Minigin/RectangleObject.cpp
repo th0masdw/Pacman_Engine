@@ -10,8 +10,8 @@ RectangleObject::RectangleObject(const Vector2& pos, float width, float height, 
 {
 }
 
-void RectangleObject::Update() {
-	//nothing to do
+void RectangleObject::Update(float deltaTime) {
+	UNREFERENCED_PARAMETER(deltaTime);
 }
 
 void RectangleObject::Draw() const {

@@ -19,9 +19,9 @@ void Scene::Add(GameObject* object) {
 	m_Objects.push_back(object);
 }
 
-void Scene::Update() {
+void Scene::Update(float deltaTime) {
 	for(GameObject* pObject : m_Objects) {
-		pObject->Update();
+		pObject->Update(deltaTime);
 	}
 }
 

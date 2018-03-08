@@ -8,11 +8,11 @@ void SceneManager::Destroy() {
 	}
 }
 
-void SceneManager::Update()
+void SceneManager::Update(float deltaTime)
 {
 	for(auto scene : m_Scenes)
 	{
-		scene->Update();
+		scene->Update(deltaTime);
 	}
 }
 

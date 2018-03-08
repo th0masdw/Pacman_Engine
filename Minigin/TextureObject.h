@@ -11,7 +11,7 @@ public:
 	TextureObject() = default;
 	virtual ~TextureObject();
 
-	virtual void Update() override;
+	virtual void Update(float deltaTime) override;
 	virtual void Draw() const override;
 
 	void SetTexture(const std::string& filename);

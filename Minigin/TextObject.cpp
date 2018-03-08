@@ -11,8 +11,10 @@ TextObject::TextObject(const string& text, shared_ptr<Font> font)
 	: m_NeedsUpdate(true), m_Text(text), m_Font(font)
 { }
 
-void TextObject::Update()
+void TextObject::Update(float deltaTime)
 {
+	UNREFERENCED_PARAMETER(deltaTime);
+
 	if (m_NeedsUpdate)
 	{
 		const SDL_Color color = { 255,255,255 }; // only white text is supported now

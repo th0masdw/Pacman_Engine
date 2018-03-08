@@ -9,7 +9,7 @@ public:
 	explicit RectangleObject(const Vector2& pos = {}, float width = 1, float height = 1, const Color& color = { 255, 255, 255, 255 });
 	virtual ~RectangleObject() = default;
 
-	virtual void Update() override;
+	virtual void Update(float deltaTime) override;
 	virtual void Draw() const override;
 
 	void SetPosition(const Vector2& pos);

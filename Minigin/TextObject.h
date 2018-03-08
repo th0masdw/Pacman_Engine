@@ -10,7 +10,7 @@ public:
 	explicit TextObject(const std::string& text, std::shared_ptr<Font> font);
 	virtual ~TextObject() = default;
 
-	virtual void Update() override;
+	virtual void Update(float deltaTime) override;
 
 	void SetText(const std::string& text);
 
