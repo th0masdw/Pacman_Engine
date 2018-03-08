@@ -13,11 +13,11 @@ void Renderer::Init(SDL_Window * window)
 	}
 }
 
-void Renderer::Render()
+void Renderer::Draw()
 {
 	SDL_RenderClear(m_Renderer);
 
-	SceneManager::GetInstance().Render();
+	SceneManager::GetInstance().Draw();
 	
 	SDL_RenderPresent(m_Renderer);
 }

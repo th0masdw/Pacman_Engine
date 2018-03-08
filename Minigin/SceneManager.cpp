@@ -11,11 +11,11 @@ void SceneManager::Update()
 	}
 }
 
-void SceneManager::Render()
+void SceneManager::Draw()
 {
 	for (const auto scene : m_Scenes)
 	{
-		scene->Render();
+		scene->Draw();
 	}
 }
 

@@ -9,7 +9,7 @@
 #include "SceneManager.h"
 
 #include "Scene.h"
-#include "GameObject.h"
+#include "TextureObject.h"
 #include "TextObject.h"
 
 #define MS_PER_FRAME 16		//16: 60 FPS, 33: 30 FPS
@@ -47,7 +47,7 @@ void MainGame::Run() {
 		doContinue = input.ProcessInput();
 
 		sceneManager.Update();
-		renderer.Render();
+		renderer.Draw();
 
 		t += std::chrono::milliseconds(MS_PER_FRAME);
 		std::this_thread::sleep_until(t);
@@ -78,14 +78,14 @@ void MainGame::InitWindow() {
 void MainGame::LoadGame() {
 	Scene& scene = SceneManager::GetInstance().CreateScene("Demo");
 	
-	std::shared_ptr<GameObject> pGameObject = std::make_shared<GameObject>();
-	pGameObject->SetTexture("background.jpg");
-	scene.Add(pGameObject);
+	std::shared_ptr<TextureObject> pTextureObject = std::make_shared<TextureObject>();
+	pTextureObject->SetTexture("background.jpg");
+	scene.Add(pTextureObject);
 
-	pGameObject = std::make_shared<GameObject>();
-	pGameObject->SetTexture("logo.png");
-	pGameObject->SetPosition(216, 180);
-	scene.Add(pGameObject);
+	pTextureObject = std::make_shared<TextureObject>();
+	pTextureObject->SetTexture("logo.png");
+	pTextureObject->SetPosition(216, 180);
+	scene.Add(pTextureObject);
 
 	std::shared_ptr<Font> pFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
 	std::shared_ptr<TextObject> pTextObject = std::make_shared<TextObject>("Programming 4 Assignment", pFont);

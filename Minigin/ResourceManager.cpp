@@ -10,7 +10,7 @@
 
 void ResourceManager::Init(std::string&& dataPath)
 {
-	mDataPath = std::move(dataPath);
+	m_DataPath = std::move(dataPath);
 
 	// load support for png and jpg, this takes a while!
 
@@ -32,7 +32,7 @@ void ResourceManager::Init(std::string&& dataPath)
 
 std::shared_ptr<Texture2D> ResourceManager::LoadTexture(const std::string& file)
 {
-	std::string fullPath = (mDataPath + file).c_str();
+	std::string fullPath = (m_DataPath + file).c_str();
 	SDL_Texture *texture = IMG_LoadTexture(Renderer::GetInstance().GetSDLRenderer(), fullPath.c_str());
 	if (texture == nullptr) {
 		std::stringstream ss; ss << "Failed to load texture: " << SDL_GetError();
@@ -43,6 +43,6 @@ std::shared_ptr<Texture2D> ResourceManager::LoadTexture(const std::string& file)
 
 std::shared_ptr<Font> ResourceManager::LoadFont(const std::string& file, unsigned int size)
 {
-	std::string fullPath = (mDataPath + file).c_str();
+	std::string fullPath = (m_DataPath + file).c_str();
 	return std::make_shared<Font>(fullPath, size);
 }

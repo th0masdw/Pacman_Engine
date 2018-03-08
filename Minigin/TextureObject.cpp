@@ -1,24 +1,24 @@
 #include "MiniginPCH.h"
-#include "GameObject.h"
+#include "TextureObject.h"
 #include "ResourceManager.h"
 #include "Renderer.h"
 
-GameObject::~GameObject() = default;
+TextureObject::~TextureObject() = default;
 
-void GameObject::Update(){}
+void TextureObject::Update(){}
 
-void GameObject::Render() const
+void TextureObject::Draw() const
 {
 	auto pos = m_Transform.GetPosition();
 	Renderer::GetInstance().RenderTexture(*m_Texture, pos.x, pos.y);
 }
 
-void GameObject::SetTexture(const std::string& filename)
+void TextureObject::SetTexture(const std::string& filename)
 {
 	m_Texture = ResourceManager::GetInstance().LoadTexture(filename);
 }
 
-void GameObject::SetPosition(float x, float y)
+void TextureObject::SetPosition(float x, float y)
 {
 	m_Transform.SetPosition(x, y, 0.0f);
 }

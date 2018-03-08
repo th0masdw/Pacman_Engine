@@ -8,7 +8,7 @@
 #include "Texture2D.h"
 
 TextObject::TextObject(const std::string& text, std::shared_ptr<Font> font) 
-	: m_NeedsUpdate(true), m_Text(text), m_Font(font), m_Texture(nullptr)
+	: m_NeedsUpdate(true), m_Text(text), m_Font(font)
 { }
 
 void TextObject::Update()
@@ -31,24 +31,8 @@ void TextObject::Update()
 	}
 }
 
-void TextObject::Render() const
-{
-	if (m_Texture != nullptr)
-	{
-		const auto pos = m_Transform.GetPosition();
-		Renderer::GetInstance().RenderTexture(*m_Texture, pos.x, pos.y);
-	}
-}
-
 void TextObject::SetText(const std::string& text)
 {
 	m_Text = text;
 	m_NeedsUpdate = true;
 }
-
-void TextObject::SetPosition(const float x, const float y)
-{
-	m_Transform.SetPosition(x, y, 0.0f);
-}
-
-

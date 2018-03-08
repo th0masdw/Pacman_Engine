@@ -9,7 +9,7 @@ public:
 	Scene& CreateScene(const std::string& name);
 
 	void Update();
-	void Render();
+	void Draw();
 
 private:
 	std::vector<std::shared_ptr<Scene>> m_Scenes;

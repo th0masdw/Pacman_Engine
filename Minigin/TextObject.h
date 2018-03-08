@@ -1,21 +1,18 @@
 #pragma once
-#include "SceneObject.h"
-#include "Transform.h"
+
+#include "TextureObject.h"
 
 class Font;
-class Texture2D;
 
-class TextObject : public SceneObject
+class TextObject : public TextureObject
 {
 public:
 	explicit TextObject(const std::string& text, std::shared_ptr<Font> font);
 	virtual ~TextObject() = default;
 
-	void Update() override;
-	void Render() const override;
+	virtual void Update() override;
 
 	void SetText(const std::string& text);
-	void SetPosition(float x, float y);
 
 	TextObject(const TextObject& other) = delete;
 	TextObject(TextObject&& other) = delete;
@@ -25,7 +22,5 @@ public:
 private:
 	bool m_NeedsUpdate;
 	std::string m_Text;
-	Transform m_Transform;
 	std::shared_ptr<Font> m_Font;
-	std::shared_ptr<Texture2D> m_Texture;
 };
