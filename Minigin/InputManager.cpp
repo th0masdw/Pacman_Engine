@@ -2,9 +2,7 @@
 #include "InputManager.h"
 #include <SDL.h>
 
-
-bool InputManager::ProcessInput()
-{
+bool InputManager::Update() {
 	ZeroMemory(&m_CurrentState, sizeof(XINPUT_STATE));
 	XInputGetState(0, &m_CurrentState);
 
@@ -13,30 +11,22 @@ bool InputManager::ProcessInput()
 		if (e.type == SDL_QUIT) {
 			return false;
 		}
-		if (e.type == SDL_KEYDOWN) {
-			
-		}
-		if (e.type == SDL_MOUSEBUTTONDOWN) {
-			
-		}
 	}
-
 	return true;
 }
 
-bool InputManager::IsPressed(ControllerButton button) const
-{
-	switch (button)
-	{
-	case ControllerButton::ButtonA:
-		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_A;
-	case ControllerButton::ButtonB:
-		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_B;
-	case ControllerButton::ButtonX:
-		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_X;
-	case ControllerButton::ButtonY:
-		return m_CurrentState.Gamepad.wButtons & XINPUT_GAMEPAD_Y;
-	default: return false;
-	}
+void InputManager::AddInputAction(const InputAction& action) {
+	auto it = m_InputActions.find(int(action.id));
+
+	if(it == m_InputActions.end())
+		m_InputActions[int(action.id)] = action;
 }
 
+bool InputManager::IsActionTriggered(const Input id) {
+	auto it = m_InputActions.find(int(id));
+
+	if (it != m_InputActions.end()) {
+		return m_CurrentState.Gamepad.wButtons & it->second.bitMask;	//TODO: add Player 2 support
+	}
+	return false;
+}

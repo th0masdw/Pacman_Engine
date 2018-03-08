@@ -56,7 +56,7 @@ void MainGame::Run() {
 		// Prevent jumps in time caused by break points
 		elapsedTime = Min(elapsedTime, MAX_ELAPSED_TIME);
 
-		doContinue = input.ProcessInput();
+		doContinue = input.Update();
 
 		sceneManager.Update(elapsedTime);
 		renderer.Draw();

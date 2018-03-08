@@ -1,21 +1,18 @@
 #pragma once
 #include <XInput.h>
 #include "Singleton.h"
-
-enum class ControllerButton
-{
-	ButtonA,
-	ButtonB,
-	ButtonX,
-	ButtonY
-};
+#include "Structs.h"
+#include <map>
 
 class InputManager final : public Singleton<InputManager>
 {
 public:
-	bool ProcessInput();
-	bool IsPressed(ControllerButton button) const;
+	bool Update();
+	void AddInputAction(const InputAction& action);
+	bool IsActionTriggered(const Input id);
 
 private:
-	XINPUT_STATE m_CurrentState{};
+	XINPUT_STATE m_CurrentState{};	//TODO: add second state for player 2
+
+	std::map<int, InputAction> m_InputActions{};
 };

@@ -2,6 +2,14 @@
 
 #include "MiniginPCH.h"
 
+//TODO: rename Structs.h file!
+
+enum class Input : int
+{
+	P1_Up, P1_Down, P1_Left, P1_Right,
+	P2_Up, P2_Down, P2_Left, P2_Right
+};
+
 struct WindowSettings
 {
 	WindowSettings()
@@ -34,4 +42,11 @@ struct Vector2
 struct Color
 {
 	float r, g, b, a;
+};
+
+struct InputAction
+{
+	Input id;
+	int bitMask;
+	int playerId;
 };
