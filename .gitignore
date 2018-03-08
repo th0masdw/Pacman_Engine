@@ -1,6 +1,10 @@
 # Ignore .vs folder
 .vs/
 
+# Ignore Win32 folder
+Win32/
+Minigin/Win32
+
 # Ignore x64 folder
 x64/
 Minigin/x64
