@@ -1,7 +1,7 @@
 #pragma once
 
 #include "GameObject.h"
-#include "../Helpers/Structs.h"
+#include "Engine/Helpers/Structs.h"
 
 class RectangleObject : public GameObject
 {

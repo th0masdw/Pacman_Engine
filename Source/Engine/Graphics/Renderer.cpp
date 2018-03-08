@@ -9,8 +9,7 @@ void Renderer::Init(SDL_Window* window)
 {
 	m_pRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	if (m_pRenderer == nullptr) {
-		stringstream ss; ss << "SDL_CreateRenderer Error: " << SDL_GetError();
-		throw runtime_error(ss.str().c_str());
+		throw runtime_error("SDL_CreateRenderer Error: " + string(SDL_GetError()));
 	}
 }
 

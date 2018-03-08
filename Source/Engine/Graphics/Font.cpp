@@ -6,8 +6,7 @@ Font::Font(const string& fullPath, unsigned int size) : m_Font(nullptr), m_Size(
 	m_Font = TTF_OpenFont(fullPath.c_str(), size);
 
 	if (m_Font == nullptr) {
-		stringstream ss; ss << "Failed to load font: " << SDL_GetError();
-		throw runtime_error(ss.str().c_str());
+		throw runtime_error("Failed to load font: " + string(SDL_GetError()));
 	}
 }
 

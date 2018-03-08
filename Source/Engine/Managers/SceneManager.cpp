@@ -10,17 +10,17 @@ void SceneManager::Destroy() {
 
 void SceneManager::Update(float deltaTime)
 {
-	for(auto scene : m_Scenes)
+	for(Scene* pScene : m_Scenes)
 	{
-		scene->Update(deltaTime);
+		pScene->Update(deltaTime);
 	}
 }
 
 void SceneManager::Draw()
 {
-	for (const auto scene : m_Scenes)
+	for (Scene* pScene : m_Scenes)
 	{
-		scene->Draw();
+		pScene->Draw();
 	}
 }
 

@@ -3,9 +3,8 @@
 
 #include "Engine/Managers/ResourceManager.h"
 #include "Engine/Graphics/Renderer.h"
-#include <thread>
 #include "Engine/Managers/InputManager.h"
-#include "Engine/Managers/InputManager.h"
+#include "Engine/Managers/EventManager.h"
 
 #include "Engine/Scenegraph/Scene.h"
 #include "Engine/Scenegraph/TextureObject.h"
@@ -34,7 +33,7 @@ void MainGame::Initialize() {
 	InitWindow();
 
 	Renderer::GetInstance().Init(m_pWindow);
-	ResourceManager::GetInstance().Init("../Resources/");
+	ResourceManager::GetInstance().Init();
 	Debug::Initialize();
 }
 
@@ -60,17 +59,12 @@ void MainGame::Run() {
 
 		sceneManager.Update(elapsedTime);
 		renderer.Draw();
-
-		//t += chrono::milliseconds(MS_PER_FRAME);
-		//this_thread::sleep_until(t);
 	}
 }
 
 void MainGame::InitWindow() {
-	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-		stringstream ss; ss << "SDL_Init Error: " << SDL_GetError();
-		throw runtime_error(ss.str().c_str());
-	}
+	if (SDL_Init(SDL_INIT_VIDEO) != 0)
+		throw runtime_error("SDL_Init Error: " + string(SDL_GetError()));
 
 	m_pWindow = SDL_CreateWindow(
 		WindowSettings.Name.c_str(),
@@ -81,10 +75,8 @@ void MainGame::InitWindow() {
 		SDL_WINDOW_OPENGL       
 	);
 
-	if (m_pWindow == nullptr) {
-		stringstream ss; ss << "SDL_CreateWindow Error: " << SDL_GetError();
-		throw runtime_error(ss.str().c_str());
-	}
+	if (m_pWindow == nullptr)
+		throw runtime_error("SDL_CreateWindow Error: " + string(SDL_GetError()));
 }
 
 void MainGame::LoadGame() {
@@ -96,17 +88,17 @@ void MainGame::LoadGame() {
 	pRect->SetColor({ 0, 255, 255, 255 });
 	scene.Add(pRect);
 	
-	/*shared_ptr<TextureObject> pTextureObject = make_shared<TextureObject>();
-	pTextureObject->SetTexture("background.jpg");
+	/*TextureObject* pTextureObject = new TextureObject();
+	pTextureObject->SetTexture("../Resources/background.jpg");
 	scene.Add(pTextureObject);
 
-	pTextureObject = make_shared<TextureObject>();
-	pTextureObject->SetTexture("logo.png");
+	pTextureObject = new TextureObject();
+	pTextureObject->SetTexture("../Resources/logo.png");
 	pTextureObject->SetPosition(216, 180);
 	scene.Add(pTextureObject);
 
-	shared_ptr<Font> pFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
-	shared_ptr<TextObject> pTextObject = make_shared<TextObject>("Programming 4 Assignment", pFont);
+	shared_ptr<Font> pFont = ResourceManager::GetInstance().LoadFont("../Resources/Lingua.otf", 36);
+	TextObject* pTextObject = new TextObject("Programming 4 Assignment", pFont);
 	pTextObject->SetPosition(80, 20);
 	scene.Add(pTextObject);*/
 }
