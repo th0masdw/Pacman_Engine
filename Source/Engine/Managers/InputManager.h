@@ -1,7 +1,7 @@
 #pragma once
 #include <XInput.h>
-#include "Singleton.h"
-#include "Structs.h"
+#include "Engine/Helpers/Singleton.h"
+#include "Engine/Helpers/Structs.h"
 #include <map>
 
 class InputManager final : public Singleton<InputManager>

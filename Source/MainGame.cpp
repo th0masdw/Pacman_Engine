@@ -1,17 +1,17 @@
 #include "MiniginPCH.h"
 #include "MainGame.h"
 
-#include "ResourceManager.h"
-#include "Renderer.h"
+#include "Engine/Managers/ResourceManager.h"
+#include "Engine/Graphics/Renderer.h"
 #include <thread>
-#include "InputManager.h"
-#include "SceneManager.h"
+#include "Engine/Managers/InputManager.h"
+#include "Engine/Managers/InputManager.h"
 
-#include "Scene.h"
-#include "TextureObject.h"
-#include "TextObject.h"
-#include "RectangleObject.h"
-#include "Structs.h"
+#include "Engine/Scenegraph/Scene.h"
+#include "Engine/Scenegraph/TextureObject.h"
+#include "Engine/Scenegraph/TextObject.h"
+#include "Engine/Scenegraph/RectangleObject.h"
+#include "Engine/Helpers/Structs.h"
 
 #define MS_PER_FRAME 16		//16: 60 FPS, 33: 30 FPS
 #define MAX_ELAPSED_TIME 0.1f

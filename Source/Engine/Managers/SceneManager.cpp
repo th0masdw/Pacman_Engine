@@ -1,6 +1,6 @@
 #include "MiniginPCH.h"
 #include "SceneManager.h"
-#include "Scene.h"
+#include "Engine/Scenegraph/Scene.h"
 
 void SceneManager::Destroy() {
 	for (Scene* pScene : m_Scenes) {

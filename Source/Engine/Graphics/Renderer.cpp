@@ -1,9 +1,9 @@
 #include "MiniginPCH.h"
 #include "Renderer.h"
 #include <SDL.h>
-#include "SceneManager.h"
+#include "Engine/Managers/SceneManager.h"
+#include "Engine/Helpers/Structs.h"
 #include "Texture2D.h"
-#include "Structs.h"
 
 void Renderer::Init(SDL_Window* window)
 {

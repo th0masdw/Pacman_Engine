@@ -1,7 +1,7 @@
 #include "MiniginPCH.h"
 #include "TextureObject.h"
-#include "ResourceManager.h"
-#include "Renderer.h"
+#include "Engine/Managers/ResourceManager.h"
+#include "Engine/Graphics/Renderer.h"
 
 TextureObject::~TextureObject() = default;
 

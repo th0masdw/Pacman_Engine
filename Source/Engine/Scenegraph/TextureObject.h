@@ -1,8 +1,8 @@
 #pragma once
 #include <memory>
 
-#include "Transform.h"
-#include "Texture2D.h"
+#include "Engine/Helpers/Transform.h"
+#include "Engine/Graphics/Texture2D.h"
 #include "GameObject.h"
 
 class TextureObject : public GameObject

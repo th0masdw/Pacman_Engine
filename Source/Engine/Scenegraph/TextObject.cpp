@@ -3,9 +3,9 @@
 #include <SDL_ttf.h>
 
 #include "TextObject.h"
-#include "Renderer.h"
-#include "Font.h"
-#include "Texture2D.h"
+#include "Engine/Graphics/Renderer.h"
+#include "Engine/Graphics/Font.h"
+#include "Engine/Graphics/Texture2D.h"
 
 TextObject::TextObject(const string& text, shared_ptr<Font> font) 
 	: m_NeedsUpdate(true), m_Text(text), m_Font(font)

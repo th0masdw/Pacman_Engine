@@ -18,6 +18,49 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Engine\Graphics\Font.cpp" />
+    <ClCompile Include="Engine\Graphics\Renderer.cpp" />
+    <ClCompile Include="Engine\Graphics\Texture2D.cpp" />
+    <ClCompile Include="Engine\Helpers\Debug.cpp" />
+    <ClCompile Include="Engine\Helpers\Transform.cpp" />
+    <ClCompile Include="Engine\Managers\InputManager.cpp" />
+    <ClCompile Include="Engine\Managers\ResourceManager.cpp" />
+    <ClCompile Include="Engine\Managers\SceneManager.cpp" />
+    <ClCompile Include="Engine\Scenegraph\RectangleObject.cpp" />
+    <ClCompile Include="Engine\Scenegraph\Scene.cpp" />
+    <ClCompile Include="Engine\Scenegraph\TextObject.cpp" />
+    <ClCompile Include="Engine\Scenegraph\TextureObject.cpp" />
+    <ClCompile Include="MainGame.cpp" />
+    <ClCompile Include="Minigin.cpp" />
+    <ClCompile Include="MiniginPCH.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Engine\Graphics\Font.h" />
+    <ClInclude Include="Engine\Graphics\Renderer.h" />
+    <ClInclude Include="Engine\Graphics\Texture2D.h" />
+    <ClInclude Include="Engine\Helpers\Debug.h" />
+    <ClInclude Include="Engine\Helpers\HelperFunctions.h" />
+    <ClInclude Include="Engine\Helpers\Singleton.h" />
+    <ClInclude Include="Engine\Helpers\Structs.h" />
+    <ClInclude Include="Engine\Helpers\Transform.h" />
+    <ClInclude Include="Engine\Managers\InputManager.h" />
+    <ClInclude Include="Engine\Managers\ResourceManager.h" />
+    <ClInclude Include="Engine\Managers\SceneManager.h" />
+    <ClInclude Include="Engine\Scenegraph\GameObject.h" />
+    <ClInclude Include="Engine\Scenegraph\RectangleObject.h" />
+    <ClInclude Include="Engine\Scenegraph\Scene.h" />
+    <ClInclude Include="Engine\Scenegraph\TextObject.h" />
+    <ClInclude Include="Engine\Scenegraph\TextureObject.h" />
+    <ClInclude Include="MainGame.h" />
+    <ClInclude Include="MiniginPCH.h" />
+    <ClInclude Include="targetver.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{41B0EC47-D48C-4B0F-951B-D98595FFAE0A}</ProjectGuid>
@@ -72,19 +115,31 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)Binaries\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Binaries\$(Platform)\$(Configuration)\Intermediates\</IntDir>
+    <IncludePath>C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Libraries\SDL2_ttf\include;C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Libraries\SDL2_image\include;C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Libraries\SDL2\include;C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Libraries\glm;C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Source;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Libraries\SDL2_ttf\lib\x86;C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Libraries\SDL2_image\lib\x86;C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Libraries\SDL2\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Libraries\SDL2_ttf\include;C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Libraries\SDL2_image\include;C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Libraries\SDL2\include;C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Libraries\glm;C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Source;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)Binaries\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Binaries\$(Platform)\$(Configuration)\Intermediates\</IntDir>
+    <LibraryPath>C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Libraries\SDL2_ttf\lib\x64;C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Libraries\SDL2_image\lib\x64;C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Libraries\SDL2\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)Binaries\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Binaries\$(Platform)\$(Configuration)\Intermediates\</IntDir>
+    <IncludePath>C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Libraries\SDL2_ttf\include;C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Libraries\SDL2_image\include;C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Libraries\SDL2\include;C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Libraries\glm;C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Source;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Libraries\SDL2_ttf\lib\x86;C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Libraries\SDL2_image\lib\x86;C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Libraries\SDL2\lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Libraries\SDL2_ttf\include;C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Libraries\SDL2_image\include;C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Libraries\SDL2\include;C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Libraries\glm;C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Source;$(IncludePath)</IncludePath>
+    <OutDir>$(SolutionDir)Binaries\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Binaries\$(Platform)\$(Configuration)\Intermediates\</IntDir>
+    <LibraryPath>C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Libraries\SDL2_ttf\lib\x64;C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Libraries\SDL2_image\lib\x64;C:\Users\Thomas\Documents\School\Semester 4\Programming IV\Pacman_Engine\Libraries\SDL2\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -94,7 +149,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\SDL2_ttf\include;$(SolutionDir)Libraries\SDL2_image\include;$(SolutionDir)Libraries\glm;$(SolutionDir)Libraries\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>MiniginPCH.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
@@ -105,9 +160,9 @@
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)3rdParty\SDL2\lib\x86\SDL2.dll" "$(OutputPath)" /R /Y
-xcopy "$(SolutionDir)3rdParty\SDL2_image\lib\x86\*.dll" "$(OutputPath)" /R /Y
-xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Command>
+      <Command>xcopy "$(SolutionDir)Libraries\SDL2\lib\x86\SDL2.dll" "$(OutputPath)" /R /Y
+xcopy "$(SolutionDir)Libraries\SDL2_image\lib\x86\*.dll" "$(OutputPath)" /R /Y
+xcopy "$(SolutionDir)Libraries\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -118,7 +173,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\SDL2_ttf\include;$(SolutionDir)Libraries\SDL2_image\include;$(SolutionDir)Libraries\glm;$(SolutionDir)Libraries\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>MiniginPCH.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
@@ -129,9 +184,9 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)3rdParty\SDL2\lib\x64\SDL2.dll" "$(OutputPath)" /R /Y
-xcopy "$(SolutionDir)3rdParty\SDL2_image\lib\x64\*.dll" "$(OutputPath)" /R /Y
-xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Command>
+      <Command>xcopy "$(SolutionDir)Libraries\SDL2\lib\x64\SDL2.dll" "$(OutputPath)" /R /Y
+xcopy "$(SolutionDir)Libraries\SDL2_image\lib\x64\*.dll" "$(OutputPath)" /R /Y
+xcopy "$(SolutionDir)Libraries\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -144,7 +199,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\SDL2_ttf\include;$(SolutionDir)Libraries\SDL2_image\include;$(SolutionDir)Libraries\glm;$(SolutionDir)Libraries\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>MiniginPCH.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
@@ -157,9 +212,9 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)3rdParty\SDL2\lib\x86\SDL2.dll" "$(OutputPath)" /R /Y
-xcopy "$(SolutionDir)3rdParty\SDL2_image\lib\x86\*.dll" "$(OutputPath)" /R /Y
-xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Command>
+      <Command>xcopy "$(SolutionDir)Libraries\SDL2\lib\x86\SDL2.dll" "$(OutputPath)" /R /Y
+xcopy "$(SolutionDir)Libraries\SDL2_image\lib\x86\*.dll" "$(OutputPath)" /R /Y
+xcopy "$(SolutionDir)Libraries\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -172,7 +227,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)3rdParty\SDL2_ttf\include;$(SolutionDir)3rdParty\SDL2_image\include;$(SolutionDir)3rdParty\glm;$(SolutionDir)3rdParty\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\SDL2_ttf\include;$(SolutionDir)Libraries\SDL2_image\include;$(SolutionDir)Libraries\glm;$(SolutionDir)Libraries\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>MiniginPCH.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
@@ -185,55 +240,11 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Com
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy "$(SolutionDir)3rdParty\SDL2\lib\x64\SDL2.dll" "$(OutputPath)" /R /Y
-xcopy "$(SolutionDir)3rdParty\SDL2_image\lib\x64\*.dll" "$(OutputPath)" /R /Y
-xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Command>
+      <Command>xcopy "$(SolutionDir)Libraries\SDL2\lib\x64\SDL2.dll" "$(OutputPath)" /R /Y
+xcopy "$(SolutionDir)Libraries\SDL2_image\lib\x64\*.dll" "$(OutputPath)" /R /Y
+xcopy "$(SolutionDir)Libraries\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="HelperFunctions.h" />
-    <ClInclude Include="RectangleObject.h" />
-    <ClInclude Include="Debug.h" />
-    <ClInclude Include="Font.h" />
-    <ClInclude Include="TextureObject.h" />
-    <ClInclude Include="InputManager.h" />
-    <ClInclude Include="MainGame.h" />
-    <ClInclude Include="MiniginPCH.h" />
-    <ClInclude Include="GameObject.h" />
-    <ClInclude Include="Renderer.h" />
-    <ClInclude Include="ResourceManager.h" />
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="Singleton.h" />
-    <ClInclude Include="Structs.h" />
-    <ClInclude Include="targetver.h" />
-    <ClInclude Include="TextObject.h" />
-    <ClInclude Include="Texture2D.h" />
-    <ClInclude Include="Transform.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="RectangleObject.cpp" />
-    <ClCompile Include="Debug.cpp" />
-    <ClCompile Include="Font.cpp" />
-    <ClCompile Include="TextureObject.cpp" />
-    <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="MainGame.cpp" />
-    <ClCompile Include="Minigin.cpp" />
-    <ClCompile Include="MiniginPCH.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MiniginPCH.h</PrecompiledHeaderFile>
-    </ClCompile>
-    <ClCompile Include="Renderer.cpp" />
-    <ClCompile Include="ResourceManager.cpp" />
-    <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="TextObject.cpp" />
-    <ClCompile Include="Texture2D.cpp" />
-    <ClCompile Include="Transform.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

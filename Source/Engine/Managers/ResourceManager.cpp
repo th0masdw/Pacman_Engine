@@ -4,9 +4,9 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 
-#include "Renderer.h"
-#include "Texture2D.h"
-#include "Font.h"
+#include "Engine/Graphics/Renderer.h"
+#include "Engine/Graphics/Texture2D.h"
+#include "Engine/Graphics/Font.h"
 
 void ResourceManager::Init(string&& dataPath)
 {

@@ -1,11 +1,7 @@
 #include "MiniginPCH.h"
 #include "Font.h"
 
-TTF_Font* Font::GetFont() const {
-	return m_Font;
-}
-
-Font::Font(const string& fullPath, unsigned size) : m_Font(nullptr), m_Size(size)
+Font::Font(const string& fullPath, unsigned int size) : m_Font(nullptr), m_Size(size)
 {
 	m_Font = TTF_OpenFont(fullPath.c_str(), size);
 
@@ -18,4 +14,8 @@ Font::Font(const string& fullPath, unsigned size) : m_Font(nullptr), m_Size(size
 Font::~Font()
 {
 	TTF_CloseFont(m_Font);
+}
+
+TTF_Font* Font::GetFont() const {
+	return m_Font;
 }

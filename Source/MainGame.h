@@ -1,7 +1,7 @@
 #pragma once
 
 #include "SDL.h"
-#include "Structs.h"
+#include "Engine/Helpers/Structs.h"
 #include <chrono>
 
 class MainGame
