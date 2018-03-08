@@ -3,7 +3,10 @@
 
 struct SDL_Window;
 struct SDL_Renderer;
+struct SDL_Rect;
 class Texture2D;
+struct Vector2;
+struct Color;
 
 class Renderer final : public Singleton<Renderer>
 {
@@ -15,8 +18,11 @@ public:
 	void RenderTexture(const Texture2D& texture, float x, float y) const;
 	void RenderTexture(const Texture2D& texture, float x, float y, float width, float height) const;
 
-	SDL_Renderer* GetSDLRenderer() const { return m_Renderer; }
+	void RenderRect(const Vector2& pos, float width, float height, const Color& color) const;
+	void RenderRect(const SDL_Rect& rect, const Color& color) const;
+
+	SDL_Renderer* GetSDLRenderer() const { return m_pRenderer; }
 
 private:
-	SDL_Renderer* m_Renderer = nullptr;
+	SDL_Renderer* m_pRenderer = nullptr;
 };

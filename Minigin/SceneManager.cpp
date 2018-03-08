@@ -2,6 +2,11 @@
 #include "SceneManager.h"
 #include "Scene.h"
 
+void SceneManager::Destroy() {
+	for (Scene* pScene : m_Scenes) {
+		delete pScene;
+	}
+}
 
 void SceneManager::Update()
 {
@@ -21,7 +26,7 @@ void SceneManager::Draw()
 
 Scene& SceneManager::CreateScene(const string& name)
 {
-	const auto scene = shared_ptr<Scene>(new Scene(name));
-	m_Scenes.push_back(scene);
-	return *scene;
+	Scene* pScene = new Scene(name);
+	m_Scenes.push_back(pScene);
+	return *pScene;
 }

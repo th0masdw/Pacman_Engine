@@ -7,10 +7,11 @@ class SceneManager final : public Singleton<SceneManager>
 {
 public:
 	Scene& CreateScene(const std::string& name);
+	void Destroy();
 
 	void Update();
 	void Draw();
 
 private:
-	std::vector<std::shared_ptr<Scene>> m_Scenes;
+	std::vector<Scene*> m_Scenes;
 };

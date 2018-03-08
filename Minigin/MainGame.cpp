@@ -11,6 +11,8 @@
 #include "Scene.h"
 #include "TextureObject.h"
 #include "TextObject.h"
+#include "RectangleObject.h"
+#include "Structs.h"
 
 #define MS_PER_FRAME 16		//16: 60 FPS, 33: 30 FPS
 WindowSettings MainGame::WindowSettings{};
@@ -23,6 +25,7 @@ MainGame::MainGame()
 MainGame::~MainGame()
 {
 	Renderer::GetInstance().Destroy();
+	SceneManager::GetInstance().Destroy();
 	SDL_DestroyWindow(m_pWindow);
 	SDL_Quit();
 }
@@ -77,9 +80,15 @@ void MainGame::InitWindow() {
 }
 
 void MainGame::LoadGame() {
-	Scene& scene = SceneManager::GetInstance().CreateScene("Demo");
+	Scene& scene = SceneManager::GetInstance().CreateScene("Test");
+
+	RectangleObject* pRect = new RectangleObject{};
+	pRect->SetPosition({ 100, 100 });
+	pRect->SetDimensions(50, 50);
+	pRect->SetColor({ 0, 255, 255, 255 });
+	scene.Add(pRect);
 	
-	shared_ptr<TextureObject> pTextureObject = make_shared<TextureObject>();
+	/*shared_ptr<TextureObject> pTextureObject = make_shared<TextureObject>();
 	pTextureObject->SetTexture("background.jpg");
 	scene.Add(pTextureObject);
 
@@ -91,5 +100,5 @@ void MainGame::LoadGame() {
 	shared_ptr<Font> pFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
 	shared_ptr<TextObject> pTextObject = make_shared<TextObject>("Programming 4 Assignment", pFont);
 	pTextObject->SetPosition(80, 20);
-	scene.Add(pTextObject);
+	scene.Add(pTextObject);*/
 }
