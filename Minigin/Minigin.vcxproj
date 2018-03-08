@@ -191,6 +191,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Debug.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="TextureObject.h" />
     <ClInclude Include="InputManager.h" />
@@ -209,6 +210,7 @@ xcopy "$(SolutionDir)3rdParty\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Com
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Debug.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="TextureObject.cpp" />
     <ClCompile Include="InputManager.cpp" />

@@ -13,7 +13,7 @@ void TextureObject::Draw() const
 	Renderer::GetInstance().RenderTexture(*m_Texture, pos.x, pos.y);
 }
 
-void TextureObject::SetTexture(const std::string& filename)
+void TextureObject::SetTexture(const string& filename)
 {
 	m_Texture = ResourceManager::GetInstance().LoadTexture(filename);
 }

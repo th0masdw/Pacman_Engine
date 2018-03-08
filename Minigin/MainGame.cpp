@@ -32,12 +32,13 @@ void MainGame::Initialize() {
 
 	Renderer::GetInstance().Init(m_pWindow);
 	ResourceManager::GetInstance().Init("../Resources/");
+	Debug::Initialize();
 }
 
 void MainGame::Run() {
 	LoadGame();
 
-	auto t = std::chrono::high_resolution_clock::now();
+	auto t = chrono::high_resolution_clock::now();
 	Renderer& renderer = Renderer::GetInstance();
 	SceneManager& sceneManager = SceneManager::GetInstance();
 	InputManager& input = InputManager::GetInstance();
@@ -49,15 +50,15 @@ void MainGame::Run() {
 		sceneManager.Update();
 		renderer.Draw();
 
-		t += std::chrono::milliseconds(MS_PER_FRAME);
-		std::this_thread::sleep_until(t);
+		t += chrono::milliseconds(MS_PER_FRAME);
+		this_thread::sleep_until(t);
 	}
 }
 
 void MainGame::InitWindow() {
 	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
-		std::stringstream ss; ss << "SDL_Init Error: " << SDL_GetError();
-		throw std::runtime_error(ss.str().c_str());
+		stringstream ss; ss << "SDL_Init Error: " << SDL_GetError();
+		throw runtime_error(ss.str().c_str());
 	}
 
 	m_pWindow = SDL_CreateWindow(
@@ -70,25 +71,25 @@ void MainGame::InitWindow() {
 	);
 
 	if (m_pWindow == nullptr) {
-		std::stringstream ss; ss << "SDL_CreateWindow Error: " << SDL_GetError();
-		throw std::runtime_error(ss.str().c_str());
+		stringstream ss; ss << "SDL_CreateWindow Error: " << SDL_GetError();
+		throw runtime_error(ss.str().c_str());
 	}
 }
 
 void MainGame::LoadGame() {
 	Scene& scene = SceneManager::GetInstance().CreateScene("Demo");
 	
-	std::shared_ptr<TextureObject> pTextureObject = std::make_shared<TextureObject>();
+	shared_ptr<TextureObject> pTextureObject = make_shared<TextureObject>();
 	pTextureObject->SetTexture("background.jpg");
 	scene.Add(pTextureObject);
 
-	pTextureObject = std::make_shared<TextureObject>();
+	pTextureObject = make_shared<TextureObject>();
 	pTextureObject->SetTexture("logo.png");
 	pTextureObject->SetPosition(216, 180);
 	scene.Add(pTextureObject);
 
-	std::shared_ptr<Font> pFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
-	std::shared_ptr<TextObject> pTextObject = std::make_shared<TextObject>("Programming 4 Assignment", pFont);
+	shared_ptr<Font> pFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
+	shared_ptr<TextObject> pTextObject = make_shared<TextObject>("Programming 4 Assignment", pFont);
 	pTextObject->SetPosition(80, 20);
 	scene.Add(pTextObject);
 }

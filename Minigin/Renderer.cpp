@@ -8,8 +8,8 @@ void Renderer::Init(SDL_Window * window)
 {
 	m_Renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	if (m_Renderer == nullptr) {
-		std::stringstream ss; ss << "SDL_CreateRenderer Error: " << SDL_GetError();
-		throw std::runtime_error(ss.str().c_str());
+		stringstream ss; ss << "SDL_CreateRenderer Error: " << SDL_GetError();
+		throw runtime_error(ss.str().c_str());
 	}
 }
 
