@@ -12,7 +12,6 @@
 #include "Engine/Scenegraph/RectangleObject.h"
 #include "Engine/Helpers/Structs.h"
 
-#define MS_PER_FRAME 16		//16: 60 FPS, 33: 30 FPS
 #define MAX_ELAPSED_TIME 0.1f
 WindowSettings MainGame::WindowSettings{};
 
@@ -34,6 +33,7 @@ void MainGame::Initialize() {
 
 	Renderer::GetInstance().Init(m_pWindow);
 	ResourceManager::GetInstance().Init();
+	EventManager::GetInstance().Init();
 	Debug::Initialize();
 }
 

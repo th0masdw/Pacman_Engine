@@ -1,6 +1,7 @@
 #include "MiniginPCH.h"
 #include "RectangleObject.h"
 #include "Engine/Graphics/Renderer.h"
+#include "Engine/Managers/EventManager.h"
 
 RectangleObject::RectangleObject(const Vector2& pos, float width, float height, const Color& color)
 	: m_Pos{ pos },
