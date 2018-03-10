@@ -1,5 +1,6 @@
 #include "MiniginPCH.h"
 #include "InputManager.h"
+#include "SceneManager.h"
 #include <SDL.h>
 
 bool InputManager::Update() {
@@ -10,6 +11,12 @@ bool InputManager::Update() {
 	while (SDL_PollEvent(&e)) {
 		if (e.type == SDL_QUIT) {
 			return false;
+		}
+		if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
+			SceneManager::GetInstance().NextScene();
+		}
+		if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
+			SceneManager::GetInstance().PreviousScene();
 		}
 	}
 	return true;

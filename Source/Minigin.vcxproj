@@ -31,9 +31,12 @@
     <ClCompile Include="Engine\Managers\SceneManager.cpp" />
     <ClCompile Include="Engine\Scenegraph\GameObject.cpp" />
     <ClCompile Include="Engine\Scenegraph\RectangleObject.cpp" />
-    <ClCompile Include="Engine\Scenegraph\Scene.cpp" />
+    <ClCompile Include="Engine\Scenegraph\GameScene.cpp" />
     <ClCompile Include="Engine\Scenegraph\TextObject.cpp" />
     <ClCompile Include="Engine\Scenegraph\TextureObject.cpp" />
+    <ClCompile Include="Game\Test\TestScene.cpp" />
+    <ClCompile Include="Game\Test\TestScene2.cpp" />
+    <ClCompile Include="Game\Test\TestScene3.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="Minigin.cpp" />
     <ClCompile Include="MiniginPCH.cpp">
@@ -59,9 +62,12 @@
     <ClInclude Include="Engine\Managers\SceneManager.h" />
     <ClInclude Include="Engine\Scenegraph\GameObject.h" />
     <ClInclude Include="Engine\Scenegraph\RectangleObject.h" />
-    <ClInclude Include="Engine\Scenegraph\Scene.h" />
+    <ClInclude Include="Engine\Scenegraph\GameScene.h" />
     <ClInclude Include="Engine\Scenegraph\TextObject.h" />
     <ClInclude Include="Engine\Scenegraph\TextureObject.h" />
+    <ClInclude Include="Game\Test\TestScene.h" />
+    <ClInclude Include="Game\Test\TestScene2.h" />
+    <ClInclude Include="Game\Test\TestScene3.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="MiniginPCH.h" />
     <ClInclude Include="targetver.h" />

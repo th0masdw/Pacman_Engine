@@ -2,14 +2,6 @@
 
 #include "MiniginPCH.h"
 
-//TODO: rename Structs.h file!
-
-enum class Input : int
-{
-	P1_Up, P1_Down, P1_Left, P1_Right,
-	P2_Up, P2_Down, P2_Left, P2_Right
-};
-
 struct WindowSettings
 {
 	WindowSettings()
@@ -22,6 +14,21 @@ struct WindowSettings
 	int Width;
 	int Height;
 	std::string Name;
+};
+
+enum class Input : int
+{
+	//Player 1
+	P1_Up		= 0,
+	P1_Down		= 1,
+	P1_Left		= 2,
+	P1_Right	= 3,
+
+	//Player 2
+	P2_Up		= 4,
+	P2_Down		= 5,
+	P2_Left		= 6,
+	P2_Right	= 7,
 };
 
 struct Vector2

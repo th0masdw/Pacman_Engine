@@ -1,17 +1,22 @@
 #pragma once
 #include "Engine/Helpers/Singleton.h"
 
-class Scene;
+class GameScene;
 
 class SceneManager final : public Singleton<SceneManager>
 {
 public:
-	Scene& CreateScene(const std::string& name);
+	void CreateScene(GameScene* pScene);
 	void Destroy();
 
 	void Update(float deltaTime);
 	void Draw();
 
+	void SetActiveScene(const std::string& name);
+	void NextScene();
+	void PreviousScene();
+
 private:
-	std::vector<Scene*> m_Scenes;
+	std::vector<GameScene*> m_Scenes;
+	int m_ActiveSceneIndex = -1;
 };

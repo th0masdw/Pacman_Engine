@@ -1,16 +1,15 @@
 #include "MiniginPCH.h"
 #include "MainGame.h"
 
+#include "Engine/Managers/SceneManager.h"
 #include "Engine/Managers/ResourceManager.h"
 #include "Engine/Graphics/Renderer.h"
 #include "Engine/Managers/InputManager.h"
 #include "Engine/Managers/EventManager.h"
 
-#include "Engine/Scenegraph/Scene.h"
-#include "Engine/Scenegraph/TextureObject.h"
-#include "Engine/Scenegraph/TextObject.h"
-#include "Engine/Scenegraph/RectangleObject.h"
-#include "Engine/Helpers/Structs.h"
+#include "Game/Test/TestScene.h"
+#include "Game/Test/TestScene2.h"
+#include "Game/Test/TestScene3.h"
 
 #define MAX_ELAPSED_TIME 0.1f
 WindowSettings MainGame::WindowSettings{};
@@ -47,10 +46,10 @@ void MainGame::Run() {
 	bool doContinue = true;
 
 	while(doContinue)  {
-		auto t = chrono::high_resolution_clock::now();
-		auto timeSpan = chrono::duration_cast<std::chrono::duration<float>>(t - m_GameTime);
+		auto now = chrono::high_resolution_clock::now();
+		auto timeSpan = chrono::duration_cast<std::chrono::duration<float>>(now - m_GameTime);
 		float elapsedTime = timeSpan.count();
-		m_GameTime = t;
+		m_GameTime = now;
 
 		// Prevent jumps in time caused by break points
 		elapsedTime = Min(elapsedTime, MAX_ELAPSED_TIME);
@@ -80,25 +79,7 @@ void MainGame::InitWindow() {
 }
 
 void MainGame::LoadGame() {
-	Scene& scene = SceneManager::GetInstance().CreateScene("Test");
-
-	RectangleObject* pRect = new RectangleObject{};
-	pRect->SetPosition({ 100, 100 });
-	pRect->SetDimensions(50, 50);
-	pRect->SetColor({ 0, 255, 255, 255 });
-	scene.Add(pRect);
-	
-	/*TextureObject* pTextureObject = new TextureObject();
-	pTextureObject->SetTexture("../Resources/background.jpg");
-	scene.Add(pTextureObject);
-
-	pTextureObject = new TextureObject();
-	pTextureObject->SetTexture("../Resources/logo.png");
-	pTextureObject->SetPosition(216, 180);
-	scene.Add(pTextureObject);
-
-	shared_ptr<Font> pFont = ResourceManager::GetInstance().LoadFont("../Resources/Lingua.otf", 36);
-	TextObject* pTextObject = new TextObject("Programming 4 Assignment", pFont);
-	pTextObject->SetPosition(80, 20);
-	scene.Add(pTextObject);*/
+	SceneManager::GetInstance().CreateScene(new TestScene());
+	SceneManager::GetInstance().CreateScene(new TestScene2());
+	SceneManager::GetInstance().CreateScene(new TestScene3());
 }
