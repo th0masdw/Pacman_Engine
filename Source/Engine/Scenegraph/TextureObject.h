@@ -1,7 +1,6 @@
 #pragma once
 #include <memory>
 
-#include "Engine/Helpers/Transform.h"
 #include "Engine/Graphics/Texture2D.h"
 #include "GameObject.h"
 
@@ -15,7 +14,6 @@ public:
 	virtual void Draw() const override;
 
 	void SetTexture(const std::string& filename);
-	void SetPosition(float x, float y);
 
 	TextureObject(const TextureObject& other) = delete;
 	TextureObject(TextureObject&& other) = delete;
@@ -24,7 +22,4 @@ public:
 
 protected:
 	std::shared_ptr<Texture2D> m_Texture;
-
-private:
-	Transform m_Transform;
 };

@@ -11,16 +11,10 @@ void TextureObject::Update(float deltaTime) {
 
 void TextureObject::Draw() const
 {
-	auto pos = m_Transform.GetPosition();
-	Renderer::GetInstance().RenderTexture(*m_Texture, pos.x, pos.y);
+	Renderer::GetInstance().RenderTexture(*m_Texture, m_Position.x, m_Position.y);
 }
 
 void TextureObject::SetTexture(const string& filename)
 {
 	m_Texture = ResourceManager::GetInstance().LoadTexture(filename);
-}
-
-void TextureObject::SetPosition(float x, float y)
-{
-	m_Transform.SetPosition(x, y, 0.0f);
 }

@@ -12,7 +12,6 @@ public:
 	virtual void Update(float deltaTime) override;
 	virtual void Draw() const override;
 
-	void SetPosition(const Vector2& pos);
 	void SetDimensions(float width, float height);
 	void SetColor(const Color& color);
 
@@ -24,6 +23,5 @@ public:
 private:
 	float m_Width;
 	float m_Height;
-	Vector2 m_Pos;
 	Color m_Color;
 };

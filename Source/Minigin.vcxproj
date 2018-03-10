@@ -25,11 +25,11 @@
     <ClCompile Include="Engine\Helpers\Callback.cpp" />
     <ClCompile Include="Engine\Helpers\Debug.cpp" />
     <ClCompile Include="Engine\Helpers\Event.cpp" />
-    <ClCompile Include="Engine\Helpers\Transform.cpp" />
     <ClCompile Include="Engine\Managers\EventManager.cpp" />
     <ClCompile Include="Engine\Managers\InputManager.cpp" />
     <ClCompile Include="Engine\Managers\ResourceManager.cpp" />
     <ClCompile Include="Engine\Managers\SceneManager.cpp" />
+    <ClCompile Include="Engine\Scenegraph\GameObject.cpp" />
     <ClCompile Include="Engine\Scenegraph\RectangleObject.cpp" />
     <ClCompile Include="Engine\Scenegraph\Scene.cpp" />
     <ClCompile Include="Engine\Scenegraph\TextObject.cpp" />
@@ -53,7 +53,6 @@
     <ClInclude Include="Engine\Helpers\HelperFunctions.h" />
     <ClInclude Include="Engine\Helpers\Singleton.h" />
     <ClInclude Include="Engine\Helpers\Structs.h" />
-    <ClInclude Include="Engine\Helpers\Transform.h" />
     <ClInclude Include="Engine\Managers\EventManager.h" />
     <ClInclude Include="Engine\Managers\InputManager.h" />
     <ClInclude Include="Engine\Managers\ResourceManager.h" />
