@@ -20,7 +20,7 @@ public:
 	RectangleObject& operator=(const RectangleObject& other) = delete;
 	RectangleObject& operator=(RectangleObject&& other) = delete;
 
-private:
+protected:
 	float m_Width;
 	float m_Height;
 	Color m_Color;

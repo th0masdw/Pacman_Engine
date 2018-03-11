@@ -7,9 +7,7 @@
 #include "Engine/Managers/InputManager.h"
 #include "Engine/Managers/EventManager.h"
 
-#include "Game/Test/TestScene.h"
-#include "Game/Test/TestScene2.h"
-#include "Game/Test/TestScene3.h"
+#include "Game/Scenes/PacmanScene.h"
 
 #define MAX_ELAPSED_TIME 0.1f
 WindowSettings MainGame::WindowSettings{};
@@ -79,9 +77,5 @@ void MainGame::InitWindow() {
 }
 
 void MainGame::LoadGame() {
-	SceneManager::GetInstance().CreateScene(new TestScene());
-	SceneManager::GetInstance().CreateScene(new TestScene2());
-	SceneManager::GetInstance().CreateScene(new TestScene3());
-
-	SceneManager::GetInstance().SetActiveScene("TestScene");
+	SceneManager::GetInstance().CreateScene(new PacmanScene());
 }

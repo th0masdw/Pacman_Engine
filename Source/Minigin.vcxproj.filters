@@ -69,13 +69,7 @@
     <ClCompile Include="Engine\Scenegraph\GameScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Test\TestScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Test\TestScene2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Test\TestScene3.cpp">
+    <ClCompile Include="Game\Scenes\PacmanScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -143,13 +137,7 @@
     <ClInclude Include="Engine\Scenegraph\GameScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Test\TestScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Test\TestScene2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Test\TestScene3.h">
+    <ClInclude Include="Game\Scenes\PacmanScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
