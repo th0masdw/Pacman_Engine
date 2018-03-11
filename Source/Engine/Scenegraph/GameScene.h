@@ -22,8 +22,8 @@ protected:
 	virtual void Update(float deltaTime) = 0;
 	virtual void Draw() const = 0;
 
-	void Add(GameObject* pObject);
-	//Remove
+	void AddObject(GameObject* pObject);
+	void RemoveObject(GameObject* pObject, bool deleteObject = true);
 
 	std::string m_Name{};
 

@@ -16,5 +16,6 @@ protected:
 
 private:
 	RectangleObject* m_pRect;
+	RectangleObject* m_pChild;
 };
 

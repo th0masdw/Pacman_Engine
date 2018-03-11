@@ -82,4 +82,6 @@ void MainGame::LoadGame() {
 	SceneManager::GetInstance().CreateScene(new TestScene());
 	SceneManager::GetInstance().CreateScene(new TestScene2());
 	SceneManager::GetInstance().CreateScene(new TestScene3());
+
+	SceneManager::GetInstance().SetActiveScene("TestScene");
 }

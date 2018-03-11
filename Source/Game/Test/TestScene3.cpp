@@ -20,7 +20,7 @@ void TestScene3::Initialize()
 	m_pRect->SetDimensions(50.0f, 50.0f);
 	m_pRect->SetColor({ 0.0f, 0.0f, 255.0f, 255.0f });
 
-	Add(m_pRect);
+	AddObject(m_pRect);
 }
 
 void TestScene3::Update(float deltaTime) 

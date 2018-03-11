@@ -15,7 +15,9 @@ void RectangleObject::Update(float deltaTime) {
 }
 
 void RectangleObject::Draw() const {
-	Renderer::GetInstance().RenderRect(m_Position, m_Width, m_Height, m_Color);
+	Vector2 pos = GetPosition();
+	Vector2 center = { pos.x - m_Width / 2, pos.y - m_Height / 2 };
+	Renderer::GetInstance().RenderRect(center, m_Width, m_Height, m_Color);
 }
 
 void RectangleObject::SetDimensions(float width, float height) {

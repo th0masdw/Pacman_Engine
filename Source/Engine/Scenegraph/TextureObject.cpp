@@ -11,7 +11,7 @@ void TextureObject::Update(float deltaTime) {
 
 void TextureObject::Draw() const
 {
-	Renderer::GetInstance().RenderTexture(*m_Texture, m_Position.x, m_Position.y);
+	Renderer::GetInstance().RenderTexture(*m_Texture, GetPosition().x, GetPosition().y);
 }
 
 void TextureObject::SetTexture(const string& filename)
