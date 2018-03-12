@@ -29,6 +29,7 @@
     <ClCompile Include="Engine\Helpers\Callback.cpp" />
     <ClCompile Include="Engine\Helpers\Debug.cpp" />
     <ClCompile Include="Engine\Helpers\Event.cpp" />
+    <ClCompile Include="Engine\Helpers\GameTime.cpp" />
     <ClCompile Include="Engine\Managers\EventManager.cpp" />
     <ClCompile Include="Engine\Managers\InputManager.cpp" />
     <ClCompile Include="Engine\Managers\ResourceManager.cpp" />
@@ -60,6 +61,7 @@
     <ClInclude Include="Engine\Helpers\Callback.h" />
     <ClInclude Include="Engine\Helpers\Debug.h" />
     <ClInclude Include="Engine\Helpers\Event.h" />
+    <ClInclude Include="Engine\Helpers\GameTime.h" />
     <ClInclude Include="Engine\Helpers\HelperFunctions.h" />
     <ClInclude Include="Engine\Helpers\Singleton.h" />
     <ClInclude Include="Engine\Helpers\Structs.h" />

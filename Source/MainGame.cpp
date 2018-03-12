@@ -1,19 +1,18 @@
 #include "MiniginPCH.h"
 #include "MainGame.h"
 
+#include "Engine/Graphics/Renderer.h"
 #include "Engine/Managers/SceneManager.h"
 #include "Engine/Managers/ResourceManager.h"
-#include "Engine/Graphics/Renderer.h"
 #include "Engine/Managers/InputManager.h"
 #include "Engine/Managers/EventManager.h"
 
 #include "Game/Scenes/PacmanScene.h"
 
-#define MAX_ELAPSED_TIME 0.1f
-WindowSettings MainGame::WindowSettings{};
-
 MainGame::MainGame()
-	: m_pWindow{}
+	: m_pWindow{},
+	m_WindowSettings{},
+	m_GameTime{}
 {
 }
 
@@ -36,25 +35,18 @@ void MainGame::Initialize() {
 
 void MainGame::Run() {
 	LoadGame();
+	m_GameTime.Start();
 
-	m_GameTime = chrono::high_resolution_clock::now();
 	Renderer& renderer = Renderer::GetInstance();
 	SceneManager& sceneManager = SceneManager::GetInstance();
 	InputManager& input = InputManager::GetInstance();
 	bool doContinue = true;
 
 	while(doContinue)  {
-		auto now = chrono::high_resolution_clock::now();
-		auto timeSpan = chrono::duration_cast<std::chrono::duration<float>>(now - m_GameTime);
-		float elapsedTime = timeSpan.count();
-		m_GameTime = now;
-
-		// Prevent jumps in time caused by break points
-		elapsedTime = Min(elapsedTime, MAX_ELAPSED_TIME);
-
+		m_GameTime.Update();
 		doContinue = input.Update();
+		sceneManager.Update(m_GameTime.GetElapsedTime());
 
-		sceneManager.Update(elapsedTime);
 		renderer.Draw();
 	}
 }
@@ -64,11 +56,11 @@ void MainGame::InitWindow() {
 		throw runtime_error("SDL_Init Error: " + string(SDL_GetError()));
 
 	m_pWindow = SDL_CreateWindow(
-		WindowSettings.Name.c_str(),
+		m_WindowSettings.Name.c_str(),
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
-		WindowSettings.Width,                    
-		WindowSettings.Height,                    
+		m_WindowSettings.Width,                    
+		m_WindowSettings.Height,                    
 		SDL_WINDOW_OPENGL       
 	);
 

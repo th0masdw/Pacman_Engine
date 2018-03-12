@@ -2,7 +2,7 @@
 
 #include "SDL.h"
 #include "Engine/Helpers/Structs.h"
-#include <chrono>
+#include "Engine/Helpers/GameTime.h"
 
 class MainGame
 {
@@ -19,9 +19,9 @@ public:
 	MainGame& operator=(MainGame&& other) = delete;
 
 private:
-	static WindowSettings WindowSettings;
 	SDL_Window* m_pWindow;
-	std::chrono::high_resolution_clock::time_point m_GameTime;
+	WindowSettings m_WindowSettings;
+	GameTime m_GameTime;
 
 	void InitWindow();
 	void LoadGame();
