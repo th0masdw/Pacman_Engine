@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Engine/Scenegraph/GameScene.h"
+class PacmanActor;
 
 class PacmanScene : public GameScene
 {
@@ -14,6 +15,6 @@ protected:
 	virtual void Draw() const override;
 
 private:
-	//Objects
+	PacmanActor* m_pPlayer;
 };
 

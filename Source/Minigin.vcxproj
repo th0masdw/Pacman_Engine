@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Gameplay\Actor.cpp" />
     <ClCompile Include="Engine\Graphics\Font.cpp" />
     <ClCompile Include="Engine\Graphics\Renderer.cpp" />
     <ClCompile Include="Engine\Graphics\Texture2D.cpp" />
@@ -34,6 +35,7 @@
     <ClCompile Include="Engine\Scenegraph\GameScene.cpp" />
     <ClCompile Include="Engine\Scenegraph\TextObject.cpp" />
     <ClCompile Include="Engine\Scenegraph\TextureObject.cpp" />
+    <ClCompile Include="Game\Gameplay\Actors\PacmanActor.cpp" />
     <ClCompile Include="Game\Scenes\PacmanScene.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="Minigin.cpp" />
@@ -45,6 +47,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Gameplay\Actor.h" />
     <ClInclude Include="Engine\Graphics\Font.h" />
     <ClInclude Include="Engine\Graphics\Renderer.h" />
     <ClInclude Include="Engine\Graphics\Texture2D.h" />
@@ -63,6 +66,7 @@
     <ClInclude Include="Engine\Scenegraph\GameScene.h" />
     <ClInclude Include="Engine\Scenegraph\TextObject.h" />
     <ClInclude Include="Engine\Scenegraph\TextureObject.h" />
+    <ClInclude Include="Game\Gameplay\Actors\PacmanActor.h" />
     <ClInclude Include="Game\Scenes\PacmanScene.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="MiniginPCH.h" />
