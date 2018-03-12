@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Engine/Helpers/Structs.h"
+class BaseComponent;
 
 class GameObject
 {
@@ -13,6 +14,9 @@ public:
 
 	void AddChild(GameObject* pChild);
 	void RemoveChild(GameObject* pChild, bool deleteObject = true);
+
+	void AddComponent(BaseComponent* pComp);
+	void RemoveComponent(BaseComponent* pComp, bool deleteComp = true);
 
 	void SetPosition(const Vector2& pos);
 	Vector2 GetPosition() const;
@@ -30,4 +34,5 @@ private:
 	Vector2 m_Position;
 	GameObject* m_pParent;
 	std::vector<GameObject*> m_pChildren;
+	std::vector<BaseComponent*> m_pComponents;
 };

@@ -1,15 +1,22 @@
 #include "MiniginPCH.h"
 #include "GameObject.h"
 #include "Engine/Helpers/Structs.h"
+#include "Engine/Components/BaseComponent.h"
 
 GameObject::GameObject(const Vector2& pos)
 	: m_Position{ pos },
-	m_pParent(nullptr)
+	m_pParent(nullptr),
+	m_pChildren{},
+	m_pComponents{}
 {
 }
 
 GameObject::~GameObject()
 {
+	for (BaseComponent* pComp : m_pComponents) {
+		delete pComp;
+	}
+
 	for (GameObject* pObject : m_pChildren) {
 		delete pObject;
 	}
@@ -19,6 +26,10 @@ void GameObject::RootUpdate(float deltaTime)
 {
 	Update(deltaTime);
 
+	for (BaseComponent* pComp : m_pComponents) {
+		pComp->Update(deltaTime);
+	}
+
 	for (GameObject* pObject : m_pChildren) {
 		pObject->RootUpdate(deltaTime);
 	}
@@ -27,6 +38,10 @@ void GameObject::RootUpdate(float deltaTime)
 void GameObject::RootDraw() const 
 {
 	Draw();
+
+	for (BaseComponent* pComp : m_pComponents) {
+		pComp->Draw();
+	}
 
 	for (GameObject* pObject : m_pChildren) {
 		pObject->RootDraw();
@@ -53,6 +68,28 @@ void GameObject::RemoveChild(GameObject* pObject, bool deleteObject)
 			pObject = nullptr;
 		} else {
 			pObject->m_pParent = nullptr;
+		}
+	}
+}
+
+void GameObject::AddComponent(BaseComponent* pComp) {
+	if (pComp) {
+		pComp->SetGameObject(this);
+		m_pComponents.push_back(pComp);
+	}
+}
+
+void GameObject::RemoveComponent(BaseComponent* pComp, bool deleteComp) {
+	auto it = find(m_pComponents.begin(), m_pComponents.end(), pComp);
+
+	if (it != m_pComponents.end()) {
+		m_pComponents.erase(it);
+
+		if (deleteComp) {
+			delete pComp;
+			pComp = nullptr;
+		} else {
+			pComp->SetGameObject(nullptr);
 		}
 	}
 }

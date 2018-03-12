@@ -13,7 +13,6 @@ public:
 
 protected:
 	float m_Speed;
-	//collider component
 
 	virtual void Initialize() = 0;
 	void Move(const Vector2& direction);
