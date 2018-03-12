@@ -2,6 +2,7 @@
 
 #include "Engine/Scenegraph/GameScene.h"
 class PacmanActor;
+class RectangleObject;
 
 class PacmanScene : public GameScene
 {
@@ -16,5 +17,6 @@ protected:
 
 private:
 	PacmanActor* m_pPlayer;
+	RectangleObject* m_pWall;
 };
 

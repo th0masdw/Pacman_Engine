@@ -1,7 +1,6 @@
 #include "MiniginPCH.h"
 #include "ColliderComponent.h"
 
-
 ColliderComponent::ColliderComponent()
 {
 }
@@ -16,5 +15,5 @@ void ColliderComponent::Update(float deltaTime) {
 }
 
 void ColliderComponent::Draw() const {
-
+	
 }
