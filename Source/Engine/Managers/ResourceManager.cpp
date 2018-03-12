@@ -26,16 +26,23 @@ void ResourceManager::Init()
 
 shared_ptr<Texture2D> ResourceManager::LoadTexture(const string& file)
 {
-	string fullPath = file.c_str();
-	SDL_Texture *texture = IMG_LoadTexture(Renderer::GetInstance().GetSDLRenderer(), fullPath.c_str());
-	if (texture == nullptr) {
-		throw runtime_error("Failed to load texture: " + string(SDL_GetError()));
+	if (file.empty())
+		throw runtime_error{ "Filename cannot be empty!" };
+
+	SDL_Texture* pTexture = IMG_LoadTexture(Renderer::GetInstance().GetSDLRenderer(), file.c_str());
+	if (pTexture) {
+		auto result = m_Textures.insert({ file, make_shared<Texture2D>(pTexture) });
+		return result.first->second;
+	} else {
+		throw runtime_error{ "File could not be loaded: " + file };
 	}
-	return make_shared<Texture2D>(texture);
 }
 
 shared_ptr<Font> ResourceManager::LoadFont(const string& file, unsigned int size)
 {
-	string fullPath = file.c_str();
-	return make_shared<Font>(fullPath, size);
+	if (file.empty())
+		throw runtime_error{ "Filename cannot be empty!" };
+
+	auto result = m_Fonts.insert({ file, make_shared<Font>(file, size) });
+	return result.first->second;
 }
