@@ -6,7 +6,7 @@
 class RectangleObject : public GameObject
 {
 public:
-	explicit RectangleObject(const Vector2& pos = {}, float width = 1, float height = 1, const Color& color = { 255, 255, 255, 255 });
+	explicit RectangleObject(float width = 1, float height = 1, const Color& color = { 255, 255, 255, 255 });
 	virtual ~RectangleObject() = default;
 
 	virtual void Update(float deltaTime) override;

@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Engine\Components\BaseComponent.cpp" />
     <ClCompile Include="Engine\Components\ColliderComponent.cpp" />
+    <ClCompile Include="Engine\Components\TransformComponent.cpp" />
     <ClCompile Include="Engine\Gameplay\Actor.cpp" />
     <ClCompile Include="Engine\Graphics\Font.cpp" />
     <ClCompile Include="Engine\Graphics\Renderer.cpp" />
@@ -51,6 +52,7 @@
   <ItemGroup>
     <ClInclude Include="Engine\Components\BaseComponent.h" />
     <ClInclude Include="Engine\Components\ColliderComponent.h" />
+    <ClInclude Include="Engine\Components\TransformComponent.h" />
     <ClInclude Include="Engine\Gameplay\Actor.h" />
     <ClInclude Include="Engine\Graphics\Font.h" />
     <ClInclude Include="Engine\Graphics\Renderer.h" />

@@ -2,8 +2,8 @@
 #include "PacmanActor.h"
 #include "Engine/Managers/InputManager.h"
 
-PacmanActor::PacmanActor(const Vector2& pos, float width, float height, const Color& color, float speed)
-	: Actor(pos, width, height, color, speed)
+PacmanActor::PacmanActor(float width, float height, const Color& color, float speed)
+	: Actor(width, height, color, speed)
 {
 	Initialize();
 }

@@ -5,7 +5,7 @@
 class Actor : public RectangleObject
 {
 public:
-	explicit Actor(const Vector2& pos = {}, float width = 1, float height = 1, const Color& color = { 255, 255, 255, 255 }, float speed = 50.0f);
+	explicit Actor(float width = 1, float height = 1, const Color& color = { 255, 255, 255, 255 }, float speed = 50.0f);
 	virtual ~Actor() = default;
 
 	virtual void Update(float deltaTime)  = 0;

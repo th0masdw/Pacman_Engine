@@ -1,14 +1,15 @@
 #include "MiniginPCH.h"
 #include "GameObject.h"
-#include "Engine/Helpers/Structs.h"
 #include "Engine/Components/BaseComponent.h"
 
-GameObject::GameObject(const Vector2& pos)
-	: m_Position{ pos },
-	m_pParent(nullptr),
+GameObject::GameObject()
+	: m_pParent(nullptr),
+	m_pTransform(nullptr),
 	m_pChildren{},
 	m_pComponents{}
 {
+	m_pTransform = new TransformComponent();
+	AddComponent(m_pTransform);
 }
 
 GameObject::~GameObject()
@@ -94,15 +95,6 @@ void GameObject::RemoveComponent(BaseComponent* pComp, bool deleteComp) {
 	}
 }
 
-void GameObject::SetPosition(const Vector2& pos) 
-{
-	m_Position = pos;
-}
-
-Vector2 GameObject::GetPosition() const 
-{
-	if (m_pParent)
-		return m_pParent->m_Position + m_Position;
-	else
-		return m_Position;
+TransformComponent* GameObject::GetTransform() const {
+	return m_pTransform;
 }
