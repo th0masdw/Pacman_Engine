@@ -64,8 +64,8 @@ public:
 	GameObject& operator=(GameObject&& other) = delete;
 
 private:
-	TransformComponent* m_pTransform;
 	GameObject* m_pParent;
+	TransformComponent* m_pTransform;
 	std::vector<GameObject*> m_pChildren;
 	std::vector<BaseComponent*> m_pComponents;
 };

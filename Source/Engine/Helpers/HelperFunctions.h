@@ -24,3 +24,11 @@ inline T Max(T value, T other) {
 
 	return value;
 }
+
+inline float WrapAngle(float angle) {
+	angle = fmod(angle, 360.0f);
+    if (angle < 0.0f)
+        angle += 360.0f;
+
+	return angle;
+}

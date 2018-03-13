@@ -7,6 +7,7 @@
 #include "Engine/Scenegraph/GameObject.h"
 #include "Engine/Components/SpriteComponent.h"
 #include "Engine/Components/TextComponent.h"
+#include "Engine/Components/TransformComponent.h"
 
 PacmanScene::PacmanScene()
 	: GameScene("PacmanScene"),
@@ -24,7 +25,7 @@ PacmanScene::~PacmanScene()
 
 void PacmanScene::Initialize()
 {
-	m_pPlayer = new PacmanActor();
+	/*m_pPlayer = new PacmanActor();
 	m_pPlayer->GetTransform()->Translate(400.0f, 200.0f);
 	m_pPlayer->SetDimensions(30.0f, 30.0f);
 	m_pPlayer->SetColor({ 255.0f, 255.0f, 0.0f, 255.0f });
@@ -35,16 +36,19 @@ void PacmanScene::Initialize()
 	m_pWall->GetTransform()->Translate(200.0f, 200.0f);
 	m_pWall->SetDimensions(20.0f, 200.0f);
 	m_pWall->SetColor({ 0.0f, 0.0f, 255.0f, 255.0f });
-	AddObject(m_pWall);
+	AddObject(m_pWall);*/
 
 	m_pTextureObject = new GameObject();
 	m_pTextureObject->GetTransform()->Translate(100.0f, 100.0f);
+	m_pTextureObject->GetTransform()->Rotate(45.0f);
+	m_pTextureObject->GetTransform()->Scale(0.5f, 0.5f);
 	SpriteComponent* pSprite = new SpriteComponent("../Resources/logo.png");
 	m_pTextureObject->AddComponent(pSprite);
 	AddObject(m_pTextureObject);
 
 	m_pTextObject = new GameObject();
-	m_pTextObject->GetTransform()->Translate(200.0f, 200.0f);
+	m_pTextObject->GetTransform()->Translate(300.0f, 300.0f);
+	m_pTextObject->GetTransform()->Scale(2.0f, 2.0f);
 	TextComponent* pText = new TextComponent();
 	pText->SetText("TextComponent test", { 255.0f, 0.0f, 0.0f, 255.0f });
 	pText->SetFont("../Resources/Lingua.otf", 20);

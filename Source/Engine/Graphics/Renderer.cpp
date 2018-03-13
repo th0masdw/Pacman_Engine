@@ -8,6 +8,7 @@
 void Renderer::Init(SDL_Window* window)
 {
 	m_pRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+
 	if (m_pRenderer == nullptr) {
 		throw runtime_error("SDL_CreateRenderer Error: " + string(SDL_GetError()));
 	}
@@ -29,23 +30,25 @@ void Renderer::Destroy()
 	}
 }
 
-void Renderer::RenderTexture(const Texture2D& texture, const float x, const float y) const
+void Renderer::RenderTexture(const Texture2D& texture, const Vector2& pos) const
 {
 	SDL_Rect dst;
-	dst.x = static_cast<int>(x);
-	dst.y = static_cast<int>(y);
+	dst.x = static_cast<int>(pos.x);
+	dst.y = static_cast<int>(pos.y);
 	SDL_QueryTexture(texture.GetSDLTexture(), nullptr, nullptr, &dst.w, &dst.h);
 	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, &dst);
 }
 
-void Renderer::RenderTexture(const Texture2D& texture, const float x, const float y, const float width, const float height) const
+void Renderer::RenderTexture(const Texture2D& texture, const Vector2& pos, float angle, const Vector2& scales) const
 {
 	SDL_Rect dst;
-	dst.x = static_cast<int>(x);
-	dst.y = static_cast<int>(y);
-	dst.w = static_cast<int>(width);
-	dst.h = static_cast<int>(height);
-	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, &dst);
+	SDL_QueryTexture(texture.GetSDLTexture(), nullptr, nullptr, &dst.w, &dst.h);
+	dst.w = static_cast<int>(dst.w * scales.x);
+	dst.h = static_cast<int>(dst.h * scales.y);
+	dst.x = static_cast<int>(pos.x - dst.w / 2);
+	dst.y = static_cast<int>(pos.y - dst.h / 2);
+
+	SDL_RenderCopyEx(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, &dst, double(angle), nullptr, SDL_FLIP_NONE);
 }
 
 void Renderer::RenderRect(const Vector2& pos, float width, float height, const Color& color) const {

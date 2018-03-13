@@ -7,17 +7,18 @@ class TransformComponent : public BaseComponent
 {
 public:
 	TransformComponent();
-	virtual ~TransformComponent();
+	virtual ~TransformComponent() = default;
 
 	void Translate(float x, float y);
 	void Translate(const Vector2& pos);
 
-	//Rotation?
+	void Rotate(float angle);
 
 	void Scale(float x, float y);
 	void Scale(const Vector2& scale);
 
 	Vector2 GetPosition() const;
+	float GetRotation() const;
 	Vector2 GetScale() const;
 
 	TransformComponent(const TransformComponent& other) = delete;
@@ -31,5 +32,6 @@ protected:
 
 private:
 	Vector2 m_Position;
+	float m_Rotation;
 	Vector2 m_Scale;
 };

@@ -51,10 +51,8 @@ void TextComponent::Update(float deltaTime) {
 
 void TextComponent::Draw() const {
 	if (m_pTexture) {
-		GameObject* pObject = GetGameObject();
-		Vector2 pos = pObject->GetTransform()->GetPosition();
-
-		Renderer::GetInstance().RenderTexture(*m_pTexture, pos.x, pos.y);
+		TransformComponent* pComp = GetGameObject()->GetTransform();
+		Renderer::GetInstance().RenderTexture(*m_pTexture, pComp->GetPosition(), pComp->GetRotation(), pComp->GetScale());
 	} else {
 		Debug::LogError("TextComponent::Draw() - Texture not loaded!");
 	}
