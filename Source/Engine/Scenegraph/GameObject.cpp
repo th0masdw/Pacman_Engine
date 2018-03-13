@@ -23,29 +23,25 @@ GameObject::~GameObject()
 	}
 }
 
-void GameObject::RootUpdate(float deltaTime)
+void GameObject::Update(float deltaTime)
 {
-	Update(deltaTime);
-
 	for (BaseComponent* pComp : m_pComponents) {
 		pComp->Update(deltaTime);
 	}
 
 	for (GameObject* pObject : m_pChildren) {
-		pObject->RootUpdate(deltaTime);
+		pObject->Update(deltaTime);
 	}
 }
 
-void GameObject::RootDraw() const 
+void GameObject::Draw() const 
 {
-	Draw();
-
 	for (BaseComponent* pComp : m_pComponents) {
 		pComp->Draw();
 	}
 
 	for (GameObject* pObject : m_pChildren) {
-		pObject->RootDraw();
+		pObject->Draw();
 	}
 }
 

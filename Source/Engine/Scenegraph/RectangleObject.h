@@ -9,8 +9,8 @@ public:
 	explicit RectangleObject(float width = 1, float height = 1, const Color& color = { 255, 255, 255, 255 });
 	virtual ~RectangleObject() = default;
 
-	virtual void Update(float deltaTime) override;
-	virtual void Draw() const override;
+	virtual void Update(float deltaTime);
+	virtual void Draw() const;
 
 	void SetDimensions(float width, float height);
 	void SetColor(const Color& color);

@@ -18,5 +18,8 @@ protected:
 private:
 	PacmanActor* m_pPlayer;
 	RectangleObject* m_pWall;
+
+	GameObject* m_pTextureObject;
+	GameObject* m_pTextObject;
 };
 

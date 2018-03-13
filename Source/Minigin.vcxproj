@@ -21,6 +21,8 @@
   <ItemGroup>
     <ClCompile Include="Engine\Components\BaseComponent.cpp" />
     <ClCompile Include="Engine\Components\ColliderComponent.cpp" />
+    <ClCompile Include="Engine\Components\SpriteComponent.cpp" />
+    <ClCompile Include="Engine\Components\TextComponent.cpp" />
     <ClCompile Include="Engine\Components\TransformComponent.cpp" />
     <ClCompile Include="Engine\Gameplay\Actor.cpp" />
     <ClCompile Include="Engine\Graphics\Font.cpp" />
@@ -37,8 +39,6 @@
     <ClCompile Include="Engine\Scenegraph\GameObject.cpp" />
     <ClCompile Include="Engine\Scenegraph\RectangleObject.cpp" />
     <ClCompile Include="Engine\Scenegraph\GameScene.cpp" />
-    <ClCompile Include="Engine\Scenegraph\TextObject.cpp" />
-    <ClCompile Include="Engine\Scenegraph\TextureObject.cpp" />
     <ClCompile Include="Game\Gameplay\Actors\PacmanActor.cpp" />
     <ClCompile Include="Game\Scenes\PacmanScene.cpp" />
     <ClCompile Include="MainGame.cpp" />
@@ -53,6 +53,8 @@
   <ItemGroup>
     <ClInclude Include="Engine\Components\BaseComponent.h" />
     <ClInclude Include="Engine\Components\ColliderComponent.h" />
+    <ClInclude Include="Engine\Components\SpriteComponent.h" />
+    <ClInclude Include="Engine\Components\TextComponent.h" />
     <ClInclude Include="Engine\Components\TransformComponent.h" />
     <ClInclude Include="Engine\Gameplay\Actor.h" />
     <ClInclude Include="Engine\Graphics\Font.h" />
@@ -72,8 +74,6 @@
     <ClInclude Include="Engine\Scenegraph\GameObject.h" />
     <ClInclude Include="Engine\Scenegraph\RectangleObject.h" />
     <ClInclude Include="Engine\Scenegraph\GameScene.h" />
-    <ClInclude Include="Engine\Scenegraph\TextObject.h" />
-    <ClInclude Include="Engine\Scenegraph\TextureObject.h" />
     <ClInclude Include="Game\Gameplay\Actors\PacmanActor.h" />
     <ClInclude Include="Game\Scenes\PacmanScene.h" />
     <ClInclude Include="MainGame.h" />

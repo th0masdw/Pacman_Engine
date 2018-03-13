@@ -17,13 +17,13 @@ GameScene::~GameScene()
 void GameScene::Update(float deltaTime)
 {
 	for (GameObject* pObject : m_Objects) {
-		pObject->RootUpdate(deltaTime);
+		pObject->Update(deltaTime);
 	}
 }
 
 void GameScene::Draw() const {
 	for (GameObject* pObject : m_Objects) {
-		pObject->RootDraw();
+		pObject->Draw();
 	}
 }
 

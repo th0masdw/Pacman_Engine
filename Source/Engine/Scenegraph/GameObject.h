@@ -9,8 +9,8 @@ public:
 	GameObject();
 	virtual ~GameObject();
 
-	void RootUpdate(float deltaTime);
-	void RootDraw() const;
+	void Update(float deltaTime);
+	void Draw() const;
 
 	void AddChild(GameObject* pChild);
 	void RemoveChild(GameObject* pChild, bool deleteObject = true);
@@ -62,10 +62,6 @@ public:
 	GameObject(GameObject&& other) = delete;
 	GameObject& operator=(const GameObject& other) = delete;
 	GameObject& operator=(GameObject&& other) = delete;
-
-protected:
-	virtual void Update(float deltaTime) = 0;
-	virtual void Draw() const = 0;
 
 private:
 	TransformComponent* m_pTransform;
