@@ -1,6 +1,7 @@
 #pragma once
 
 #include "BaseComponent.h"
+class GameTime;
 class Texture2D;
 
 class SpriteComponent : public BaseComponent
@@ -18,7 +19,7 @@ public:
 	SpriteComponent& operator=(SpriteComponent&& other) = delete;
 
 protected:
-	virtual void Update(float deltaTime) override;
+	virtual void Update(const GameTime& time) override;
 	virtual void Draw() const override;
 
 private:

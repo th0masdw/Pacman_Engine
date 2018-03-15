@@ -14,10 +14,10 @@ GameScene::~GameScene()
 	}
 }
 
-void GameScene::Update(float deltaTime)
+void GameScene::Update(const GameTime& time)
 {
 	for (GameObject* pObject : m_Objects) {
-		pObject->Update(deltaTime);
+		pObject->Update(time);
 	}
 }
 

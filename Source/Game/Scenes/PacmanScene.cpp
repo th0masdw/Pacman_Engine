@@ -54,11 +54,20 @@ void PacmanScene::Initialize()
 	pText->SetFont("../Resources/Lingua.otf", 20);
 	m_pTextObject->AddComponent(pText);
 	AddObject(m_pTextObject);
+
+	//FPS Counter
+	GameObject* pFPS = new GameObject();
+	m_FPSCounter = new TextComponent("FPS", { 0.0f, 255.0f, 0.0f, 255.0f }, "../Resources/Lingua.otf", 12);
+	pFPS->AddComponent(m_FPSCounter);
+	pFPS->GetTransform()->Translate(20.0f, 20.0f);
+	AddObject(pFPS);
 }
 
-void PacmanScene::Update(float deltaTime) 
+void PacmanScene::Update(const GameTime& time) 
 {
-	GameScene::Update(deltaTime);
+	GameScene::Update(time);
+
+	m_FPSCounter->SetText(to_string(time.GetFPS()), { 0.0f, 255.0f, 0.0f, 255.0f });
 }
 
 void PacmanScene::Draw() const 

@@ -10,8 +10,8 @@ ColliderComponent::~ColliderComponent()
 {
 }
 
-void ColliderComponent::Update(float deltaTime) {
-	UNREFERENCED_PARAMETER(deltaTime);
+void ColliderComponent::Update(const GameTime& time) {
+	UNREFERENCED_PARAMETER(time);
 }
 
 void ColliderComponent::Draw() const {

@@ -26,8 +26,8 @@ TextComponent::~TextComponent()
 	delete m_pTexture;
 }
 
-void TextComponent::Update(float deltaTime) {
-	UNREFERENCED_PARAMETER(deltaTime);
+void TextComponent::Update(const GameTime& time) {
+	UNREFERENCED_PARAMETER(time);
 
 	if (m_NeedsUpdate && m_pFont) {
 		SDL_Color color = { Uint8(m_Color.r), Uint8(m_Color.g), Uint8(m_Color.b) };
@@ -59,9 +59,11 @@ void TextComponent::Draw() const {
 }
 
 void TextComponent::SetText(const string& text, const Color& color) {
-	m_Text = text;
-	m_Color = color;
-	m_NeedsUpdate = true;
+	if (m_Text != text) {
+		m_Text = text;
+		m_Color = color;
+		m_NeedsUpdate = true;
+	}
 }
 
 void TextComponent::SetFont(const string& file, unsigned int size) {

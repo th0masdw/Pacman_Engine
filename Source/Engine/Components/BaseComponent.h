@@ -1,6 +1,7 @@
 #pragma once
 
 class GameObject;
+class GameTime;
 
 class BaseComponent
 {
@@ -19,7 +20,7 @@ public:
 protected:
 	friend class GameObject;
 
-	virtual void Update(float deltaTime) = 0;
+	virtual void Update(const GameTime& time) = 0;
 	virtual void Draw() const = 0;
 
 	GameObject* m_pGameObject;

@@ -1,5 +1,6 @@
 #pragma once
 
+class GameTime;
 class GameObject;
 
 class GameScene
@@ -19,7 +20,7 @@ protected:
 	friend class SceneManager;
 
 	virtual void Initialize() = 0;
-	virtual void Update(float deltaTime) = 0;
+	virtual void Update(const GameTime& time) = 0;
 	virtual void Draw() const = 0;
 
 	void AddObject(GameObject* pObject);

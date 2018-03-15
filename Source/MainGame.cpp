@@ -45,7 +45,7 @@ void MainGame::Run() {
 	while(doContinue)  {
 		m_GameTime.Update();
 		doContinue = input.Update();
-		sceneManager.Update(m_GameTime.GetElapsedTime());
+		sceneManager.Update(m_GameTime);
 
 		renderer.Draw();
 	}

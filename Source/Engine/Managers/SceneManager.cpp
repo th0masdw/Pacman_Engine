@@ -9,10 +9,10 @@ void SceneManager::Destroy() {
 	}
 }
 
-void SceneManager::Update(float deltaTime)
+void SceneManager::Update(const GameTime& time)
 {
 	if (m_ActiveSceneIndex < int(m_Scenes.size()))
-		m_Scenes[m_ActiveSceneIndex]->Update(deltaTime);
+		m_Scenes[m_ActiveSceneIndex]->Update(time);
 }
 
 void SceneManager::Draw()

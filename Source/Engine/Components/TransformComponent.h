@@ -2,6 +2,7 @@
 
 #include "BaseComponent.h"
 #include "Engine/Helpers/Structs.h"
+class GameTime;
 
 class TransformComponent : public BaseComponent
 {
@@ -27,7 +28,7 @@ public:
 	TransformComponent& operator=(TransformComponent&& other) = delete;
 
 protected:
-	virtual void Update(float deltaTime) override;
+	virtual void Update(const GameTime& time) override;
 	virtual void Draw() const override;
 
 private:

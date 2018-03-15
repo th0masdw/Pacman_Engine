@@ -2,6 +2,7 @@
 
 #include "BaseComponent.h"
 #include "Engine/Helpers/Structs.h"
+class GameTime;
 class Texture2D;
 class Font;
 
@@ -21,7 +22,7 @@ public:
 	TextComponent& operator=(TextComponent&& other) = delete;
 
 protected:
-	virtual void Update(float deltaTime) override;
+	virtual void Update(const GameTime& time) override;
 	virtual void Draw() const;
 
 private:

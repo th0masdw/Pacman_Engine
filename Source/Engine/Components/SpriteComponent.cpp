@@ -10,8 +10,8 @@ SpriteComponent::SpriteComponent(const string& file)
 {
 }
 
-void SpriteComponent::Update(float deltaTime) {
-	UNREFERENCED_PARAMETER(deltaTime);
+void SpriteComponent::Update(const GameTime& time) {
+	UNREFERENCED_PARAMETER(time);
 }
 
 void SpriteComponent::Draw() const {

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Engine/Components/TransformComponent.h"
+class GameTime;
 class BaseComponent;
 
 class GameObject
@@ -9,7 +10,7 @@ public:
 	GameObject();
 	virtual ~GameObject();
 
-	void Update(float deltaTime);
+	void Update(const GameTime& time);
 	void Draw() const;
 
 	void AddChild(GameObject* pChild);

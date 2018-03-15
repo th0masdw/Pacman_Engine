@@ -1,6 +1,7 @@
 #pragma once
 
 #include "BaseComponent.h"
+class GameTime;
 
 class ColliderComponent : public BaseComponent
 {
@@ -14,6 +15,6 @@ public:
 	ColliderComponent& operator=(ColliderComponent&& other) = delete;
 
 protected:
-	virtual void Update(float deltaTime) override;
+	virtual void Update(const GameTime& time) override;
 	virtual void Draw() const override;
 };

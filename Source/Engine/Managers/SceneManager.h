@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine/Helpers/Singleton.h"
 
+class GameTime;
 class GameScene;
 
 class SceneManager final : public Singleton<SceneManager>
@@ -9,7 +10,7 @@ public:
 	void CreateScene(GameScene* pScene);
 	void Destroy();
 
-	void Update(float deltaTime);
+	void Update(const GameTime& time);
 	void Draw();
 
 	void SetActiveScene(const std::string& name);

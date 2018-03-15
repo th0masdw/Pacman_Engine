@@ -9,8 +9,8 @@ RectangleObject::RectangleObject(float width, float height, const Color& color)
 {
 }
 
-void RectangleObject::Update(float deltaTime) {
-	UNREFERENCED_PARAMETER(deltaTime);
+void RectangleObject::Update(const GameTime& time) {
+	UNREFERENCED_PARAMETER(time);
 }
 
 void RectangleObject::Draw() const {

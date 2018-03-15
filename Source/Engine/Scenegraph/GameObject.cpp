@@ -24,14 +24,14 @@ GameObject::~GameObject()
 	}
 }
 
-void GameObject::Update(float deltaTime)
+void GameObject::Update(const GameTime& time)
 {
 	for (BaseComponent* pComp : m_pComponents) {
-		pComp->Update(deltaTime);
+		pComp->Update(time);
 	}
 
 	for (GameObject* pObject : m_pChildren) {
-		pObject->Update(deltaTime);
+		pObject->Update(time);
 	}
 }
 

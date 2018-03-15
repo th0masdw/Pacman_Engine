@@ -17,19 +17,19 @@ void PacmanActor::Initialize()
 	InputManager::GetInstance().AddInputAction(InputAction{ Input::P1_Right, XINPUT_GAMEPAD_DPAD_RIGHT, 0 });
 }
 
-void PacmanActor::Update(float deltaTime)
+void PacmanActor::Update(const GameTime& time)
 {
 	InputManager& input = InputManager::GetInstance();
 
 	if (input.IsActionTriggered(Input::P1_Up))
-		Move(Vector2{ 0.0f, 1.0f } * deltaTime);
+		Move(Vector2{ 0.0f, 1.0f } * time.GetElapsedTime());
 
 	if (input.IsActionTriggered(Input::P1_Down))
-		Move(Vector2{ 0.0f, -1.0f } * deltaTime);
+		Move(Vector2{ 0.0f, -1.0f } * time.GetElapsedTime());
 
 	if (input.IsActionTriggered(Input::P1_Left))
-		Move(Vector2{ -1.0f, 0.0f } * deltaTime);
+		Move(Vector2{ -1.0f, 0.0f } * time.GetElapsedTime());
 
 	if (input.IsActionTriggered(Input::P1_Right))
-		Move(Vector2{ 1.0f, 0.0f } * deltaTime);
+		Move(Vector2{ 1.0f, 0.0f } * time.GetElapsedTime());
 }
