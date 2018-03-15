@@ -8,7 +8,8 @@ TransformComponent::TransformComponent()
 {
 }
 
-void TransformComponent::Update(const GameTime& time) {
+void TransformComponent::Update(const GameTime& time) 
+{
 	UNREFERENCED_PARAMETER(time);
 }
 
@@ -16,37 +17,45 @@ void TransformComponent::Draw() const
 {
 }
 
-void TransformComponent::Translate(float x, float y) {
+void TransformComponent::Translate(float x, float y) 
+{
 	m_Position.x = x;
 	m_Position.y = y;
 }
 
-void TransformComponent::Translate(const Vector2& pos) {
+void TransformComponent::Translate(const glm::vec2& pos) 
+{
 	Translate(pos.x, pos.y);
 }
 
-void TransformComponent::Rotate(float angle) {
+void TransformComponent::Rotate(float angle) 
+{
 	m_Rotation = angle;
 	m_Rotation = WrapAngle(m_Rotation);
 }
 
-void TransformComponent::Scale(float x, float y) {
+void TransformComponent::Scale(float x, float y) 
+{
 	m_Scale.x = x;
 	m_Scale.y = y;
 }
 
-void TransformComponent::Scale(const Vector2& scale) {
+void TransformComponent::Scale(const glm::vec2& scale) 
+{
 	Scale(scale.x, scale.y);
 }
 
-Vector2 TransformComponent::GetPosition() const {
+glm::vec2 TransformComponent::GetPosition() const 
+{
 	return m_Position;
 }
 
-float TransformComponent::GetRotation() const {
+float TransformComponent::GetRotation() const 
+{
 	return m_Rotation;
 }
 
-Vector2 TransformComponent::GetScale() const {
+glm::vec2 TransformComponent::GetScale() const 
+{
 	return m_Scale;
 }

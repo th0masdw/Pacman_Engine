@@ -11,11 +11,13 @@ BaseComponent::~BaseComponent()
 {
 }
 
-void BaseComponent::SetGameObject(GameObject* pObject) {
+void BaseComponent::SetGameObject(GameObject* pObject) 
+{
 	if (pObject)
 		m_pGameObject = pObject;
 }
 
-GameObject* BaseComponent::GetGameObject() const {
+GameObject* BaseComponent::GetGameObject() const 
+{
 	return m_pGameObject;
 }

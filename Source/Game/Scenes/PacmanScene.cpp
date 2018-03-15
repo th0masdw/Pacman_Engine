@@ -57,7 +57,7 @@ void PacmanScene::Update(const GameTime& time)
 	GameScene::Update(time);
 
 	m_pPlayer->Update(time);
-	m_pFPSCounter->SetText(to_string(time.GetFPS()), { 0.0f, 255.0f, 0.0f, 255.0f });
+	m_pFPSCounter->SetText(std::to_string(time.GetFPS()), { 0.0f, 255.0f, 0.0f, 255.0f });
 }
 
 void PacmanScene::Draw() const 

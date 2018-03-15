@@ -2,6 +2,7 @@
 
 #include "BaseComponent.h"
 #include "Engine/Helpers/Structs.h"
+struct vec2;
 class GameTime;
 
 //Rectangle shape -> no other shapes supported because of SDL
@@ -12,7 +13,7 @@ public:
 	virtual ~ShapeComponent() = default;
 
 	void SetDimensions(float width, float height);
-	void SetDimensions(const Vector2& size);
+	void SetDimensions(const glm::vec2& size);
 	void SetColor(const Color& color);
 
 	ShapeComponent(const ShapeComponent& other) = delete;

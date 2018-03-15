@@ -23,16 +23,16 @@ void PacmanActor::Update(const GameTime& time)
 	InputManager& input = InputManager::GetInstance();
 
 	if (input.IsActionTriggered(Input::P1_Up))
-		Move(Vector2{ 0.0f, 1.0f } * time.GetElapsedTime() * m_Speed);
+		Move(glm::vec2{ 0.0f, 1.0f } * time.GetElapsedTime() * m_Speed);
 
 	else if (input.IsActionTriggered(Input::P1_Down))
-		Move(Vector2{ 0.0f, -1.0f } * time.GetElapsedTime() * m_Speed);
+		Move(glm::vec2{ 0.0f, -1.0f } * time.GetElapsedTime() * m_Speed);
 
 	else if (input.IsActionTriggered(Input::P1_Left))
-		Move(Vector2{ -1.0f, 0.0f } * time.GetElapsedTime() * m_Speed);
+		Move(glm::vec2{ -1.0f, 0.0f } * time.GetElapsedTime() * m_Speed);
 
 	else if (input.IsActionTriggered(Input::P1_Right))
-		Move(Vector2{ 1.0f, 0.0f } * time.GetElapsedTime() * m_Speed);
+		Move(glm::vec2{ 1.0f, 0.0f } * time.GetElapsedTime() * m_Speed);
 }
 
 void PacmanActor::Draw() const
@@ -52,10 +52,10 @@ void PacmanActor::SetSpeed(float speed)
 	m_Speed = speed;
 }
 
-void PacmanActor::Move(const Vector2& displacement)
+void PacmanActor::Move(const glm::vec2& displacement)
 {
-	Vector2 flipped = { displacement.x, displacement.y * -1.0f };
-	Vector2 pos = GetTransform()->GetPosition();
+	glm::vec2 flipped = { displacement.x, displacement.y * -1.0f };
+	glm::vec2 pos = GetTransform()->GetPosition();
 	pos += flipped;
 	GetTransform()->Translate(pos);
 }

@@ -1,6 +1,5 @@
 #include "MiniginPCH.h"
 #include "GameTime.h"
-using namespace chrono;
 
 GameTime::GameTime()
 	: m_TotalTime(0.0f),
@@ -12,13 +11,15 @@ GameTime::GameTime()
 {
 }
 
-void GameTime::Start() {
-	m_GameTime = chrono::high_resolution_clock::now();
+void GameTime::Start() 
+{
+	m_GameTime = std::chrono::high_resolution_clock::now();
 }
 
-void GameTime::Update() {
-	auto now = high_resolution_clock::now();
-	auto timeSpan = duration_cast<duration<float>>(now - m_GameTime);
+void GameTime::Update() 
+{
+	auto now = std::chrono::high_resolution_clock::now();
+	auto timeSpan = std::chrono::duration_cast<std::chrono::duration<float>>(now - m_GameTime);
 	
 	m_ElapsedTime = timeSpan.count();
 	m_ElapsedTime = Min(m_ElapsedTime, m_MaxElapsedTime);
@@ -37,18 +38,22 @@ void GameTime::Update() {
 	}
 }
 
-void GameTime::SetMaxElapsedTime(float time) {
+void GameTime::SetMaxElapsedTime(float time) 
+{
 	m_MaxElapsedTime = time;
 }
 
-float GameTime::GetTotalTime() const {
+float GameTime::GetTotalTime() const 
+{
 	return m_TotalTime;
 }
 
-float GameTime::GetElapsedTime() const {
+float GameTime::GetElapsedTime() const 
+{
 	return m_ElapsedTime;
 }
 
-int GameTime::GetFPS() const {
+int GameTime::GetFPS() const 
+{
 	return m_FPS;
 }

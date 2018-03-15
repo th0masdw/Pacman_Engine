@@ -10,10 +10,12 @@ ColliderComponent::~ColliderComponent()
 {
 }
 
-void ColliderComponent::Update(const GameTime& time) {
+void ColliderComponent::Update(const GameTime& time) 
+{
 	UNREFERENCED_PARAMETER(time);
 }
 
-void ColliderComponent::Draw() const {
-	
+void ColliderComponent::Draw() const 
+{
+
 }

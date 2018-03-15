@@ -3,7 +3,8 @@
 #include "SceneManager.h"
 #include <SDL.h>
 
-bool InputManager::Update() {
+bool InputManager::Update() 
+{
 	ZeroMemory(&m_CurrentState, sizeof(XINPUT_STATE));
 	XInputGetState(0, &m_CurrentState);
 
@@ -22,14 +23,16 @@ bool InputManager::Update() {
 	return true;
 }
 
-void InputManager::AddInputAction(const InputAction& action) {
+void InputManager::AddInputAction(const InputAction& action) 
+{
 	auto it = m_InputActions.find(int(action.id));
 
 	if(it == m_InputActions.end())
 		m_InputActions[int(action.id)] = action;
 }
 
-bool InputManager::IsActionTriggered(const Input id) {
+bool InputManager::IsActionTriggered(const Input id) 
+{
 	auto it = m_InputActions.find(int(id));
 
 	if (it != m_InputActions.end()) {

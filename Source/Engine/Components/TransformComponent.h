@@ -2,6 +2,7 @@
 
 #include "BaseComponent.h"
 #include "Engine/Helpers/Structs.h"
+struct vec2;
 class GameTime;
 
 class TransformComponent : public BaseComponent
@@ -11,16 +12,16 @@ public:
 	virtual ~TransformComponent() = default;
 
 	void Translate(float x, float y);
-	void Translate(const Vector2& pos);
+	void Translate(const glm::vec2& pos);
 
 	void Rotate(float angle);
 
 	void Scale(float x, float y);
-	void Scale(const Vector2& scale);
+	void Scale(const glm::vec2& scale);
 
-	Vector2 GetPosition() const;
+	glm::vec2 GetPosition() const;
 	float GetRotation() const;
-	Vector2 GetScale() const;
+	glm::vec2 GetScale() const;
 
 	TransformComponent(const TransformComponent& other) = delete;
 	TransformComponent(TransformComponent&& other) = delete;
@@ -32,7 +33,7 @@ protected:
 	virtual void Draw() const override;
 
 private:
-	Vector2 m_Position;
+	glm::vec2 m_Position;
 	float m_Rotation;
-	Vector2 m_Scale;
+	glm::vec2 m_Scale;
 };

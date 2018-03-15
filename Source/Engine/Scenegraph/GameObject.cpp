@@ -70,7 +70,8 @@ void GameObject::RemoveChild(GameObject* pObject, bool deleteObject)
 	}
 }
 
-void GameObject::AddComponent(BaseComponent* pComp) {
+void GameObject::AddComponent(BaseComponent* pComp) 
+{
 	if (typeid(*pComp) == typeid(TransformComponent)) {
 		Debug::LogWarning("Can't add component: GameObject already has a TransformComponent");
 		return;
@@ -82,7 +83,8 @@ void GameObject::AddComponent(BaseComponent* pComp) {
 	}
 }
 
-void GameObject::RemoveComponent(BaseComponent* pComp, bool deleteComp) {
+void GameObject::RemoveComponent(BaseComponent* pComp, bool deleteComp) 
+{
 	if (typeid(*pComp) == typeid(TransformComponent)) {
 		Debug::LogError("Can't remove TransformComponent!");
 		return;
@@ -102,6 +104,7 @@ void GameObject::RemoveComponent(BaseComponent* pComp, bool deleteComp) {
 	}
 }
 
-TransformComponent* GameObject::GetTransform() const {
+TransformComponent* GameObject::GetTransform() const 
+{
 	return m_pTransform;
 }

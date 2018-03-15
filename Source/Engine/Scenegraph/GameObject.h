@@ -30,8 +30,8 @@ public:
 		return nullptr;
 	}
 
-	template<class T> vector<T*> GetChildren() {
-		vector<T*> children;
+	template<class T> std::vector<T*> GetChildren() {
+		std::vector<T*> children;
 
 		for (GameObject* pChild : m_pChildren) {
 			if (pChild && typeid(*pChild) == typeid(T))
@@ -48,8 +48,8 @@ public:
 		return nullptr;
 	}
 
-	template<class T> vector<T*> GetComponents() {
-		vector<T*> components;
+	template<class T> std::vector<T*> GetComponents() {
+		std::vector<T*> components;
 
 		for (BaseComponent* pComp : m_pComponents) {
 			if (pComp && typeid(*pComp) == typeid(T))

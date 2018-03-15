@@ -24,7 +24,8 @@ MainGame::~MainGame()
 	SDL_Quit();
 }
 
-void MainGame::Initialize() {
+void MainGame::Initialize() 
+{
 	InitWindow();
 
 	Renderer::GetInstance().Init(m_pWindow);
@@ -33,7 +34,8 @@ void MainGame::Initialize() {
 	Debug::Initialize();
 }
 
-void MainGame::Run() {
+void MainGame::Run() 
+{
 	LoadGame();
 	m_GameTime.Start();
 
@@ -51,9 +53,10 @@ void MainGame::Run() {
 	}
 }
 
-void MainGame::InitWindow() {
+void MainGame::InitWindow() 
+{
 	if (SDL_Init(SDL_INIT_VIDEO) != 0)
-		throw runtime_error("SDL_Init Error: " + string(SDL_GetError()));
+		throw std::runtime_error("SDL_Init Error: " + std::string(SDL_GetError()));
 
 	m_pWindow = SDL_CreateWindow(
 		m_WindowSettings.Name.c_str(),
@@ -65,9 +68,10 @@ void MainGame::InitWindow() {
 	);
 
 	if (m_pWindow == nullptr)
-		throw runtime_error("SDL_CreateWindow Error: " + string(SDL_GetError()));
+		throw std::runtime_error("SDL_CreateWindow Error: " + std::string(SDL_GetError()));
 }
 
-void MainGame::LoadGame() {
+void MainGame::LoadGame() 
+{
 	SceneManager::GetInstance().CreateScene(new PacmanScene());
 }

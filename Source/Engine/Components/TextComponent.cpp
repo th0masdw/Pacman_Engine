@@ -9,15 +9,17 @@
 TextComponent::TextComponent()
 	: m_Text{},
 	m_Color{ 255.0f, 255.0f, 255.0f, 255.0f },
-	m_NeedsUpdate{ false }
+	m_NeedsUpdate{ false },
+	m_pTexture(nullptr)
 {
 }
 
-TextComponent::TextComponent(const string& text, const Color& color, const string& fontFile, unsigned int size)
+TextComponent::TextComponent(const std::string& text, const Color& color, const std::string& fontFile, unsigned int size)
 	: m_Text{ text },
 	m_Color{ color },
 	m_pFont{ ResourceManager::GetInstance().LoadFont(fontFile, size) },
-	m_NeedsUpdate(true)
+	m_NeedsUpdate(true),
+	m_pTexture(nullptr)
 {
 }
 
@@ -26,7 +28,8 @@ TextComponent::~TextComponent()
 	delete m_pTexture;
 }
 
-void TextComponent::Update(const GameTime& time) {
+void TextComponent::Update(const GameTime& time) 
+{
 	UNREFERENCED_PARAMETER(time);
 
 	if (m_NeedsUpdate && m_pFont) {
@@ -34,12 +37,12 @@ void TextComponent::Update(const GameTime& time) {
 		SDL_Surface* pSurf = TTF_RenderText_Blended(m_pFont->GetFont(), m_Text.c_str(), color);
 
 		if (pSurf == nullptr)
-			throw runtime_error("Could not create SDL Surface: " + string(SDL_GetError()));
+			throw std::runtime_error("Could not create SDL Surface: " + std::string(SDL_GetError()));
 
 		SDL_Texture* pTexture = SDL_CreateTextureFromSurface(Renderer::GetInstance().GetSDLRenderer(), pSurf);
 
 		if (pTexture == nullptr)
-			throw runtime_error("Could not create SDL Texture: " + string(SDL_GetError()));
+			throw std::runtime_error("Could not create SDL Texture: " + std::string(SDL_GetError()));
 
 		SDL_FreeSurface(pSurf);
 
@@ -49,7 +52,8 @@ void TextComponent::Update(const GameTime& time) {
 	}
 }
 
-void TextComponent::Draw() const {
+void TextComponent::Draw() const 
+{
 	if (m_pTexture) {
 		TransformComponent* pComp = GetGameObject()->GetTransform();
 		Renderer::GetInstance().RenderTexture(*m_pTexture, pComp->GetPosition(), pComp->GetRotation(), pComp->GetScale());
@@ -58,7 +62,8 @@ void TextComponent::Draw() const {
 	}
 }
 
-void TextComponent::SetText(const string& text, const Color& color) {
+void TextComponent::SetText(const std::string& text, const Color& color) 
+{
 	if (m_Text != text) {
 		m_Text = text;
 		m_Color = color;
@@ -66,7 +71,8 @@ void TextComponent::SetText(const string& text, const Color& color) {
 	}
 }
 
-void TextComponent::SetFont(const string& file, unsigned int size) {
+void TextComponent::SetFont(const std::string& file, unsigned int size) 
+{
 	m_pFont = ResourceManager::GetInstance().LoadFont(file, size);
 	m_NeedsUpdate = true;
 }

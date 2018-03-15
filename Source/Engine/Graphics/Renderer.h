@@ -5,8 +5,8 @@ struct SDL_Window;
 struct SDL_Renderer;
 struct SDL_Rect;
 class Texture2D;
-struct Vector2;
 struct Color;
+struct vec2;
 
 class Renderer final : public Singleton<Renderer>
 {
@@ -15,10 +15,10 @@ public:
 	void Draw();
 	void Destroy();
 
-	void RenderTexture(const Texture2D& texture, const Vector2& pos) const;
-	void RenderTexture(const Texture2D& texture, const Vector2& pos, float angle, const Vector2& scales) const;
+	void RenderTexture(const Texture2D& texture, const glm::vec2& pos) const;
+	void RenderTexture(const Texture2D& texture, const glm::vec2& pos, float angle, const glm::vec2& scales) const;
 
-	void RenderRect(const Vector2& pos, float width, float height, const Color& color) const;
+	void RenderRect(const glm::vec2& pos, float width, float height, const Color& color) const;
 	void RenderRect(const SDL_Rect& rect, const Color& color) const;
 
 	SDL_Renderer* GetSDLRenderer() const { return m_pRenderer; }

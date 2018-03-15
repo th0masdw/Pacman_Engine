@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Engine/Scenegraph/GameObject.h"
+struct vec2;
 class GameTime;
 
 class PacmanActor final : public GameObject
@@ -18,5 +19,5 @@ public:
 private:
 	float m_Speed;
 	
-	void Move(const Vector2& displacement);
+	void Move(const glm::vec2& displacement);
 };

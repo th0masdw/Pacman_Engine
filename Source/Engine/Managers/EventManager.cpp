@@ -1,11 +1,13 @@
 #include "MiniginPCH.h"
 #include "EventManager.h"
 
-void EventManager::Init() {
+void EventManager::Init() 
+{
 	m_Events.clear();
 }
 
-void EventManager::StartListening(const string& eventName, const string& callbackName, const function<void()>& callback) {
+void EventManager::StartListening(const std::string& eventName, const std::string& callbackName, const std::function<void()>& callback) 
+{
 	auto it = m_Events.find(eventName);
 
 	if (it != m_Events.end()) {
@@ -17,14 +19,16 @@ void EventManager::StartListening(const string& eventName, const string& callbac
 	}
 }
 
-void EventManager::StopListening(const string& eventName, const string& callbackName, const function<void()>& callback) {
+void EventManager::StopListening(const std::string& eventName, const std::string& callbackName, const std::function<void()>& callback) 
+{
 	auto it = m_Events.find(eventName);
 
 	if (it != m_Events.end())
 		it->second.RemoveListener(Callback{ callbackName, callback });
 }
 
-void EventManager::TriggerEvent(const string& eventName) {
+void EventManager::TriggerEvent(const std::string& eventName) 
+{
 	auto it = m_Events.find(eventName);
 
 	if (it != m_Events.end())

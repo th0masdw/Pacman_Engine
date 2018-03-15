@@ -18,23 +18,26 @@ void ShapeComponent::Update(const GameTime& time)
 void ShapeComponent::Draw() const 
 {
 	TransformComponent* pComp = m_pGameObject->GetTransform();
-	Vector2 pos = pComp->GetPosition();
-	Vector2 scale = pComp->GetScale();
-	Vector2 center = { pos.x - m_Width / 2, pos.y - m_Height / 2 };
+	glm::vec2 pos = pComp->GetPosition();
+	glm::vec2 scale = pComp->GetScale();
+	glm::vec2 center = { pos.x - m_Width / 2, pos.y - m_Height / 2 };
 
 	Renderer::GetInstance().RenderRect(center, m_Width * scale.x, m_Height * scale.y, m_Color);
 }
 
-void ShapeComponent::SetDimensions(float width, float height) {
+void ShapeComponent::SetDimensions(float width, float height) 
+{
 	m_Width = width;
 	m_Height = height;
 }
 
-void ShapeComponent::SetDimensions(const Vector2& size) {
+void ShapeComponent::SetDimensions(const glm::vec2& size) 
+{
 	m_Width = size.x;
 	m_Height = size.y;
 }
 
-void ShapeComponent::SetColor(const Color& color) {
+void ShapeComponent::SetColor(const Color& color) 
+{
 	m_Color = color;
 }

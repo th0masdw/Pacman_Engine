@@ -2,7 +2,7 @@
 #include "GameScene.h"
 #include "GameObject.h"
 
-GameScene::GameScene(const string& name) 
+GameScene::GameScene(const std::string& name) 
 	: m_Name(name) 
 {
 }
@@ -21,18 +21,21 @@ void GameScene::Update(const GameTime& time)
 	}
 }
 
-void GameScene::Draw() const {
+void GameScene::Draw() const 
+{
 	for (GameObject* pObject : m_Objects) {
 		pObject->Draw();
 	}
 }
 
-void GameScene::AddObject(GameObject* pObject) {
+void GameScene::AddObject(GameObject* pObject) 
+{
 	if (pObject)
 		m_Objects.push_back(pObject);
 }
 
-void GameScene::RemoveObject(GameObject* pObject, bool deleteObject) {
+void GameScene::RemoveObject(GameObject* pObject, bool deleteObject) 
+{
 	auto it = find(m_Objects.begin(), m_Objects.end(), pObject);
 
 	if (it != m_Objects.end()) {
@@ -45,6 +48,7 @@ void GameScene::RemoveObject(GameObject* pObject, bool deleteObject) {
 	}
 }
 
-string GameScene::GetName() const {
+std::string GameScene::GetName() const 
+{
 	return m_Name;
 }
