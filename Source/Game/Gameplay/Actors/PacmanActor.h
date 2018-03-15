@@ -1,16 +1,22 @@
 #pragma once
 
-#include "Engine/Gameplay/Actor.h"
+#include "Engine/Scenegraph/GameObject.h"
 class GameTime;
 
-class PacmanActor final : public Actor
+class PacmanActor final : public GameObject
 {
 public:
-	explicit PacmanActor(float width = 1, float height = 1, const Color& color = { 255, 255, 255, 255 }, float speed = 50.0f);
+	explicit PacmanActor(float size, float speed);
 	virtual ~PacmanActor() = default;
 
-	virtual void Update(const GameTime& time) override;
+	void Update(const GameTime& time);
+	void Draw() const;
+
+	void SetSize(float size);
+	void SetSpeed(float speed);
 
 private:
-	virtual void Initialize() override;
+	float m_Speed;
+	
+	void Move(const Vector2& displacement);
 };

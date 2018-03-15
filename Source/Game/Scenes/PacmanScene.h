@@ -2,9 +2,8 @@
 
 #include "Engine/Scenegraph/GameScene.h"
 class GameTime;
-class PacmanActor;
-class RectangleObject;
 class TextComponent;
+class PacmanActor;
 
 class PacmanScene : public GameScene
 {
@@ -18,11 +17,10 @@ protected:
 	virtual void Draw() const override;
 
 private:
-	PacmanActor* m_pPlayer;
-	RectangleObject* m_pWall;
-
 	GameObject* m_pTextureObject;
 	GameObject* m_pTextObject;
-	TextComponent* m_FPSCounter;
+	TextComponent* m_pFPSCounter;
+
+	PacmanActor* m_pPlayer;
 };
 

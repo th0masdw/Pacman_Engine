@@ -16,7 +16,7 @@ void SpriteComponent::Update(const GameTime& time) {
 
 void SpriteComponent::Draw() const {
 	if (m_pTexture) {
-		TransformComponent* pComp = GetGameObject()->GetTransform();
+		TransformComponent* pComp = m_pGameObject->GetTransform();
 		Renderer::GetInstance().RenderTexture(*m_pTexture, pComp->GetPosition(), pComp->GetRotation(), pComp->GetScale());
 	} else {
 		Debug::LogError("SpriteComponent::Draw() - Texture not loaded!");
