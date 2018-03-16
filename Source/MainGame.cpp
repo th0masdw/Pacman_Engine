@@ -36,6 +36,9 @@ void MainGame::Initialize()
 
 void MainGame::Run() 
 {
+	Debug::Log("Arrow keys: cycle between scenes");
+	Debug::Log("F4: Enable debug rendering");
+
 	LoadGame();
 	m_GameTime.Start();
 

@@ -18,8 +18,8 @@ public:
 	void RenderTexture(const Texture2D& texture, const glm::vec2& pos) const;
 	void RenderTexture(const Texture2D& texture, const glm::vec2& pos, float angle, const glm::vec2& scales) const;
 
-	void RenderRect(const glm::vec2& pos, float width, float height, const Color& color) const;
-	void RenderRect(const SDL_Rect& rect, const Color& color) const;
+	void RenderRect(const glm::vec2& pos, float width, float height, const Color& color, bool isFilled = true) const;
+	void RenderRect(const SDL_Rect& rect, const Color& color, bool isFilled = true) const;
 
 	SDL_Renderer* GetSDLRenderer() const { return m_pRenderer; }
 

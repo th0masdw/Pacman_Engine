@@ -17,10 +17,8 @@ protected:
 	virtual void Draw() const override;
 
 private:
-	GameObject* m_pTextureObject;
-	GameObject* m_pTextObject;
 	TextComponent* m_pFPSCounter;
-
 	PacmanActor* m_pPlayer;
+	GameObject* m_pWall;
 };
 

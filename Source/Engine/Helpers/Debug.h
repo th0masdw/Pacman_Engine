@@ -10,6 +10,9 @@ public:
 	static void LogError(const std::string& error);
 	static void LogFormat(const char* message, ...);
 
+	static void EnableDebugRendering(bool enable);
+	static bool IsDebugRenderingEnabled();
+
 private:
 	Debug() = default;
 	~Debug() = default;
@@ -18,4 +21,6 @@ private:
 	static int m_Padding;
 	static const size_t m_ConvertBufferSize = 1024;
 	static char m_ConvertBuffer[m_ConvertBufferSize];
+
+	static bool m_IsRenderingEnabled;
 };

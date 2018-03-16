@@ -51,14 +51,18 @@ void Renderer::RenderTexture(const Texture2D& texture, const glm::vec2& pos, flo
 	SDL_RenderCopyEx(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, &dst, double(angle), nullptr, SDL_FLIP_NONE);
 }
 
-void Renderer::RenderRect(const glm::vec2& pos, float width, float height, const Color& color) const 
+void Renderer::RenderRect(const glm::vec2& pos, float width, float height, const Color& color, bool isFilled) const 
 {
 	SDL_Rect rect{ int(pos.x), int(pos.y), int(width), int(height) };
-	RenderRect(rect, color);
+	RenderRect(rect, color, isFilled);
 }
 
-void Renderer::RenderRect(const SDL_Rect& rect, const Color& color) const 
+void Renderer::RenderRect(const SDL_Rect& rect, const Color& color, bool isFilled) const 
 {
 	SDL_SetRenderDrawColor(m_pRenderer, Uint8(color.r), Uint8(color.g), Uint8(color.b), Uint8(color.a));
-	SDL_RenderFillRect(m_pRenderer, &rect);
+
+	if (isFilled)
+		SDL_RenderFillRect(m_pRenderer, &rect);
+	else
+		SDL_RenderDrawRect(m_pRenderer, &rect);
 }

@@ -4,6 +4,7 @@
 HANDLE Debug::m_ConsoleHandle{ nullptr };
 int Debug::m_Padding{ 10 };
 char Debug::m_ConvertBuffer[] = {};
+bool Debug::m_IsRenderingEnabled = false;
 
 void Debug::Initialize() 
 {
@@ -39,4 +40,14 @@ void Debug::LogFormat(const char* message, ...)
 	va_end(ap);
 
 	Log(std::string(&m_ConvertBuffer[0]));
+}
+
+void Debug::EnableDebugRendering(bool enable)
+{
+	m_IsRenderingEnabled = enable;
+}
+
+bool Debug::IsDebugRenderingEnabled()
+{
+	return m_IsRenderingEnabled;
 }

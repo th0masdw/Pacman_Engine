@@ -1,6 +1,7 @@
 #include "MiniginPCH.h"
 #include "PacmanActor.h"
 #include "Engine/Components/ShapeComponent.h"
+#include "Engine/Components/ColliderComponent.h"
 #include "Engine/Managers/InputManager.h"
 
 PacmanActor::PacmanActor(float size, float speed)
@@ -9,6 +10,9 @@ PacmanActor::PacmanActor(float size, float speed)
 {
 	ShapeComponent* pShape = new ShapeComponent(size, size, { 255.0f, 255.0f, 0.0f, 255.0f });
 	AddComponent(pShape);
+
+	ColliderComponent* pCollider = new ColliderComponent(size, size);
+	AddComponent(pCollider);
 
 	//Input
 	InputManager& input = InputManager::GetInstance();

@@ -2,6 +2,8 @@
 #include "InputManager.h"
 #include "SceneManager.h"
 #include <SDL.h>
+#include <sstream>
+#include <iomanip>
 
 bool InputManager::Update() 
 {
@@ -10,14 +12,24 @@ bool InputManager::Update()
 
 	SDL_Event e;
 	while (SDL_PollEvent(&e)) {
-		if (e.type == SDL_QUIT) {
+		if (e.type == SDL_QUIT)
 			return false;
-		}
+
 		if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
 			SceneManager::GetInstance().NextScene();
+			Debug::Log("Next scene");
 		}
+
 		if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
 			SceneManager::GetInstance().PreviousScene();
+			Debug::Log("Previous scene");
+		}
+
+		if (GetAsyncKeyState(VK_F4) & 0x8000) {
+			Debug::EnableDebugRendering(!Debug::IsDebugRenderingEnabled());
+			std::stringstream ss;
+			ss << "Debug rendering: " << std::boolalpha << Debug::IsDebugRenderingEnabled();
+			Debug::Log(ss.str());
 		}
 	}
 	return true;

@@ -43,6 +43,7 @@ std::shared_ptr<Font> ResourceManager::LoadFont(const std::string& file, unsigne
 	if (file.empty())
 		throw std::runtime_error{ "Filename cannot be empty!" };
 
-	auto result = m_Fonts.insert({ file, std::make_shared<Font>(file, size) });
+	std::string key = file + std::to_string(size);
+	auto result = m_Fonts.insert({ key, std::make_shared<Font>(file, size) });
 	return result.first->second;
 }
