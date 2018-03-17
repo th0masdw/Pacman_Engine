@@ -44,6 +44,14 @@ void SceneManager::SetActiveScene(const std::string& name)
 	}
 }
 
+GameScene* SceneManager::GetActiveScene() const
+{
+	if (m_ActiveSceneIndex > -1)
+		return m_Scenes[m_ActiveSceneIndex];
+
+	return nullptr;
+}
+
 void SceneManager::NextScene() 
 {
 	if (m_ActiveSceneIndex + 1 < int(m_Scenes.size()))

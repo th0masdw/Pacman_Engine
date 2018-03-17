@@ -6,6 +6,7 @@
 #include "Engine/Managers/ResourceManager.h"
 #include "Engine/Managers/InputManager.h"
 #include "Engine/Managers/EventManager.h"
+#include "Engine/Managers/PhysicsManager.h"
 
 #include "Game/Scenes/PacmanScene.h"
 
@@ -45,11 +46,14 @@ void MainGame::Run()
 	Renderer& renderer = Renderer::GetInstance();
 	SceneManager& sceneManager = SceneManager::GetInstance();
 	InputManager& input = InputManager::GetInstance();
+	PhysicsManager& physics = PhysicsManager::GetInstance();
 	bool doContinue = true;
 
 	while(doContinue)  {
 		m_GameTime.Update();
 		doContinue = input.Update();
+
+		physics.Update(m_GameTime);
 		sceneManager.Update(m_GameTime);
 
 		renderer.Draw();

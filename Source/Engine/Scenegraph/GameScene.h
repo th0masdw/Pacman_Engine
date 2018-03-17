@@ -20,8 +20,8 @@ protected:
 	friend class SceneManager;
 
 	virtual void Initialize() = 0;
-	virtual void Update(const GameTime& time) = 0;
-	virtual void Draw() const = 0;
+	virtual void Update(const GameTime& time);
+	virtual void Draw() const;
 
 	void AddObject(GameObject* pObject);
 	void RemoveObject(GameObject* pObject, bool deleteObject = true);
@@ -30,4 +30,7 @@ protected:
 
 private:
 	std::vector<GameObject*> m_Objects{};
+
+	void AddToPhysicsScene(GameObject* pObject);
+	void RemoveFromPhysicsScene(GameObject* pObject);
 };

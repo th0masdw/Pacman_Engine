@@ -14,6 +14,7 @@ public:
 	void Draw();
 
 	void SetActiveScene(const std::string& name);
+	GameScene* GetActiveScene() const;
 	void NextScene();
 	void PreviousScene();
 

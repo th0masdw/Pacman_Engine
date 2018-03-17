@@ -3,6 +3,7 @@
 #include "Engine/Components/TransformComponent.h"
 class GameTime;
 class BaseComponent;
+class GameScene;
 
 class GameObject
 {
@@ -20,6 +21,10 @@ public:
 	void RemoveComponent(BaseComponent* pComp, bool deleteComp = true);
 
 	TransformComponent* GetTransform() const;
+	GameObject* GetParent();
+
+	void SetScene(GameScene* pScene);
+	GameScene* GetScene() const;
 
 #pragma region Template Functions
 	template<class T> T* GetChild() {
@@ -66,6 +71,7 @@ public:
 
 private:
 	GameObject* m_pParent;
+	GameScene* m_pScene;
 	TransformComponent* m_pTransform;
 	std::vector<GameObject*> m_pChildren;
 	std::vector<BaseComponent*> m_pComponents;

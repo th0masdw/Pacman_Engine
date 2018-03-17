@@ -1,9 +1,11 @@
 #include "MiniginPCH.h"
 #include "GameObject.h"
 #include "Engine/Components/BaseComponent.h"
+#include "Engine/Scenegraph/GameScene.h"
 
 GameObject::GameObject()
 	: m_pParent(nullptr),
+	m_pScene(nullptr),
 	m_pTransform(nullptr),
 	m_pChildren{},
 	m_pComponents{}
@@ -48,9 +50,13 @@ void GameObject::Draw() const
 
 void GameObject::AddChild(GameObject* pObject) 
 {
-	if (pObject) {
+	auto it = find(m_pChildren.begin(), m_pChildren.end(), pObject);
+
+	if (it == m_pChildren.end() && pObject) {
 		pObject->m_pParent = this;
 		m_pChildren.push_back(pObject);
+	} else {
+		Debug::LogWarning("Child already present!");
 	}
 }
 
@@ -77,9 +83,13 @@ void GameObject::AddComponent(BaseComponent* pComp)
 		return;
 	}
 
-	if (pComp) {
+	auto it = find(m_pComponents.begin(), m_pComponents.end(), pComp);
+
+	if (it == m_pComponents.end() && pComp) {
 		pComp->SetGameObject(this);
 		m_pComponents.push_back(pComp);
+	} else {
+		Debug::LogWarning("Component already present!");
 	}
 }
 
@@ -107,4 +117,19 @@ void GameObject::RemoveComponent(BaseComponent* pComp, bool deleteComp)
 TransformComponent* GameObject::GetTransform() const 
 {
 	return m_pTransform;
+}
+
+GameObject* GameObject::GetParent()
+{
+	return m_pParent;
+}
+
+void GameObject::SetScene(GameScene* pScene)
+{
+	m_pScene = pScene;
+}
+
+GameScene* GameObject::GetScene() const
+{
+	return m_pScene;
 }

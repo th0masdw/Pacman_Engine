@@ -1,5 +1,6 @@
 #include "MiniginPCH.h"
 #include "TransformComponent.h"
+#include "Engine/Scenegraph/GameObject.h"
 
 TransformComponent::TransformComponent()
 	: m_Position{ 0.0f, 0.0f },
@@ -47,7 +48,12 @@ void TransformComponent::Scale(const glm::vec2& scale)
 
 glm::vec2 TransformComponent::GetPosition() const 
 {
-	return m_Position;
+	GameObject* pParent = m_pGameObject->GetParent();
+
+	if (pParent)
+		return m_Position + pParent->GetTransform()->GetPosition();
+	else
+		return m_Position;
 }
 
 float TransformComponent::GetRotation() const 
