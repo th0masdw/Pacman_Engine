@@ -7,7 +7,7 @@ class GameTime;
 class PacmanActor final : public GameObject
 {
 public:
-	explicit PacmanActor(float size, float speed);
+	explicit PacmanActor(float size = 50.0f, float speed = 50.0f);
 	virtual ~PacmanActor() = default;
 
 	void Update(const GameTime& time);

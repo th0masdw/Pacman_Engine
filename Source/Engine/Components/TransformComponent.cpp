@@ -9,6 +9,10 @@ TransformComponent::TransformComponent()
 {
 }
 
+void TransformComponent::PostInitialize()
+{
+}
+
 void TransformComponent::Update(const GameTime& time) 
 {
 	UNREFERENCED_PARAMETER(time);

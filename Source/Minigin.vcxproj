@@ -40,6 +40,7 @@
     <ClCompile Include="Engine\Scenegraph\GameObject.cpp" />
     <ClCompile Include="Engine\Scenegraph\GameScene.cpp" />
     <ClCompile Include="Game\Gameplay\Actors\PacmanActor.cpp" />
+    <ClCompile Include="Game\Gameplay\Objects\Wall.cpp" />
     <ClCompile Include="Game\Scenes\PacmanScene.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="Minigin.cpp" />
@@ -76,6 +77,7 @@
     <ClInclude Include="Engine\Scenegraph\GameObject.h" />
     <ClInclude Include="Engine\Scenegraph\GameScene.h" />
     <ClInclude Include="Game\Gameplay\Actors\PacmanActor.h" />
+    <ClInclude Include="Game\Gameplay\Objects\Wall.h" />
     <ClInclude Include="Game\Scenes\PacmanScene.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="MiniginPCH.h" />

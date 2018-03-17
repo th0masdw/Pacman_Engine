@@ -1,10 +1,10 @@
 #include "MiniginPCH.h"
 #include "PacmanScene.h"
 
-//TESTING
 #include "Engine/Scenegraph/GameObject.h"
 #include "Engine/Components/Components.h"
 #include "Game/Gameplay/Actors/PacmanActor.h"
+#include "Game/Gameplay/Objects/Wall.h"
 
 PacmanScene::PacmanScene()
 	: GameScene("PacmanScene"),
@@ -34,19 +34,17 @@ void PacmanScene::Initialize()
 	AddObject(m_pPlayer);
 
 	//Wall
-	m_pWall = new GameObject();
-	ShapeComponent* pShape = new ShapeComponent(30.0f, 200.0f, { 0.0f, 0.0f, 255.0f, 255.0f });
-	m_pWall->AddComponent(pShape);
+	m_pWall = new Wall(30.0f, 200.0f, { 0.0f, 0.0f, 255.0f, 255.0f });
 	m_pWall->GetTransform()->Translate(200.0f, 200.0f);
 	AddObject(m_pWall);
 }
 
 void PacmanScene::Update(const GameTime& time) 
 {
-	GameScene::Update(time);
-
 	m_pPlayer->Update(time);
 	m_pFPSCounter->SetText(std::to_string(time.GetFPS()), { 0.0f, 255.0f, 0.0f, 255.0f });
+
+	GameScene::Update(time);
 }
 
 void PacmanScene::Draw() const 

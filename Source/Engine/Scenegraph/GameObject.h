@@ -11,6 +11,7 @@ public:
 	GameObject();
 	virtual ~GameObject();
 
+	void PostInitialize();
 	void Update(const GameTime& time);
 	void Draw() const;
 

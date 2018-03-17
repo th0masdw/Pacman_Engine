@@ -28,6 +28,10 @@ TextComponent::~TextComponent()
 	delete m_pTexture;
 }
 
+void TextComponent::PostInitialize()
+{
+}
+
 void TextComponent::Update(const GameTime& time) 
 {
 	UNREFERENCED_PARAMETER(time);

@@ -20,6 +20,7 @@ public:
 protected:
 	friend class GameObject;
 
+	virtual void PostInitialize() = 0;
 	virtual void Update(const GameTime& time) = 0;
 	virtual void Draw() const = 0;
 

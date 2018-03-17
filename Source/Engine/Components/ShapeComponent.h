@@ -22,6 +22,7 @@ public:
 	ShapeComponent& operator=(ShapeComponent&& other) = delete;
 
 protected:
+	virtual void PostInitialize() override;
 	virtual void Update(const GameTime& time) override;
 	virtual void Draw() const override;
 

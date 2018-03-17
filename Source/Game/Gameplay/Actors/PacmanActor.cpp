@@ -11,7 +11,7 @@ PacmanActor::PacmanActor(float size, float speed)
 	ShapeComponent* pShape = new ShapeComponent(size, size, { 255.0f, 255.0f, 0.0f, 255.0f });
 	AddComponent(pShape);
 
-	ColliderComponent* pCollider = new ColliderComponent(size, size);
+	ColliderComponent* pCollider = new ColliderComponent(size, size, false);
 	AddComponent(pCollider);
 
 	//Input
@@ -46,9 +46,12 @@ void PacmanActor::Draw() const
 void PacmanActor::SetSize(float size)
 {
 	ShapeComponent* pShape = GetComponent<ShapeComponent>();
-
 	if (pShape)
 		pShape->SetDimensions(size, size);
+
+	ColliderComponent* pColl = GetComponent<ColliderComponent>();
+	if (pColl)
+		pColl->SetDimensions(size, size);
 }
 
 void PacmanActor::SetSpeed(float speed)

@@ -37,6 +37,7 @@ void GameScene::AddObject(GameObject* pObject)
 	if (it == m_Objects.end() && pObject) {
 		m_Objects.push_back(pObject);
 		pObject->SetScene(this);
+		pObject->PostInitialize();
 		AddToPhysicsScene(pObject);
 	} else
 		Debug::LogWarning("Object already present!");

@@ -10,6 +10,10 @@ SpriteComponent::SpriteComponent(const std::string& file)
 {
 }
 
+void SpriteComponent::PostInitialize()
+{
+}
+
 void SpriteComponent::Update(const GameTime& time) 
 {
 	UNREFERENCED_PARAMETER(time);

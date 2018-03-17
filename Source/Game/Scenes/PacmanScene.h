@@ -4,6 +4,7 @@
 class GameTime;
 class TextComponent;
 class PacmanActor;
+class Wall;
 
 class PacmanScene : public GameScene
 {
@@ -19,6 +20,6 @@ protected:
 private:
 	TextComponent* m_pFPSCounter;
 	PacmanActor* m_pPlayer;
-	GameObject* m_pWall;
+	Wall* m_pWall;
 };
 

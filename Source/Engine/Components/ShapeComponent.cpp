@@ -10,6 +10,10 @@ ShapeComponent::ShapeComponent(float width, float height, const Color& color)
 {
 }
 
+void ShapeComponent::PostInitialize()
+{
+}
+
 void ShapeComponent::Update(const GameTime& time) 
 {
 	UNREFERENCED_PARAMETER(time);

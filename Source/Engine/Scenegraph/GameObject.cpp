@@ -26,6 +26,17 @@ GameObject::~GameObject()
 	}
 }
 
+void GameObject::PostInitialize()
+{
+	for (BaseComponent* pComp : m_pComponents) {
+		pComp->PostInitialize();
+	}
+
+	for (GameObject* pObject : m_pChildren) {
+		pObject->PostInitialize();
+	}
+}
+
 void GameObject::Update(const GameTime& time)
 {
 	for (BaseComponent* pComp : m_pComponents) {
