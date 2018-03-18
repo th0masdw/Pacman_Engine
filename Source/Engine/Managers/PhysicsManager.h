@@ -3,7 +3,6 @@
 #include "Engine/Helpers/Singleton.h"
 #include <map>
 class ColliderComponent;
-class GameTime;
 struct Rect;
 class GameObject;
 

@@ -4,12 +4,14 @@
 #include "Engine/Scenegraph/GameObject.h"
 #include "Engine/Components/Components.h"
 #include "Game/Gameplay/Actors/PacmanActor.h"
+#include "Game/Gameplay/Actors/GhostActor.h"
 #include "Game/Gameplay/Objects/Wall.h"
 
 PacmanScene::PacmanScene()
 	: GameScene("PacmanScene"),
 	m_pFPSCounter(nullptr),
 	m_pPlayer(nullptr),
+	m_pGhost(nullptr),
 	m_pWall(nullptr)
 {
 	Initialize();
@@ -41,6 +43,11 @@ void PacmanScene::Initialize()
 	m_pWall = new Wall(200.0f, 30.0f, { 0.0f, 0.0f, 255.0f, 255.0f });
 	m_pWall->GetTransform()->Translate(300.0f, 300.0f);
 	AddObject(m_pWall);
+
+	//Ghost
+	m_pGhost = new GhostActor(25.0f, 200.0f, { 255.0f, 105.0f, 180.0f, 255.0f });
+	m_pGhost->GetTransform()->Translate(100.0f, 250.0f);
+	AddObject(m_pGhost);
 }
 
 void PacmanScene::Update(const GameTime& time) 
