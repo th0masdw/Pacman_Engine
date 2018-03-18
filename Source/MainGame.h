@@ -1,7 +1,6 @@
 #pragma once
 
 #include "SDL.h"
-#include "Engine/Helpers/Structs.h"
 #include "Engine/Helpers/GameTime.h"
 
 class MainGame
@@ -20,7 +19,6 @@ public:
 
 private:
 	SDL_Window* m_pWindow;
-	WindowSettings m_WindowSettings;
 	GameTime m_GameTime;
 
 	void InitWindow();

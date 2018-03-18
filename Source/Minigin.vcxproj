@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\Algorithms\Astar\Grid.cpp" />
+    <ClCompile Include="Engine\Algorithms\Astar\Node.cpp" />
+    <ClCompile Include="Engine\Algorithms\Astar\Solver.cpp" />
     <ClCompile Include="Engine\Components\BaseComponent.cpp" />
     <ClCompile Include="Engine\Components\ColliderComponent.cpp" />
     <ClCompile Include="Engine\Components\ShapeComponent.cpp" />
@@ -32,6 +35,7 @@
     <ClCompile Include="Engine\Helpers\Debug.cpp" />
     <ClCompile Include="Engine\Helpers\Event.cpp" />
     <ClCompile Include="Engine\Helpers\GameTime.cpp" />
+    <ClCompile Include="Engine\Helpers\Window.cpp" />
     <ClCompile Include="Engine\Managers\EventManager.cpp" />
     <ClCompile Include="Engine\Managers\InputManager.cpp" />
     <ClCompile Include="Engine\Managers\PhysicsManager.cpp" />
@@ -53,6 +57,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\Algorithms\Astar\Grid.h" />
+    <ClInclude Include="Engine\Algorithms\Astar\Node.h" />
+    <ClInclude Include="Engine\Algorithms\Astar\Solver.h" />
     <ClInclude Include="Engine\Components\BaseComponent.h" />
     <ClInclude Include="Engine\Components\ColliderComponent.h" />
     <ClInclude Include="Engine\Components\Components.h" />
@@ -70,6 +77,7 @@
     <ClInclude Include="Engine\Helpers\HelperFunctions.h" />
     <ClInclude Include="Engine\Helpers\Singleton.h" />
     <ClInclude Include="Engine\Helpers\Structs.h" />
+    <ClInclude Include="Engine\Helpers\Window.h" />
     <ClInclude Include="Engine\Managers\EventManager.h" />
     <ClInclude Include="Engine\Managers\InputManager.h" />
     <ClInclude Include="Engine\Managers\PhysicsManager.h" />

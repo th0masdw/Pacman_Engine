@@ -1,6 +1,7 @@
 #include "MiniginPCH.h"
 #include "MainGame.h"
 
+#include "Engine/Helpers/Window.h"
 #include "Engine/Graphics/Renderer.h"
 #include "Engine/Managers/SceneManager.h"
 #include "Engine/Managers/ResourceManager.h"
@@ -11,7 +12,6 @@
 
 MainGame::MainGame()
 	: m_pWindow{},
-	m_WindowSettings{},
 	m_GameTime{}
 {
 }
@@ -62,11 +62,11 @@ void MainGame::InitWindow()
 		throw std::runtime_error("SDL_Init Error: " + std::string(SDL_GetError()));
 
 	m_pWindow = SDL_CreateWindow(
-		m_WindowSettings.Name.c_str(),
+		Window::GetName().c_str(),
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
-		m_WindowSettings.Width,                    
-		m_WindowSettings.Height,                    
+		Window::GetWidth(),                    
+		Window::GetHeight(),                    
 		SDL_WINDOW_OPENGL       
 	);
 
