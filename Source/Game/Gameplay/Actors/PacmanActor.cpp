@@ -3,10 +3,14 @@
 #include "Engine/Components/ShapeComponent.h"
 #include "Engine/Components/ColliderComponent.h"
 #include "Engine/Managers/InputManager.h"
+#include "Engine/Managers/PhysicsManager.h"
 
 PacmanActor::PacmanActor(float size, float speed)
-	: GameObject{},
-	m_Speed{ speed }
+	: GameObject{ Tag::Player },
+	m_CurrentSpeed{ speed },
+	m_MovementSpeed{ speed },
+	m_Direction{ 0.0f, 0.0f },
+	m_CollisionOffset{ 4.0f }
 {
 	ShapeComponent* pShape = new ShapeComponent(size, size, { 255.0f, 255.0f, 0.0f, 255.0f });
 	AddComponent(pShape);
@@ -24,19 +28,32 @@ PacmanActor::PacmanActor(float size, float speed)
 
 void PacmanActor::Update(const GameTime& time)
 {
+	//Collision
+	GameObject* pCollision = PhysicsManager::GetInstance().DoesCollide(this);
+
+	if (pCollision) {
+		m_CurrentSpeed = 0.0f;
+		Move(m_Direction * -m_CollisionOffset);
+	} else {
+		m_CurrentSpeed = m_MovementSpeed;
+	}
+
+	//Input
 	InputManager& input = InputManager::GetInstance();
 
 	if (input.IsActionTriggered(Input::P1_Up))
-		Move(glm::vec2{ 0.0f, 1.0f } * time.GetElapsedTime() * m_Speed);
+		m_Direction = glm::vec2{ 0.0f, 1.0f };
 
 	else if (input.IsActionTriggered(Input::P1_Down))
-		Move(glm::vec2{ 0.0f, -1.0f } * time.GetElapsedTime() * m_Speed);
+		m_Direction = glm::vec2{ 0.0f, -1.0f };
 
 	else if (input.IsActionTriggered(Input::P1_Left))
-		Move(glm::vec2{ -1.0f, 0.0f } * time.GetElapsedTime() * m_Speed);
+		m_Direction = glm::vec2{ -1.0f, 0.0f };
 
 	else if (input.IsActionTriggered(Input::P1_Right))
-		Move(glm::vec2{ 1.0f, 0.0f } * time.GetElapsedTime() * m_Speed);
+		m_Direction = glm::vec2{ 1.0f, 0.0f };
+
+	Move(m_Direction * time.GetElapsedTime() * m_CurrentSpeed);
 }
 
 void PacmanActor::Draw() const
@@ -56,7 +73,8 @@ void PacmanActor::SetSize(float size)
 
 void PacmanActor::SetSpeed(float speed)
 {
-	m_Speed = speed;
+	m_CurrentSpeed = speed;
+	m_MovementSpeed = speed;
 }
 
 void PacmanActor::Move(const glm::vec2& displacement)

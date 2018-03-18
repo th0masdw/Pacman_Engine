@@ -5,7 +5,7 @@
 #include "Engine/Helpers/Structs.h"
 #include "Texture2D.h"
 
-void Renderer::Init(SDL_Window* window)
+void Renderer::Initialize(SDL_Window* window)
 {
 	m_pRenderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 

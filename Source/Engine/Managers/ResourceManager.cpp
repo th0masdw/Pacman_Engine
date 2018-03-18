@@ -8,7 +8,7 @@
 #include "Engine/Graphics/Texture2D.h"
 #include "Engine/Graphics/Font.h"
 
-void ResourceManager::Init()
+void ResourceManager::Initialize()
 {
 	// load support for png and jpg, this takes a while!
 	if ((IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG) != IMG_INIT_PNG) {

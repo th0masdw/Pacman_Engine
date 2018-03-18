@@ -1,7 +1,7 @@
 #include "MiniginPCH.h"
 #include "EventManager.h"
 
-void EventManager::Init() 
+void EventManager::Initialize() 
 {
 	m_Events.clear();
 }

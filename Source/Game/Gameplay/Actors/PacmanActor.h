@@ -17,7 +17,10 @@ public:
 	void SetSpeed(float speed);
 
 private:
-	float m_Speed;
+	float m_CurrentSpeed;
+	float m_MovementSpeed;
+	glm::vec2 m_Direction;
+	float m_CollisionOffset;
 	
 	void Move(const glm::vec2& displacement);
 };

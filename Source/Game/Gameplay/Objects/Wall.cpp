@@ -5,7 +5,7 @@
 #include "Engine/Components/ColliderComponent.h"
 
 Wall::Wall(float width, float height, const Color& color)
-	: GameObject{}
+	: GameObject{ Tag::Obstacle }
 {
 	ShapeComponent* pShape = new ShapeComponent(width, height, color);
 	AddComponent(pShape);

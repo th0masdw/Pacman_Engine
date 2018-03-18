@@ -7,23 +7,29 @@
 #include "Engine/Scenegraph/GameScene.h"
 #include "Engine/Scenegraph/GameObject.h"
 
-void PhysicsManager::Update(const GameTime& time)
+GameObject* PhysicsManager::DoesCollide(GameObject* pTarget) const
 {
-	UNREFERENCED_PARAMETER(time);
+	GameObject* pResult = nullptr;
+	ColliderComponent* pColl = pTarget->GetComponent<ColliderComponent>();
 
-	FilterColliders(m_pStatics, m_pDynamics);
+	if (pColl) {	
+		if (!pColl->IsStatic()) {
+			std::vector<ColliderComponent*> pColliders;
+			GetSceneColliders(pColliders);
 
-	for (ColliderComponent* pDynamic : m_pDynamics) {
-		Rect collA = pDynamic->GetShape();
+			for (ColliderComponent* pComp : pColliders) {
+				if (DoCollide(pComp->GetShape(), pColl->GetShape())) {
+					pResult = (pComp->GetGameObject() != pTarget) ? pComp->GetGameObject() : nullptr;
 
-		for (ColliderComponent* pStatic : m_pStatics) {
-			Rect collB = pStatic->GetShape();
-
-			if (DoCollide(collA, collB)) {
-				UpdatePosition(pDynamic, pStatic);
+					if (pResult) break;
+				}
 			}
 		}
+	} else {
+		Debug::LogWarning("PhysicsManager::DoesCollide(): Object does not have a collider attached!");
 	}
+
+	return pResult;
 }
 
 void PhysicsManager::AddCollider(ColliderComponent* pCollider, const std::string& sceneName)
@@ -53,26 +59,16 @@ void PhysicsManager::RemoveCollider(ColliderComponent* pCollider, const std::str
 	}
 }
 
-void PhysicsManager::FilterColliders(std::vector<ColliderComponent*>& pStatics, std::vector<ColliderComponent*>& pDynamics)
+void PhysicsManager::GetSceneColliders(std::vector<ColliderComponent*>& pSceneColliders) const
 {
-	pStatics.clear();
-	pDynamics.clear();
 	GameScene* pActiveScene = SceneManager::GetInstance().GetActiveScene();
 
 	if (pActiveScene) {
 		std::string name = pActiveScene->GetName();
 		auto pColliders = m_pColliders.find(name);
 
-		if (pColliders != m_pColliders.end()) {
-			std::vector<ColliderComponent*>& colliders = pColliders->second;
-
-			for (ColliderComponent* pColl : colliders) {
-				if (pColl->IsStatic())
-					pStatics.push_back(pColl);
-				else
-					pDynamics.push_back(pColl);
-			}
-		}
+		if (pColliders != m_pColliders.end())
+			pSceneColliders = pColliders->second;
 	}
 }
 
@@ -94,31 +90,4 @@ bool PhysicsManager::DoCollide(const Rect& a, const Rect& b) const
                    bY1 > aY2;
 
 	return !overlap;
-}
-
-void PhysicsManager::UpdatePosition(ColliderComponent* pDynamicColl, ColliderComponent* pStaticColl) 
-{
-	Rect dynRect = pDynamicColl->GetShape();
-	Rect statRect = pStaticColl->GetShape();
-	Direction dir = pDynamicColl->GetDirection();
-	glm::vec2 newPos;
-
-	switch (dir) {
-		case Direction::Up:
-			newPos = { dynRect.x, statRect.y + statRect.height / 2 + dynRect.height / 2 };
-			break;
-		case Direction::Down:
-			newPos = { dynRect.x, statRect.y - statRect.height / 2 - dynRect.height / 2 };
-			break;
-		case Direction::Left:
-			newPos = { statRect.x + statRect.width / 2 + dynRect.width / 2, dynRect.y };
-			break;
-		case Direction::Right:
-			newPos = { statRect.x - statRect.width / 2 - dynRect.width / 2, dynRect.y };
-			break;
-		default:
-			newPos = pDynamicColl->GetGameObject()->GetTransform()->GetPosition();
-	}
-
-	pDynamicColl->GetGameObject()->GetTransform()->Translate(newPos);
 }

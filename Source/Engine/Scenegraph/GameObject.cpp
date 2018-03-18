@@ -3,8 +3,9 @@
 #include "Engine/Components/BaseComponent.h"
 #include "Engine/Scenegraph/GameScene.h"
 
-GameObject::GameObject()
-	: m_pParent(nullptr),
+GameObject::GameObject(const Tag tag)
+	: m_Tag{ tag },
+	m_pParent(nullptr),
 	m_pScene(nullptr),
 	m_pTransform(nullptr),
 	m_pChildren{},
@@ -130,9 +131,14 @@ TransformComponent* GameObject::GetTransform() const
 	return m_pTransform;
 }
 
-GameObject* GameObject::GetParent()
+GameObject* GameObject::GetParent() const
 {
 	return m_pParent;
+}
+
+Tag GameObject::GetTag() const
+{
+	return m_Tag;
 }
 
 void GameObject::SetScene(GameScene* pScene)

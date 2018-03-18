@@ -8,9 +8,7 @@ class Font;
 class ResourceManager final : public Singleton<ResourceManager>
 {
 public:
-	ResourceManager() = default;
-
-	void Init();
+	void Initialize();
 
 	std::shared_ptr<Texture2D> LoadTexture(const std::string& file);
 	std::shared_ptr<Font> LoadFont(const std::string& file, unsigned int size);

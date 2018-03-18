@@ -7,7 +7,7 @@
 class EventManager final : public Singleton<EventManager>
 {
 public:
-	void Init();
+	void Initialize();
 
 	void StartListening(const std::string& eventName, const std::string& callbackName, const std::function<void()>& callback);
 	void StopListening(const std::string& eventName, const std::string& callbackName, const std::function<void()>& callback);

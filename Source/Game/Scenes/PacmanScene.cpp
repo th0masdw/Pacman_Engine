@@ -33,9 +33,13 @@ void PacmanScene::Initialize()
 	m_pPlayer->GetTransform()->Translate(400.0f, 200.0f);
 	AddObject(m_pPlayer);
 
-	//Wall
+	//Walls
 	m_pWall = new Wall(30.0f, 200.0f, { 0.0f, 0.0f, 255.0f, 255.0f });
 	m_pWall->GetTransform()->Translate(200.0f, 200.0f);
+	AddObject(m_pWall);
+
+	m_pWall = new Wall(200.0f, 30.0f, { 0.0f, 0.0f, 255.0f, 255.0f });
+	m_pWall->GetTransform()->Translate(300.0f, 300.0f);
 	AddObject(m_pWall);
 }
 

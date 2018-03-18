@@ -58,7 +58,7 @@ struct InputAction
 	int playerId;
 };
 
-enum class Direction
+enum class Tag
 {
-	None, Up, Down, Left, Right
+	Empty, Player, Enemy, Obstacle, Pickup
 };

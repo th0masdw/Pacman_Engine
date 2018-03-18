@@ -11,7 +11,7 @@ struct vec2;
 class Renderer final : public Singleton<Renderer>
 {
 public:
-	void Init(SDL_Window* window);
+	void Initialize(SDL_Window* window);
 	void Draw();
 	void Destroy();
 

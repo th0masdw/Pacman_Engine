@@ -8,7 +8,7 @@ class GameScene;
 class GameObject
 {
 public:
-	GameObject();
+	explicit GameObject(const Tag tag = Tag::Empty);
 	virtual ~GameObject();
 
 	void PostInitialize();
@@ -22,7 +22,8 @@ public:
 	void RemoveComponent(BaseComponent* pComp, bool deleteComp = true);
 
 	TransformComponent* GetTransform() const;
-	GameObject* GetParent();
+	GameObject* GetParent() const;
+	Tag GetTag() const;
 
 	void SetScene(GameScene* pScene);
 	GameScene* GetScene() const;
@@ -71,6 +72,7 @@ public:
 	GameObject& operator=(GameObject&& other) = delete;
 
 private:
+	Tag m_Tag;
 	GameObject* m_pParent;
 	GameScene* m_pScene;
 	TransformComponent* m_pTransform;
