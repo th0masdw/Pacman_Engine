@@ -25,6 +25,7 @@ void ColliderComponent::Update(const GameTime& time)
 
 	if (!m_IsStatic) {
 		glm::vec2 pos = m_pGameObject->GetTransform()->GetPosition();
+		SetDirection(pos);
 		m_Box.x = pos.x;
 		m_Box.y = pos.y;
 	}
@@ -55,4 +56,30 @@ Rect ColliderComponent::GetShape() const
 bool ColliderComponent::IsStatic() const
 {
 	return m_IsStatic;
+}
+
+Direction ColliderComponent::GetDirection() const
+{
+	return m_Direction;
+}
+
+void ColliderComponent::SetDirection(const glm::vec2& pos)
+{
+	glm::vec2 dir = pos - glm::vec2{ m_Box.x, m_Box.y };
+
+	if (abs(dir.x) > FLT_EPSILON) {
+		if (dir.x > 0.0f)
+			m_Direction = Direction::Right;
+		else
+			m_Direction = Direction::Left;
+
+		return;
+	}
+
+	if (abs(dir.y) > FLT_EPSILON) {
+		if (dir.y > 0.0f)
+			m_Direction = Direction::Down;
+		else
+			m_Direction = Direction::Up;
+	}
 }

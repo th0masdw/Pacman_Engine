@@ -13,6 +13,7 @@ public:
 	void SetDimensions(float width, float height);
 	Rect GetShape() const;
 	bool IsStatic() const;
+	Direction GetDirection() const;
 
 	ColliderComponent(const ColliderComponent& other) = delete;
 	ColliderComponent(ColliderComponent&& other) = delete;
@@ -27,4 +28,7 @@ protected:
 private:
 	Rect m_Box;
 	bool m_IsStatic;
+	Direction m_Direction;
+
+	void SetDirection(const glm::vec2& pos);
 };

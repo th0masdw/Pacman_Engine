@@ -98,8 +98,27 @@ bool PhysicsManager::DoCollide(const Rect& a, const Rect& b) const
 
 void PhysicsManager::UpdatePosition(ColliderComponent* pDynamicColl, ColliderComponent* pStaticColl) 
 {
-	glm::vec2 newPos = { pStaticColl->GetShape().x - pStaticColl->GetShape().width / 2 - pDynamicColl->GetShape().width / 2,
-						 pDynamicColl->GetShape().y};
+	Rect dynRect = pDynamicColl->GetShape();
+	Rect statRect = pStaticColl->GetShape();
+	Direction dir = pDynamicColl->GetDirection();
+	glm::vec2 newPos;
+
+	switch (dir) {
+		case Direction::Up:
+			newPos = { dynRect.x, statRect.y + statRect.height / 2 + dynRect.height / 2 };
+			break;
+		case Direction::Down:
+			newPos = { dynRect.x, statRect.y - statRect.height / 2 - dynRect.height / 2 };
+			break;
+		case Direction::Left:
+			newPos = { statRect.x + statRect.width / 2 + dynRect.width / 2, dynRect.y };
+			break;
+		case Direction::Right:
+			newPos = { statRect.x - statRect.width / 2 - dynRect.width / 2, dynRect.y };
+			break;
+		default:
+			newPos = pDynamicColl->GetGameObject()->GetTransform()->GetPosition();
+	}
 
 	pDynamicColl->GetGameObject()->GetTransform()->Translate(newPos);
 }

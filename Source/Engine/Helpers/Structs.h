@@ -57,3 +57,8 @@ struct InputAction
 	int bitMask;
 	int playerId;
 };
+
+enum class Direction
+{
+	None, Up, Down, Left, Right
+};
