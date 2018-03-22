@@ -1,12 +1,13 @@
 #pragma once
 
-#include "BaseComponent.h"
+#include "Engine/Components/BaseComponent.h"
 #include "Engine/Algorithms/Astar/Solver.h"
+class PacmanActor;
 
 class AIComponent : public BaseComponent
 {
 public:
-	AIComponent();
+	AIComponent(PacmanActor* pPacman);
 	virtual ~AIComponent() = default;
 
 	virtual void PostInitialize() override;
@@ -21,4 +22,6 @@ public:
 private:
 	std::list<Node> m_Path;
 	Solver m_PathSolver;
+
+	PacmanActor* m_pPacman;
 };

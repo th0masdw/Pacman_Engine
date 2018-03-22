@@ -13,8 +13,7 @@ public:
 	void Update(const GameTime& time);
 	void Draw() const;
 
-	void SetSize(float size);
-	void SetSpeed(float speed);
+	glm::vec2 GetPosition() const;
 
 private:
 	float m_CurrentSpeed;

@@ -2,9 +2,10 @@
 #include "GhostActor.h"
 #include "Engine/Components/ShapeComponent.h"
 #include "Engine/Components/ColliderComponent.h"
-#include "Engine/Components/AIComponent.h"
+#include "Game/Components/AIComponent.h"
+#include "Game/Gameplay/Actors/PacmanActor.h"
 
-GhostActor::GhostActor(float size, float speed, const Color& color)
+GhostActor::GhostActor(PacmanActor* pPacman, float size, float speed, const Color& color)
 	: GameObject{ Tag::Enemy },
 	m_Speed{ speed }
 {
@@ -14,7 +15,7 @@ GhostActor::GhostActor(float size, float speed, const Color& color)
 	ColliderComponent* pCollider = new ColliderComponent(size, size, false);
 	AddComponent(pCollider);
 
-	AIComponent* pAI = new AIComponent();
+	AIComponent* pAI = new AIComponent(pPacman);
 	AddComponent(pAI);
 }
 

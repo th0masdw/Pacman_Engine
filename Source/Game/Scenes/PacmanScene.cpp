@@ -24,21 +24,21 @@ void PacmanScene::Initialize()
 {
 	//Player
 	m_pPlayer = new PacmanActor(25, 200);
-	m_pPlayer->GetTransform()->Translate(400, 200);
+	m_pPlayer->GetTransform()->Translate(387.5f, 187.5f);
 	AddObject(m_pPlayer);
 
 	//Walls
-	m_pWall = new Wall(30, 200, { 0, 0, 255, 255 });
-	m_pWall->GetTransform()->Translate(200, 200);
+	m_pWall = new Wall(25, 25, { 0, 0, 255, 255 });
+	m_pWall->GetTransform()->Translate(137.5f, 137.5f);
 	AddObject(m_pWall);
 
-	m_pWall = new Wall(200, 30, { 0, 0, 255, 255 });
-	m_pWall->GetTransform()->Translate(300, 300);
+	m_pWall = new Wall(25, 25, { 0, 0, 255, 255 });
+	m_pWall->GetTransform()->Translate(262.5f, 237.5f);
 	AddObject(m_pWall);
 
 	//Ghost
-	m_pGhost = new GhostActor(25, 200.0f, { 255, 105, 180, 255 });
-	m_pGhost->GetTransform()->Translate(100, 250);
+	m_pGhost = new GhostActor(m_pPlayer, 25, 200.0f, { 255, 105, 180, 255 });
+	m_pGhost->GetTransform()->Translate(87.5f, 237.5f);
 	AddObject(m_pGhost);
 
 	//FPS Counter

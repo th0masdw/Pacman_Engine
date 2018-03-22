@@ -3,39 +3,44 @@
 #include "Engine/Helpers/Window.h"
 #include "Engine/Graphics/Renderer.h"
 #include "Engine/Helpers/Structs.h"
+#include "Engine/Managers/PhysicsManager.h"
 
-Grid::Grid(int gridSize)
-	: m_GridSize{ gridSize }
+Grid::Grid(int width, int height)
+	: m_Width{ width },
+	m_Height{ height }
 {
-	int area = gridSize * gridSize;
+	int area = width * height;
 
 	m_ObstacleTiles.resize(area);
     for (int i = 0; i < area; ++i) {
 		m_ObstacleTiles[i] = false;
 	}
 
-	m_TileWidth = Window::GetWidth() / gridSize;
-	m_TileHeight = Window::GetHeight() / gridSize;
+	m_TileSize = static_cast<float>(Window::GetWidth() / width);
 }
 
 void Grid::PostInitialize()
 {
-	Debug::Log("Grid::PostInitialize()");
+	std::vector<glm::vec2> positions;
+	PhysicsManager::GetInstance().GetStaticSceneColliders(positions);
+	
+	int x, y = 0;
+	for (const glm::vec2& pos : positions) {
+		ToIndexPos(pos, x, y);
+		m_ObstacleTiles[(y * m_Width) + x] = true;
+	}
 }
 
 void Grid::Draw() const
 {
 	if (Debug::IsDebugRenderingEnabled()) {
 		glm::vec2 pos;
-		float width, height;
 
-		for (int row = 0; row < m_GridSize; ++row) {
-			for (int col = 0; col < m_GridSize; ++col) {
-				pos = { col * m_TileWidth, row * m_TileHeight };
-				width = static_cast<float>(m_TileWidth);
-				height = static_cast<float>(m_TileHeight);
+		for (int row = 0; row < m_Height; ++row) {
+			for (int col = 0; col < m_Width; ++col) {
+				pos = { col * m_TileSize, row * m_TileSize };
 
-				Renderer::GetInstance().RenderRect(pos, width, height, Color{ 192.0f, 192.0f, 192.0f, 255.0f }, false);
+				Renderer::GetInstance().RenderRect(pos, m_TileSize, m_TileSize, Color{ 192.0f, 192.0f, 192.0f, 255.0f }, false);
 			}
 		}
 	}
@@ -43,24 +48,34 @@ void Grid::Draw() const
 
 bool Grid::IsObstacle(const glm::vec2& pos) const
 {
-	int x, y;
-	ToIndexPos(pos, x, y);
+	int x = static_cast<int>(pos.x);
+	int y = static_cast<int>(pos.y);
 
 	if (y < 0) y = 0;
     if (x < 0) x = 0;
-    if (y >= m_GridSize) y = m_GridSize - 1;
-    if (x >= m_GridSize) x = m_GridSize - 1;
+    if (y >= m_Height) y = m_Height - 1;
+    if (x >= m_Width) x = m_Width - 1;
 
-    return m_ObstacleTiles[x + (y * m_GridSize)];
+    return m_ObstacleTiles[(y * m_Width) + x];
 }
 
-int Grid::GetSize() const
+int Grid::GetWidth() const
 {
-	return m_GridSize;
+	return m_Width;
+}
+
+int Grid::GetHeight() const
+{
+	return m_Height;
+}
+
+float Grid::GetTileSize() const
+{
+	return m_TileSize;
 }
 
 void Grid::ToIndexPos(const glm::vec2& pos, int& x, int& y) const
 {
-	x = static_cast<int>((pos.x - m_TileWidth) / m_TileWidth);
-	y = static_cast<int>((pos.y - m_TileHeight) / m_TileHeight);
+	x = static_cast<int>(std::ceilf((pos.x - m_TileSize) / m_TileSize));
+	y = static_cast<int>(std::ceilf((pos.y - m_TileSize) / m_TileSize));
 }

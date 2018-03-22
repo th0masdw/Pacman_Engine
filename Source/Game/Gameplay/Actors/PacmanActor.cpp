@@ -31,6 +31,7 @@ void PacmanActor::Update(const GameTime& time)
 	//Collision
 	GameObject* pCollision = PhysicsManager::GetInstance().DoesCollide(this);
 
+	//Check on tag!
 	if (pCollision) {
 		m_CurrentSpeed = 0.0f;
 		Move(m_Direction * -m_CollisionOffset);
@@ -60,21 +61,9 @@ void PacmanActor::Draw() const
 {
 }
 
-void PacmanActor::SetSize(float size)
+glm::vec2 PacmanActor::GetPosition() const
 {
-	ShapeComponent* pShape = GetComponent<ShapeComponent>();
-	if (pShape)
-		pShape->SetDimensions(size, size);
-
-	ColliderComponent* pColl = GetComponent<ColliderComponent>();
-	if (pColl)
-		pColl->SetDimensions(size, size);
-}
-
-void PacmanActor::SetSpeed(float speed)
-{
-	m_CurrentSpeed = speed;
-	m_MovementSpeed = speed;
+	return GetTransform()->GetPosition();
 }
 
 void PacmanActor::Move(const glm::vec2& displacement)

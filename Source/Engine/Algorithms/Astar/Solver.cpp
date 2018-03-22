@@ -2,8 +2,8 @@
 #include "Solver.h"
 #include <algorithm>
 
-Solver::Solver(int size, bool useDiagonals)
-	: m_Grid(size)
+Solver::Solver(int gridWidth, int gridHeight, bool useDiagonals)
+	: m_Grid(gridWidth, gridHeight)
 {
 	m_Directions.emplace_back(0, 1);
 	m_Directions.emplace_back(0, -1);
@@ -30,10 +30,10 @@ Grid& Solver::GetGridRef()
 
 void Solver::GetPath(const glm::vec2& start, const glm::vec2& end, std::list<Node>& result)
 {
-	Node startNode(start);
-    Node goalNode(end);
+	Node startNode(GetNodePosition(start));
+    Node goalNode(GetNodePosition(end));
 
-    if (m_Grid.IsObstacle(start) || m_Grid.IsObstacle(end)) {
+    if (m_Grid.IsObstacle(startNode.GetPosition()) || m_Grid.IsObstacle(goalNode.GetPosition())) {
         Debug::LogError("Astar Solver: Could not get path - start or endnode is obstructed");
         return;
     }
@@ -41,13 +41,13 @@ void Solver::GetPath(const glm::vec2& start, const glm::vec2& end, std::list<Nod
     std::list<Node> openList;
     std::list<Node> closedList;
 
-    startNode.CalculateCost(end);
+    startNode.CalculateCost(goalNode.GetPosition());
     openList.push_back(startNode);
 
     while (!openList.empty()) {
         Node current = *std::min_element(openList.begin(), openList.end());
 
-        current.CalculateCost(end);
+        current.CalculateCost(goalNode.GetPosition());
 
         closedList.push_back(current);     
         if (current == goalNode) break;
@@ -55,21 +55,21 @@ void Solver::GetPath(const glm::vec2& start, const glm::vec2& end, std::list<Nod
 
         for (const glm::vec2& direction : m_Directions) {
             Node next(direction + current.GetPosition());
-
-            if (m_Grid.IsObstacle(next.GetPosition()) || next.GetPosition().x > m_Grid.GetSize() - 1 || 
-                next.GetPosition().y > m_Grid.GetSize() - 1 || next.GetPosition().x < 0 || 
+			
+            if (m_Grid.IsObstacle(next.GetPosition()) || next.GetPosition().x > m_Grid.GetWidth() - 1 || 
+                next.GetPosition().y > m_Grid.GetHeight() - 1 || next.GetPosition().x < 0 || 
                 next.GetPosition().y < 0 ||
                 std::find(closedList.begin(), closedList.end(), next) != closedList.end()) 
 			{
                 continue;
             }
 
-            next.CalculateCost(end);
+            next.CalculateCost(goalNode.GetPosition());
 
             auto openIt = std::find(openList.begin(), openList.end(), next);
             if (openIt == openList.end()) {
 				next.SetParent(&closedList.back());
-                next.CalculateCost(end);
+                next.CalculateCost(goalNode.GetPosition());
 
                 openList.push_back(next);
             }
@@ -92,4 +92,12 @@ void Solver::GetPath(const glm::vec2& start, const glm::vec2& end, std::list<Nod
             *closedIt = *closedIt->GetParent();
         }
     }
+}
+
+glm::vec2 Solver::GetNodePosition(const glm::vec2& absolutePos) const
+{
+	int x, y = 0;
+
+	m_Grid.ToIndexPos(absolutePos, x, y);
+	return glm::vec2(x, y);
 }
