@@ -26,6 +26,7 @@ void SceneManager::CreateScene(GameScene* pScene)
 {
 	if (pScene) {
 		m_Scenes.push_back(pScene);
+		pScene->PostInitialize();
 		++m_ActiveSceneIndex;
 	}
 }

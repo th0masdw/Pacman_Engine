@@ -8,6 +8,7 @@ public:
 	explicit Grid(int gridSize);
 	~Grid() = default;
 
+	void PostInitialize();
 	void Draw() const;
 
 	bool IsObstacle(const glm::vec2& pos) const;
@@ -19,8 +20,4 @@ private:
 	int m_TileWidth, m_TileHeight;
 
 	void ToIndexPos(const glm::vec2& pos, int& x, int& y) const;
-
-    /*void setElement(char&& asda, Vector2 position) {
-        data[position.getX() + (position.getY() * size)] = asda;
-    }*/
 };

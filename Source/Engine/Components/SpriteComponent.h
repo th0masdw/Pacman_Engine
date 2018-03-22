@@ -1,7 +1,6 @@
 #pragma once
 
 #include "BaseComponent.h"
-class GameTime;
 class Texture2D;
 
 class SpriteComponent : public BaseComponent

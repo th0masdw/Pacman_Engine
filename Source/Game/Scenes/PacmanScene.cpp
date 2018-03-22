@@ -1,18 +1,17 @@
 #include "MiniginPCH.h"
 #include "PacmanScene.h"
 
-#include "Engine/Scenegraph/GameObject.h"
-#include "Engine/Components/Components.h"
 #include "Game/Gameplay/Actors/PacmanActor.h"
 #include "Game/Gameplay/Actors/GhostActor.h"
 #include "Game/Gameplay/Objects/Wall.h"
+#include "Game/Gameplay/Objects/FPSObject.h"
 
 PacmanScene::PacmanScene()
 	: GameScene("PacmanScene"),
-	m_pFPSCounter(nullptr),
 	m_pPlayer(nullptr),
 	m_pGhost(nullptr),
-	m_pWall(nullptr)
+	m_pWall(nullptr),
+	m_pFPS(nullptr)
 {
 	Initialize();
 }
@@ -23,37 +22,34 @@ PacmanScene::~PacmanScene()
 
 void PacmanScene::Initialize()
 {
-	//FPS Counter
-	GameObject* pFPS = new GameObject();
-	m_pFPSCounter = new TextComponent("FPS", { 0.0f, 255.0f, 0.0f, 255.0f }, "../Resources/Lingua.otf", 20);
-	pFPS->AddComponent(m_pFPSCounter);
-	pFPS->GetTransform()->Translate(20.0f, 20.0f);
-	AddObject(pFPS);
-
 	//Player
-	m_pPlayer = new PacmanActor(25.0f, 200.0f);
-	m_pPlayer->GetTransform()->Translate(400.0f, 200.0f);
+	m_pPlayer = new PacmanActor(25, 200);
+	m_pPlayer->GetTransform()->Translate(400, 200);
 	AddObject(m_pPlayer);
 
 	//Walls
-	m_pWall = new Wall(30.0f, 200.0f, { 0.0f, 0.0f, 255.0f, 255.0f });
-	m_pWall->GetTransform()->Translate(200.0f, 200.0f);
+	m_pWall = new Wall(30, 200, { 0, 0, 255, 255 });
+	m_pWall->GetTransform()->Translate(200, 200);
 	AddObject(m_pWall);
 
-	m_pWall = new Wall(200.0f, 30.0f, { 0.0f, 0.0f, 255.0f, 255.0f });
-	m_pWall->GetTransform()->Translate(300.0f, 300.0f);
+	m_pWall = new Wall(200, 30, { 0, 0, 255, 255 });
+	m_pWall->GetTransform()->Translate(300, 300);
 	AddObject(m_pWall);
 
 	//Ghost
-	m_pGhost = new GhostActor(25.0f, 200.0f, { 255.0f, 105.0f, 180.0f, 255.0f });
-	m_pGhost->GetTransform()->Translate(100.0f, 250.0f);
+	m_pGhost = new GhostActor(25, 200.0f, { 255, 105, 180, 255 });
+	m_pGhost->GetTransform()->Translate(100, 250);
 	AddObject(m_pGhost);
+
+	//FPS Counter
+	m_pFPS = new FPSObject("../Resources/Lingua.otf", 20, { 0, 255, 0, 255 }, { 20, 20 });
+	AddObject(m_pFPS);
 }
 
 void PacmanScene::Update(const GameTime& time) 
 {
 	m_pPlayer->Update(time);
-	m_pFPSCounter->SetText(std::to_string(time.GetFPS()), { 0.0f, 255.0f, 0.0f, 255.0f });
+	m_pFPS->Update(time);
 
 	GameScene::Update(time);
 }

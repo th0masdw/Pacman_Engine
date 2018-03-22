@@ -18,6 +18,11 @@ Grid::Grid(int gridSize)
 	m_TileHeight = Window::GetHeight() / gridSize;
 }
 
+void Grid::PostInitialize()
+{
+	Debug::Log("Grid::PostInitialize()");
+}
+
 void Grid::Draw() const
 {
 	if (Debug::IsDebugRenderingEnabled()) {

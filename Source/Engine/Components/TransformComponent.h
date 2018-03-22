@@ -3,7 +3,6 @@
 #include "BaseComponent.h"
 #include "Engine/Helpers/Structs.h"
 struct vec2;
-class GameTime;
 
 class TransformComponent : public BaseComponent
 {

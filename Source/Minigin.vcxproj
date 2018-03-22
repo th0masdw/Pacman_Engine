@@ -22,6 +22,7 @@
     <ClCompile Include="Engine\Algorithms\Astar\Grid.cpp" />
     <ClCompile Include="Engine\Algorithms\Astar\Node.cpp" />
     <ClCompile Include="Engine\Algorithms\Astar\Solver.cpp" />
+    <ClCompile Include="Engine\Components\AIComponent.cpp" />
     <ClCompile Include="Engine\Components\BaseComponent.cpp" />
     <ClCompile Include="Engine\Components\ColliderComponent.cpp" />
     <ClCompile Include="Engine\Components\ShapeComponent.cpp" />
@@ -45,6 +46,7 @@
     <ClCompile Include="Engine\Scenegraph\GameScene.cpp" />
     <ClCompile Include="Game\Gameplay\Actors\GhostActor.cpp" />
     <ClCompile Include="Game\Gameplay\Actors\PacmanActor.cpp" />
+    <ClCompile Include="Game\Gameplay\Objects\FPSObject.cpp" />
     <ClCompile Include="Game\Gameplay\Objects\Wall.cpp" />
     <ClCompile Include="Game\Scenes\PacmanScene.cpp" />
     <ClCompile Include="MainGame.cpp" />
@@ -60,6 +62,7 @@
     <ClInclude Include="Engine\Algorithms\Astar\Grid.h" />
     <ClInclude Include="Engine\Algorithms\Astar\Node.h" />
     <ClInclude Include="Engine\Algorithms\Astar\Solver.h" />
+    <ClInclude Include="Engine\Components\AIComponent.h" />
     <ClInclude Include="Engine\Components\BaseComponent.h" />
     <ClInclude Include="Engine\Components\ColliderComponent.h" />
     <ClInclude Include="Engine\Components\Components.h" />
@@ -87,6 +90,7 @@
     <ClInclude Include="Engine\Scenegraph\GameScene.h" />
     <ClInclude Include="Game\Gameplay\Actors\GhostActor.h" />
     <ClInclude Include="Game\Gameplay\Actors\PacmanActor.h" />
+    <ClInclude Include="Game\Gameplay\Objects\FPSObject.h" />
     <ClInclude Include="Game\Gameplay\Objects\Wall.h" />
     <ClInclude Include="Game\Scenes\PacmanScene.h" />
     <ClInclude Include="MainGame.h" />

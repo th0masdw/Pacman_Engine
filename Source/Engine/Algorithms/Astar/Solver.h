@@ -11,8 +11,8 @@ public:
 	explicit Solver(int size, bool useDiagonals = false);
 	~Solver() = default;
 
-	//Post init to fill grid with colliders
-
+	Grid GetGridCopy() const;
+	Grid& GetGridRef();
 	void GetPath(const glm::vec2& start, const glm::vec2& end, std::list<Node>& result);
 
 private:

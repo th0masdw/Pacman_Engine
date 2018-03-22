@@ -20,6 +20,7 @@ protected:
 	friend class SceneManager;
 
 	virtual void Initialize() = 0;
+	virtual void PostInitialize();
 	virtual void Update(const GameTime& time);
 	virtual void Draw() const;
 

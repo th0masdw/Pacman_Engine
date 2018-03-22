@@ -18,6 +18,16 @@ Solver::Solver(int size, bool useDiagonals)
 	}
 }
 
+Grid Solver::GetGridCopy() const
+{
+	return m_Grid;
+}
+
+Grid& Solver::GetGridRef()
+{
+	return m_Grid;
+}
+
 void Solver::GetPath(const glm::vec2& start, const glm::vec2& end, std::list<Node>& result)
 {
 	Node startNode(start);

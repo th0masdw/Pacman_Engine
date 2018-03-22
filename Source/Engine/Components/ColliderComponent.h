@@ -2,7 +2,6 @@
 
 #include "BaseComponent.h"
 #include "Engine/Helpers/Structs.h"
-class GameTime;
 
 class ColliderComponent : public BaseComponent
 {

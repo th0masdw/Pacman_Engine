@@ -2,6 +2,7 @@
 #include "GhostActor.h"
 #include "Engine/Components/ShapeComponent.h"
 #include "Engine/Components/ColliderComponent.h"
+#include "Engine/Components/AIComponent.h"
 
 GhostActor::GhostActor(float size, float speed, const Color& color)
 	: GameObject{ Tag::Enemy },
@@ -12,6 +13,9 @@ GhostActor::GhostActor(float size, float speed, const Color& color)
 
 	ColliderComponent* pCollider = new ColliderComponent(size, size, false);
 	AddComponent(pCollider);
+
+	AIComponent* pAI = new AIComponent();
+	AddComponent(pAI);
 }
 
 void GhostActor::Update(const GameTime& time)

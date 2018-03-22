@@ -3,7 +3,6 @@
 #include "BaseComponent.h"
 #include "Engine/Helpers/Structs.h"
 struct vec2;
-class GameTime;
 
 //Rectangle shape -> no other shapes supported because of SDL
 class ShapeComponent : public BaseComponent

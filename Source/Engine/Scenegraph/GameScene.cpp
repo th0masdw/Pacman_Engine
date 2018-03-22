@@ -16,6 +16,13 @@ GameScene::~GameScene()
 	}
 }
 
+void GameScene::PostInitialize()
+{
+	for (GameObject* pObject : m_Objects) {
+		pObject->PostInitialize();
+	}
+}
+
 void GameScene::Update(const GameTime& time)
 {
 	for (GameObject* pObject : m_Objects) {
@@ -37,7 +44,6 @@ void GameScene::AddObject(GameObject* pObject)
 	if (it == m_Objects.end() && pObject) {
 		m_Objects.push_back(pObject);
 		pObject->SetScene(this);
-		pObject->PostInitialize();
 		AddToPhysicsScene(pObject);
 	} else
 		Debug::LogWarning("Object already present!");
