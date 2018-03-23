@@ -23,6 +23,7 @@
     <ClCompile Include="Engine\Algorithms\Astar\Node.cpp" />
     <ClCompile Include="Engine\Algorithms\Astar\Solver.cpp" />
     <ClCompile Include="Engine\Components\BaseComponent.cpp" />
+    <ClCompile Include="Engine\Components\CharacterController.cpp" />
     <ClCompile Include="Engine\Components\ColliderComponent.cpp" />
     <ClCompile Include="Engine\Components\ShapeComponent.cpp" />
     <ClCompile Include="Engine\Components\SpriteComponent.cpp" />
@@ -63,6 +64,7 @@
     <ClInclude Include="Engine\Algorithms\Astar\Node.h" />
     <ClInclude Include="Engine\Algorithms\Astar\Solver.h" />
     <ClInclude Include="Engine\Components\BaseComponent.h" />
+    <ClInclude Include="Engine\Components\CharacterController.h" />
     <ClInclude Include="Engine\Components\ColliderComponent.h" />
     <ClInclude Include="Engine\Components\Components.h" />
     <ClInclude Include="Engine\Components\ShapeComponent.h" />

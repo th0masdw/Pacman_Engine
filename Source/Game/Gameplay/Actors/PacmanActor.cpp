@@ -2,21 +2,22 @@
 #include "PacmanActor.h"
 #include "Engine/Components/ShapeComponent.h"
 #include "Engine/Components/ColliderComponent.h"
+#include "Engine/Components/CharacterController.h"
 #include "Engine/Managers/InputManager.h"
 #include "Engine/Managers/PhysicsManager.h"
 
 PacmanActor::PacmanActor(float size, float speed)
 	: GameObject{ Tag::Player },
-	m_CurrentSpeed{ speed },
-	m_MovementSpeed{ speed },
-	m_Direction{ 0.0f, 0.0f },
-	m_CollisionOffset{ 4.0f }
+	m_Direction{ 0.0f, 0.0f }
 {
 	ShapeComponent* pShape = new ShapeComponent(size, size, { 255.0f, 255.0f, 0.0f, 255.0f });
 	AddComponent(pShape);
 
 	ColliderComponent* pCollider = new ColliderComponent(size, size, false);
 	AddComponent(pCollider);
+
+	m_pController = new CharacterController(speed);
+	AddComponent(m_pController);
 
 	//Input
 	InputManager& input = InputManager::GetInstance();
@@ -27,17 +28,8 @@ PacmanActor::PacmanActor(float size, float speed)
 }
 
 void PacmanActor::Update(const GameTime& time)
-{
-	//Collision
-	GameObject* pCollision = PhysicsManager::GetInstance().DoesCollide(this);
-
-	//Check on tag!
-	if (pCollision) {
-		m_CurrentSpeed = 0.0f;
-		Move(m_Direction * -m_CollisionOffset);
-	} else {
-		m_CurrentSpeed = m_MovementSpeed;
-	}
+{	
+	m_pController->CheckCollision(m_Direction * time.GetElapsedTime());
 
 	//Input
 	InputManager& input = InputManager::GetInstance();
@@ -54,7 +46,7 @@ void PacmanActor::Update(const GameTime& time)
 	else if (input.IsActionTriggered(Input::P1_Right))
 		m_Direction = glm::vec2{ 1.0f, 0.0f };
 
-	Move(m_Direction * time.GetElapsedTime() * m_CurrentSpeed);
+	m_pController->Move(m_Direction * time.GetElapsedTime());
 }
 
 void PacmanActor::Draw() const
@@ -64,12 +56,4 @@ void PacmanActor::Draw() const
 glm::vec2 PacmanActor::GetPosition() const
 {
 	return GetTransform()->GetPosition();
-}
-
-void PacmanActor::Move(const glm::vec2& displacement)
-{
-	glm::vec2 flipped = { displacement.x, displacement.y * -1.0f };
-	glm::vec2 pos = GetTransform()->GetPosition();
-	pos += flipped;
-	GetTransform()->Translate(pos);
 }

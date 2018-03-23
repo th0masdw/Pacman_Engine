@@ -10,14 +10,15 @@ public:
 	AIComponent(PacmanActor* pPacman);
 	virtual ~AIComponent() = default;
 
-	virtual void PostInitialize() override;
-	virtual void Update(const GameTime& time) override;
-	virtual void Draw() const override;
-
 	AIComponent(const AIComponent& other) = delete;
 	AIComponent(AIComponent&& other) = delete;
 	AIComponent& operator=(const AIComponent& other) = delete;
 	AIComponent& operator=(AIComponent&& other) = delete;
+
+protected:
+	virtual void PostInitialize() override;
+	virtual void Update(const GameTime& time) override;
+	virtual void Draw() const override;
 
 private:
 	std::list<Node> m_Path;

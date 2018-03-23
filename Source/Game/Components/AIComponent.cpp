@@ -18,10 +18,9 @@ void AIComponent::Update(const GameTime& time)
 {
 	UNREFERENCED_PARAMETER(time);
 
+	m_Path.clear();
 	glm::vec2 pos = GetGameObject()->GetTransform()->GetPosition();
 	m_PathSolver.GetPath(pos, m_pPacman->GetTransform()->GetPosition(), m_Path);
-
-	m_Path.clear();
 }
 
 void AIComponent::Draw() const

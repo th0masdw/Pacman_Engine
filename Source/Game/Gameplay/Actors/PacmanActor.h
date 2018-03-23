@@ -3,6 +3,7 @@
 #include "Engine/Scenegraph/GameObject.h"
 struct vec2;
 class GameTime;
+class CharacterController;
 
 class PacmanActor final : public GameObject
 {
@@ -16,10 +17,6 @@ public:
 	glm::vec2 GetPosition() const;
 
 private:
-	float m_CurrentSpeed;
-	float m_MovementSpeed;
+	CharacterController* m_pController;
 	glm::vec2 m_Direction;
-	float m_CollisionOffset;
-	
-	void Move(const glm::vec2& displacement);
 };

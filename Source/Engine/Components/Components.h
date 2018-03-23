@@ -1,6 +1,6 @@
 #pragma once
 
-#include "AIComponent.h"
+#include "CharacterController.h"
 #include "ColliderComponent.h"
 #include "ShapeComponent.h"
 #include "SpriteComponent.h"
