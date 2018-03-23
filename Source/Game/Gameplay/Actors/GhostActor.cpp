@@ -2,12 +2,14 @@
 #include "GhostActor.h"
 #include "Engine/Components/ShapeComponent.h"
 #include "Engine/Components/ColliderComponent.h"
+#include "Engine/Components/CharacterController.h"
 #include "Game/Components/AIComponent.h"
 #include "Game/Gameplay/Actors/PacmanActor.h"
 
-GhostActor::GhostActor(PacmanActor* pPacman, float size, float speed, const Color& color)
+GhostActor::GhostActor(PacmanActor* pPacman, float size, float speed, const Color& color, bool isPlayerControlled)
 	: GameObject{ Tag::Enemy },
-	m_Speed{ speed }
+	m_pController(nullptr),
+	m_IsPlayerControlled(isPlayerControlled)
 {
 	ShapeComponent* pShape = new ShapeComponent(size, size, color);
 	AddComponent(pShape);
@@ -15,8 +17,15 @@ GhostActor::GhostActor(PacmanActor* pPacman, float size, float speed, const Colo
 	ColliderComponent* pCollider = new ColliderComponent(size, size, false);
 	AddComponent(pCollider);
 
-	AIComponent* pAI = new AIComponent(pPacman);
-	AddComponent(pAI);
+	if (!isPlayerControlled) {
+		AIComponent* pAI = new AIComponent(pPacman, speed);
+		AddComponent(pAI);
+	} else {
+		m_pController = new CharacterController(speed);
+		AddComponent(m_pController);
+
+		//Add P2 input
+	}
 }
 
 void GhostActor::Update(const GameTime& time)
@@ -26,9 +35,4 @@ void GhostActor::Update(const GameTime& time)
 
 void GhostActor::Draw() const
 {
-}
-
-void GhostActor::Move(const glm::vec2& displacement)
-{
-	UNREFERENCED_PARAMETER(displacement);
 }

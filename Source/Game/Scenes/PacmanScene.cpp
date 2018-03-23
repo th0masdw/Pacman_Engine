@@ -23,7 +23,7 @@ PacmanScene::~PacmanScene()
 void PacmanScene::Initialize()
 {
 	//Player
-	m_pPlayer = new PacmanActor(25, 200);
+	m_pPlayer = new PacmanActor(25, 150);
 	m_pPlayer->GetTransform()->Translate(387.5f, 187.5f);
 	AddObject(m_pPlayer);
 
@@ -37,7 +37,7 @@ void PacmanScene::Initialize()
 	AddObject(m_pWall);
 
 	//Ghost
-	m_pGhost = new GhostActor(m_pPlayer, 25, 200.0f, { 255, 105, 180, 255 });
+	m_pGhost = new GhostActor(m_pPlayer, 25, 150, { 255, 105, 180, 255 });
 	m_pGhost->GetTransform()->Translate(87.5f, 237.5f);
 	AddObject(m_pGhost);
 

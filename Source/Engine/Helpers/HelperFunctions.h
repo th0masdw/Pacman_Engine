@@ -32,3 +32,7 @@ inline float WrapAngle(float angle) {
 
 	return angle;
 }
+
+inline bool HasZeroMagnitude(float x, float y) {
+	return x <= 0.0f && y <= 0.0f;
+}
