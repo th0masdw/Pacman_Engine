@@ -1,7 +1,6 @@
 #include "MiniginPCH.h"
 #include "InputManager.h"
 #include "SceneManager.h"
-#include <SDL.h>
 #include <sstream>
 #include <iomanip>
 
@@ -48,7 +47,10 @@ bool InputManager::IsActionTriggered(const Input id)
 	auto it = m_InputActions.find(int(id));
 
 	if (it != m_InputActions.end()) {
-		return m_CurrentState.Gamepad.wButtons & it->second.bitMask;	//TODO: add Player 2 support
+		if (it->second.useGamepad)
+			return m_CurrentState.Gamepad.wButtons & it->second.bitMask;
+		else
+			return m_pKeyboard[it->second.bitMask];		
 	}
 	return false;
 }

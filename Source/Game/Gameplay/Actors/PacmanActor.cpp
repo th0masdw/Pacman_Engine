@@ -4,7 +4,6 @@
 #include "Engine/Components/ColliderComponent.h"
 #include "Engine/Components/CharacterController.h"
 #include "Engine/Managers/InputManager.h"
-#include "Engine/Managers/PhysicsManager.h"
 
 PacmanActor::PacmanActor(float size, float speed)
 	: GameObject{ Tag::Player },
@@ -21,10 +20,10 @@ PacmanActor::PacmanActor(float size, float speed)
 
 	//Input
 	InputManager& input = InputManager::GetInstance();
-	input.AddInputAction(InputAction{ Input::P1_Up, XINPUT_GAMEPAD_DPAD_UP, 0 });
-	input.AddInputAction(InputAction{ Input::P1_Down, XINPUT_GAMEPAD_DPAD_DOWN, 0 });
-	input.AddInputAction(InputAction{ Input::P1_Left, XINPUT_GAMEPAD_DPAD_LEFT, 0 });
-	input.AddInputAction(InputAction{ Input::P1_Right, XINPUT_GAMEPAD_DPAD_RIGHT, 0 });
+	input.AddInputAction(InputAction{ Input::P1_Up, XINPUT_GAMEPAD_DPAD_UP, 0, true });
+	input.AddInputAction(InputAction{ Input::P1_Down, XINPUT_GAMEPAD_DPAD_DOWN, 0, true });
+	input.AddInputAction(InputAction{ Input::P1_Left, XINPUT_GAMEPAD_DPAD_LEFT, 0, true });
+	input.AddInputAction(InputAction{ Input::P1_Right, XINPUT_GAMEPAD_DPAD_RIGHT, 0, true });
 }
 
 void PacmanActor::Update(const GameTime& time)

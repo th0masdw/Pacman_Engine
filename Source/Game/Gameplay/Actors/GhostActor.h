@@ -15,6 +15,9 @@ public:
 	void Draw() const;
 
 private:
-	CharacterController* m_pController;
 	bool m_IsPlayerControlled;
+	CharacterController* m_pController;
+	glm::vec2 m_Direction;
+
+	void SetupBehaviour(PacmanActor* pActor, float speed);
 };

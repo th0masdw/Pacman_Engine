@@ -37,7 +37,7 @@ void PacmanScene::Initialize()
 	AddObject(m_pWall);
 
 	//Ghost
-	m_pGhost = new GhostActor(m_pPlayer, 25, 150, { 255, 105, 180, 255 });
+	m_pGhost = new GhostActor(m_pPlayer, 25, 150, { 255, 105, 180, 255 }, true);
 	m_pGhost->GetTransform()->Translate(87.5f, 237.5f);
 	AddObject(m_pGhost);
 
@@ -49,6 +49,7 @@ void PacmanScene::Initialize()
 void PacmanScene::Update(const GameTime& time) 
 {
 	m_pPlayer->Update(time);
+	m_pGhost->Update(time);
 	m_pFPS->Update(time);
 
 	GameScene::Update(time);
