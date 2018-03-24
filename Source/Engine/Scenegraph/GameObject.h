@@ -8,7 +8,7 @@ class GameScene;
 class GameObject
 {
 public:
-	explicit GameObject(const Tag tag = Tag::Empty);
+	explicit GameObject(const Tag tag = Tag::Empty, const Layer layer = Layer::Default);
 	virtual ~GameObject();
 
 	void PostInitialize();
@@ -24,6 +24,7 @@ public:
 	TransformComponent* GetTransform() const;
 	GameObject* GetParent() const;
 	Tag GetTag() const;
+	Layer GetLayer() const;
 
 	void SetScene(GameScene* pScene);
 	GameScene* GetScene() const;
@@ -73,8 +74,10 @@ public:
 
 private:
 	Tag m_Tag;
+	Layer m_Layer;
 	GameObject* m_pParent;
 	GameScene* m_pScene;
+
 	TransformComponent* m_pTransform;
 	std::vector<GameObject*> m_pChildren;
 	std::vector<BaseComponent*> m_pComponents;

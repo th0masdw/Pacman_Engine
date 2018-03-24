@@ -1,6 +1,5 @@
 #include "MiniginPCH.h"
 #include "GameScene.h"
-#include "GameObject.h"
 #include "Engine/Components/ColliderComponent.h"
 #include "Engine/Managers/PhysicsManager.h"
 
@@ -42,7 +41,7 @@ void GameScene::AddObject(GameObject* pObject)
 	auto it = find(m_Objects.begin(), m_Objects.end(), pObject);
 
 	if (it == m_Objects.end() && pObject) {
-		m_Objects.push_back(pObject);
+		m_Objects.insert(pObject);
 		pObject->SetScene(this);
 		AddToPhysicsScene(pObject);
 	} else

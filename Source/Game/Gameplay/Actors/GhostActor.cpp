@@ -8,7 +8,7 @@
 #include "Engine/Managers/InputManager.h"
 
 GhostActor::GhostActor(PacmanActor* pPacman, float size, float speed, const Color& color, bool isPlayerControlled)
-	: GameObject{ Tag::Enemy },
+	: GameObject{ Tag::Enemy, Layer::Characters },
 	m_IsPlayerControlled(isPlayerControlled),
 	m_pController(nullptr),
 	m_Direction(0, 0)

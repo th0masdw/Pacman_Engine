@@ -6,7 +6,7 @@
 #include "Engine/Managers/InputManager.h"
 
 PacmanActor::PacmanActor(float size, float speed)
-	: GameObject{ Tag::Player },
+	: GameObject{ Tag::Player, Layer::Characters },
 	m_Direction{ 0.0f, 0.0f }
 {
 	ShapeComponent* pShape = new ShapeComponent(size, size, { 255.0f, 255.0f, 0.0f, 255.0f });

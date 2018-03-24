@@ -3,8 +3,9 @@
 #include "Engine/Components/BaseComponent.h"
 #include "Engine/Scenegraph/GameScene.h"
 
-GameObject::GameObject(const Tag tag)
+GameObject::GameObject(const Tag tag, const Layer layer)
 	: m_Tag{ tag },
+	m_Layer{ layer },
 	m_pParent(nullptr),
 	m_pScene(nullptr),
 	m_pTransform(nullptr),
@@ -139,6 +140,11 @@ GameObject* GameObject::GetParent() const
 Tag GameObject::GetTag() const
 {
 	return m_Tag;
+}
+
+Layer GameObject::GetLayer() const
+{
+	return m_Layer;
 }
 
 void GameObject::SetScene(GameScene* pScene)

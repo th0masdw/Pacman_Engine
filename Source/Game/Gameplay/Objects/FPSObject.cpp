@@ -4,7 +4,7 @@
 #include "Engine/Components/TextComponent.h"
 
 FPSObject::FPSObject(const std::string& fontFile, unsigned int fontSize, const Color& color, const glm::vec2& pos)
-	: GameObject(),
+	: GameObject(Tag::Empty, Layer::UI),
 	m_pTextComponent(nullptr),
 	m_Color(color)
 {

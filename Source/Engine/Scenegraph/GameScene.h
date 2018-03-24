@@ -1,7 +1,8 @@
 #pragma once
 
+#include <set>
+#include "GameObject.h"
 class GameTime;
-class GameObject;
 
 class GameScene
 {
@@ -30,7 +31,14 @@ protected:
 	std::string m_Name{};
 
 private:
-	std::vector<GameObject*> m_Objects{};
+	struct ObjectCompare
+	{
+		bool operator()(GameObject* pLeft, GameObject* pRight) {
+			return pLeft->GetLayer() < pRight->GetLayer();
+		}
+	};
+
+	std::multiset<GameObject*, ObjectCompare> m_Objects{};
 
 	void AddToPhysicsScene(GameObject* pObject);
 	void RemoveFromPhysicsScene(GameObject* pObject);

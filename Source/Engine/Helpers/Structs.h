@@ -51,3 +51,12 @@ enum class Tag
 	Obstacle, 
 	Pickup
 };
+
+enum class Layer
+{
+	Default		= 0,
+	Pickups		= 1,
+	Characters	= 2,
+	Walls		= 3,
+	UI			= 4
+};
