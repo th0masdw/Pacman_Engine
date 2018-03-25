@@ -8,7 +8,7 @@ class GameScene;
 class GameObject
 {
 public:
-	explicit GameObject(const Tag tag = Tag::Empty, const Layer layer = Layer::Default);
+	explicit GameObject(const Tag tag = Tag::Empty, const Layer layer = Layer::Default, bool isPoolable = false);
 	virtual ~GameObject();
 
 	void PostInitialize();
@@ -25,6 +25,7 @@ public:
 	GameObject* GetParent() const;
 	Tag GetTag() const;
 	Layer GetLayer() const;
+	bool IsPoolable() const;
 
 	void SetScene(GameScene* pScene);
 	GameScene* GetScene() const;
@@ -77,6 +78,7 @@ protected:
 	Layer m_Layer;
 	GameObject* m_pParent;
 	GameScene* m_pScene;
+	bool m_IsPoolable;
 
 	TransformComponent* m_pTransform;
 	std::vector<GameObject*> m_pChildren;

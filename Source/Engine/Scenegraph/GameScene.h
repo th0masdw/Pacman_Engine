@@ -10,6 +10,8 @@ public:
 	explicit GameScene(const std::string& name);
 	virtual ~GameScene();
 
+	void FlushSceneObjects();
+
 	std::string GetName() const;
 
 	GameScene(const GameScene& other) = delete;
@@ -39,6 +41,7 @@ private:
 	};
 
 	std::multiset<GameObject*, ObjectCompare> m_Objects{};
+	std::vector<std::multiset<GameObject*, ObjectCompare>::iterator> m_Poolables;
 
 	void AddToPhysicsScene(GameObject* pObject);
 	void RemoveFromPhysicsScene(GameObject* pObject);

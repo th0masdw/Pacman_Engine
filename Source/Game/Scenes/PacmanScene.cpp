@@ -18,6 +18,7 @@ PacmanScene::PacmanScene()
 PacmanScene::~PacmanScene()
 {
 	m_WallPool.DestroyPool();
+	FlushSceneObjects();
 }
 
 void PacmanScene::Initialize()

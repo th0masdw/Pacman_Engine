@@ -11,7 +11,14 @@ GameScene::GameScene(const std::string& name)
 GameScene::~GameScene()
 {
 	for (GameObject* pObject : m_Objects) {
-		if (pObject) delete pObject;
+		delete pObject;
+	}
+}
+
+void GameScene::FlushSceneObjects()
+{
+	for (auto poolIt : m_Poolables) {
+		m_Objects.erase(poolIt);
 	}
 }
 
@@ -36,14 +43,17 @@ void GameScene::Draw() const
 	}
 }
 
-void GameScene::AddObject(GameObject* pObject) 
+void GameScene::AddObject(GameObject* pObject)
 {
 	auto it = find(m_Objects.begin(), m_Objects.end(), pObject);
 
 	if (it == m_Objects.end() && pObject) {
-		m_Objects.insert(pObject);
+		auto addIt = m_Objects.insert(pObject);
 		pObject->SetScene(this);
 		AddToPhysicsScene(pObject);
+
+		if (pObject->IsPoolable())
+			m_Poolables.emplace_back(addIt);
 	} else
 		Debug::LogWarning("Object already present!");
 }
