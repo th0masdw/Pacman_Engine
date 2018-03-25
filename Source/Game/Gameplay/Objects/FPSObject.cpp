@@ -11,7 +11,7 @@ FPSObject::FPSObject(const std::string& fontFile, unsigned int fontSize, const C
 	m_pTextComponent = new TextComponent("FPS", color, fontFile, fontSize);
 	AddComponent(m_pTextComponent);
 
-	GetTransform()->Translate(pos);
+	m_pTransform->Translate(pos);
 }
 
 void FPSObject::Update(const GameTime& time)

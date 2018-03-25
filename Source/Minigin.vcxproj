@@ -87,6 +87,7 @@
     <ClInclude Include="Engine\Managers\PhysicsManager.h" />
     <ClInclude Include="Engine\Managers\ResourceManager.h" />
     <ClInclude Include="Engine\Managers\SceneManager.h" />
+    <ClInclude Include="Engine\Memory\ObjectPool.h" />
     <ClInclude Include="Engine\Scenegraph\GameObject.h" />
     <ClInclude Include="Engine\Scenegraph\GameScene.h" />
     <ClInclude Include="Game\Components\AIComponent.h" />

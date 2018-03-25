@@ -11,7 +11,7 @@ GameScene::GameScene(const std::string& name)
 GameScene::~GameScene()
 {
 	for (GameObject* pObject : m_Objects) {
-		delete pObject;
+		if (pObject) delete pObject;
 	}
 }
 

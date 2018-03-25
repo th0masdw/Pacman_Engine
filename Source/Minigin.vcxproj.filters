@@ -233,5 +233,8 @@
     <ClInclude Include="Engine\Components\CharacterController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Memory\ObjectPool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

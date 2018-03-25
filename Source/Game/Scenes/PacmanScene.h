@@ -1,10 +1,11 @@
 #pragma once
 
 #include "Engine/Scenegraph/GameScene.h"
+#include "Engine/Memory/ObjectPool.h"
+#include "Game/Gameplay/Objects/Wall.h"
 class GameTime;
 class PacmanActor;
 class GhostActor;
-class Wall;
 class FPSObject;
 
 class PacmanScene : public GameScene
@@ -21,7 +22,8 @@ protected:
 private:
 	PacmanActor* m_pPlayer;
 	GhostActor* m_pGhost;
-	Wall* m_pWall;
 	FPSObject* m_pFPS;
+
+	ObjectPool<Wall> m_WallPool;
 };
 

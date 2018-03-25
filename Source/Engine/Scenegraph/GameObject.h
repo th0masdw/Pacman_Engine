@@ -32,7 +32,7 @@ public:
 #pragma region Template Functions
 	template<class T> T* GetChild() {
 		for (GameObject* pChild : m_pChildren) {
-			if (pChild && typeid(*pChild) == typeid(T))
+			if (pChild && dynamic_cast<T*>(pChild))
 				return static_cast<T*>(pChild);
 		}
 		return nullptr;
@@ -42,15 +42,15 @@ public:
 		std::vector<T*> children;
 
 		for (GameObject* pChild : m_pChildren) {
-			if (pChild && typeid(*pChild) == typeid(T))
-				children.push_back(static_cast<T*>(pChild));
+			if (pChild && dynamic_cast<T*>(pChild))
+				children.emplace_back(static_cast<T*>(pChild));
 		}
 		return children;
 	}
 
 	template<class T> T* GetComponent() {
 		for (BaseComponent* pComp : m_pComponents) {
-			if (pComp && typeid(*pComp) == typeid(T))
+			if (pComp && dynamic_cast<T*>(pComp))
 				return static_cast<T*>(pComp);
 		}
 		return nullptr;
@@ -60,8 +60,8 @@ public:
 		std::vector<T*> components;
 
 		for (BaseComponent* pComp : m_pComponents) {
-			if (pComp && typeid(*pComp) == typeid(T))
-				components.push_back(static_cast<T*>(pComp));
+			if (pComp && dynamic_cast<T*>(pComp))
+				components.emplace_back(static_cast<T*>(pComp));
 		}
 		return components;
 	}
@@ -72,7 +72,7 @@ public:
 	GameObject& operator=(const GameObject& other) = delete;
 	GameObject& operator=(GameObject&& other) = delete;
 
-private:
+protected:
 	Tag m_Tag;
 	Layer m_Layer;
 	GameObject* m_pParent;
