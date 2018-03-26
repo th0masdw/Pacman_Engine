@@ -1,12 +1,13 @@
 #pragma once
 
 #include "Engine/Scenegraph/GameScene.h"
-#include "Engine/Memory/ObjectPool.h"
+#include "Engine/Helpers/ObjectPool.h"
 #include "Game/Gameplay/Objects/Wall.h"
 class GameTime;
 class PacmanActor;
 class GhostActor;
 class FPSObject;
+class LevelLoader;
 
 class PacmanScene : public GameScene
 {
@@ -25,5 +26,6 @@ private:
 	FPSObject* m_pFPS;
 
 	ObjectPool<Wall> m_WallPool;
+	LevelLoader* m_pLoader;
 };
 

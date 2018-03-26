@@ -50,6 +50,7 @@
     <ClCompile Include="Game\Gameplay\Objects\FPSObject.cpp" />
     <ClCompile Include="Game\Gameplay\Objects\Wall.cpp" />
     <ClCompile Include="Game\Scenes\PacmanScene.cpp" />
+    <ClCompile Include="Game\Utilities\LevelLoader.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="Minigin.cpp" />
     <ClCompile Include="MiniginPCH.cpp">
@@ -87,7 +88,7 @@
     <ClInclude Include="Engine\Managers\PhysicsManager.h" />
     <ClInclude Include="Engine\Managers\ResourceManager.h" />
     <ClInclude Include="Engine\Managers\SceneManager.h" />
-    <ClInclude Include="Engine\Memory\ObjectPool.h" />
+    <ClInclude Include="Engine\Helpers\ObjectPool.h" />
     <ClInclude Include="Engine\Scenegraph\GameObject.h" />
     <ClInclude Include="Engine\Scenegraph\GameScene.h" />
     <ClInclude Include="Game\Components\AIComponent.h" />
@@ -96,6 +97,7 @@
     <ClInclude Include="Game\Gameplay\Objects\FPSObject.h" />
     <ClInclude Include="Game\Gameplay\Objects\Wall.h" />
     <ClInclude Include="Game\Scenes\PacmanScene.h" />
+    <ClInclude Include="Game\Utilities\LevelLoader.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="MiniginPCH.h" />
     <ClInclude Include="targetver.h" />

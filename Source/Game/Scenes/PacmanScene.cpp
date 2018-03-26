@@ -4,6 +4,7 @@
 #include "Game/Gameplay/Actors/PacmanActor.h"
 #include "Game/Gameplay/Actors/GhostActor.h"
 #include "Game/Gameplay/Objects/FPSObject.h"
+#include "Game/Utilities/LevelLoader.h"
 
 PacmanScene::PacmanScene()
 	: GameScene("PacmanScene"),
@@ -17,31 +18,31 @@ PacmanScene::PacmanScene()
 
 PacmanScene::~PacmanScene()
 {
+	delete m_pLoader;
 	m_WallPool.DestroyPool();
 	FlushSceneObjects();
 }
 
 void PacmanScene::Initialize()
 {
-	m_WallPool.Initialize(2);
+	m_pLoader = new LevelLoader("../Resources/TestLevel.txt");
+	m_WallPool.Initialize(m_pLoader->GetWallAmount());
 
 	//Player
 	m_pPlayer = new PacmanActor(25, 150);
-	m_pPlayer->GetTransform()->Translate(387.5f, 187.5f);
+	glm::vec2 playerPos = m_pLoader->GetPlayerPosition();
+	m_pPlayer->GetTransform()->Translate(playerPos);
 	AddObject(m_pPlayer);
 
 	//Walls
-	Wall* pWall = m_WallPool.GetAvailableUnit();
-	pWall->SetDimensions(25, 25);
-	pWall->SetColor({ 0, 0, 255, 255 });
-	pWall->GetTransform()->Translate(137.5f, 137.5f);
-	AddObject(pWall);
-
-	pWall = m_WallPool.GetAvailableUnit();
-	pWall->SetDimensions(25, 25);
-	pWall->SetColor({ 0, 0, 255, 255 });
-	pWall->GetTransform()->Translate(262.5f, 237.5f);
-	AddObject(pWall);
+	Wall* pWall = nullptr;
+	for (const glm::vec2& wallPos : m_pLoader->GetWallPositions()) {
+		pWall = m_WallPool.GetAvailableUnit();
+		pWall->SetDimensions(25, 25);
+		pWall->SetColor({ 0, 0, 255, 255 });
+		pWall->GetTransform()->Translate(wallPos);
+		AddObject(pWall);
+	}
 
 	//Ghost
 	m_pGhost = new GhostActor(m_pPlayer, 25, 150, { 255, 105, 180, 255 }, true);
