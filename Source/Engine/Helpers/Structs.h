@@ -49,7 +49,9 @@ enum class Tag
 	Player, 
 	Enemy, 
 	Obstacle, 
-	Pickup
+	Pellet,
+	PowerPellet,
+	Fruit
 };
 
 enum class Layer

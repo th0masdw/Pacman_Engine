@@ -6,6 +6,7 @@
 class GameTime;
 class PacmanActor;
 class GhostActor;
+class Pellet;
 class FPSObject;
 class LevelLoader;
 
@@ -23,6 +24,7 @@ protected:
 private:
 	PacmanActor* m_pPlayer;
 	GhostActor* m_pGhost;
+	Pellet* m_pPellet;
 	FPSObject* m_pFPS;
 
 	ObjectPool<Wall> m_WallPool;

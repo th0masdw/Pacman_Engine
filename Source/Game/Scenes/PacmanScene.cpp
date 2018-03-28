@@ -3,6 +3,7 @@
 
 #include "Game/Gameplay/Actors/PacmanActor.h"
 #include "Game/Gameplay/Actors/GhostActor.h"
+#include "Game/Gameplay/Objects/Pellet.h"
 #include "Game/Gameplay/Objects/FPSObject.h"
 #include "Game/Utilities/LevelLoader.h"
 
@@ -10,6 +11,7 @@ PacmanScene::PacmanScene()
 	: GameScene("PacmanScene"),
 	m_pPlayer(nullptr),
 	m_pGhost(nullptr),
+	m_pPellet(nullptr),
 	m_pFPS(nullptr),
 	m_WallPool()
 {
@@ -45,13 +47,18 @@ void PacmanScene::Initialize()
 	}
 
 	//Ghost
-	m_pGhost = new GhostActor(m_pPlayer, 25, 150, { 255, 105, 180, 255 });
+	m_pGhost = new GhostActor(m_pPlayer, 25, 150, { 255, 105, 180, 255 }, true);
 	m_pGhost->GetTransform()->Translate(87.5f, 237.5f);
 	AddObject(m_pGhost);
 
 	//FPS Counter
 	m_pFPS = new FPSObject("../Resources/Lingua.otf", 20, { 0, 255, 0, 255 }, { 20, 20 });
 	AddObject(m_pFPS);
+
+	//Pellet
+	m_pPellet = new Pellet(5.0f);
+	m_pPellet->GetTransform()->Translate(100.0f, 100.0f);
+	AddObject(m_pPellet);
 }
 
 void PacmanScene::Update(const GameTime& time) 

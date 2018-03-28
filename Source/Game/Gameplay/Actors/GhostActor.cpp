@@ -2,10 +2,10 @@
 #include "GhostActor.h"
 #include "Engine/Components/ShapeComponent.h"
 #include "Engine/Components/ColliderComponent.h"
-#include "Engine/Components/CharacterController.h"
 #include "Game/Components/AIComponent.h"
 #include "Game/Gameplay/Actors/PacmanActor.h"
 #include "Engine/Managers/InputManager.h"
+#include "Game/Components/GhostController.h"
 
 GhostActor::GhostActor(PacmanActor* pPacman, float size, float speed, const Color& color, bool isPlayerControlled)
 	: GameObject{ Tag::Enemy, Layer::Characters },
@@ -56,7 +56,7 @@ void GhostActor::SetupBehaviour(PacmanActor* pActor, float speed)
 		AIComponent* pAI = new AIComponent(pActor, speed);
 		AddComponent(pAI);
 	} else {
-		m_pController = new CharacterController(speed);
+		m_pController = new GhostController(speed);
 		AddComponent(m_pController);
 
 		//Input

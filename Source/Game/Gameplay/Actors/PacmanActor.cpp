@@ -2,8 +2,8 @@
 #include "PacmanActor.h"
 #include "Engine/Components/ShapeComponent.h"
 #include "Engine/Components/ColliderComponent.h"
-#include "Engine/Components/CharacterController.h"
 #include "Engine/Managers/InputManager.h"
+#include "Game/Components/PacmanController.h"
 
 PacmanActor::PacmanActor(float size, float speed)
 	: GameObject{ Tag::Player, Layer::Characters },
@@ -15,7 +15,7 @@ PacmanActor::PacmanActor(float size, float speed)
 	ColliderComponent* pCollider = new ColliderComponent(size, size, false);
 	AddComponent(pCollider);
 
-	m_pController = new CharacterController(speed);
+	m_pController = new PacmanController(speed);
 	AddComponent(m_pController);
 
 	//Input

@@ -45,9 +45,12 @@
     <ClCompile Include="Engine\Scenegraph\GameObject.cpp" />
     <ClCompile Include="Engine\Scenegraph\GameScene.cpp" />
     <ClCompile Include="Game\Components\AIComponent.cpp" />
+    <ClCompile Include="Game\Components\GhostController.cpp" />
+    <ClCompile Include="Game\Components\PacmanController.cpp" />
     <ClCompile Include="Game\Gameplay\Actors\GhostActor.cpp" />
     <ClCompile Include="Game\Gameplay\Actors\PacmanActor.cpp" />
     <ClCompile Include="Game\Gameplay\Objects\FPSObject.cpp" />
+    <ClCompile Include="Game\Gameplay\Objects\Pellet.cpp" />
     <ClCompile Include="Game\Gameplay\Objects\Wall.cpp" />
     <ClCompile Include="Game\Scenes\PacmanScene.cpp" />
     <ClCompile Include="Game\Utilities\LevelLoader.cpp" />
@@ -92,9 +95,12 @@
     <ClInclude Include="Engine\Scenegraph\GameObject.h" />
     <ClInclude Include="Engine\Scenegraph\GameScene.h" />
     <ClInclude Include="Game\Components\AIComponent.h" />
+    <ClInclude Include="Game\Components\GhostController.h" />
+    <ClInclude Include="Game\Components\PacmanController.h" />
     <ClInclude Include="Game\Gameplay\Actors\GhostActor.h" />
     <ClInclude Include="Game\Gameplay\Actors\PacmanActor.h" />
     <ClInclude Include="Game\Gameplay\Objects\FPSObject.h" />
+    <ClInclude Include="Game\Gameplay\Objects\Pellet.h" />
     <ClInclude Include="Game\Gameplay\Objects\Wall.h" />
     <ClInclude Include="Game\Scenes\PacmanScene.h" />
     <ClInclude Include="Game\Utilities\LevelLoader.h" />
