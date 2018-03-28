@@ -45,6 +45,10 @@ void LevelLoader::ProcessFile()
 				case BlockType::WALL:
 					m_WallPositions.emplace_back(x, y);
 					break;
+
+				case BlockType::PELLET:
+					m_PelletPositions.emplace_back(x, y);
+					break;
 			}
 		}
 	}
@@ -62,6 +66,11 @@ const std::vector<glm::vec2>& LevelLoader::GetWallPositions() const
 	return m_WallPositions;
 }
 
+const std::vector<glm::vec2>& LevelLoader::GetPelletPositions() const
+{
+	return m_PelletPositions;
+}
+
 //More
 
 //More
@@ -69,4 +78,9 @@ const std::vector<glm::vec2>& LevelLoader::GetWallPositions() const
 UINT LevelLoader::GetWallAmount() const
 {
 	return static_cast<UINT>(m_WallPositions.size());
+}
+
+UINT LevelLoader::GetPelletAmount() const
+{
+	return static_cast<UINT>(m_PelletPositions.size());
 }

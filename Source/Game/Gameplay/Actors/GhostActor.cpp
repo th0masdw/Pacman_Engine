@@ -16,8 +16,8 @@ GhostActor::GhostActor(PacmanActor* pPacman, float size, float speed, const Colo
 	ShapeComponent* pShape = new ShapeComponent(size, size, color);
 	AddComponent(pShape);
 
-	ColliderComponent* pCollider = new ColliderComponent(size, size, false);
-	AddComponent(pCollider);
+	/*ColliderComponent* pCollider = new ColliderComponent(size, size, false);
+	AddComponent(pCollider);*/
 
 	SetupBehaviour(pPacman, speed);
 }

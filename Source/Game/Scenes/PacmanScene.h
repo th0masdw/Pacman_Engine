@@ -3,10 +3,10 @@
 #include "Engine/Scenegraph/GameScene.h"
 #include "Engine/Helpers/ObjectPool.h"
 #include "Game/Gameplay/Objects/Wall.h"
+#include "Game/Gameplay/Objects/Pellet.h"
 class GameTime;
 class PacmanActor;
 class GhostActor;
-class Pellet;
 class FPSObject;
 class LevelLoader;
 
@@ -28,6 +28,7 @@ private:
 	FPSObject* m_pFPS;
 
 	ObjectPool<Wall> m_WallPool;
+	ObjectPool<Pellet> m_PelletPool;
 	LevelLoader* m_pLoader;
 };
 

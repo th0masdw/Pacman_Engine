@@ -6,7 +6,7 @@ struct Color;
 class Wall : public GameObject
 {
 public:
-	explicit Wall(float width = 50.0f, float height = 50.0f, const Color& color = { 255.0f, 255.0f, 255.0f, 255.0f });
+	explicit Wall(float width = 25.0f, float height = 25.0f, const Color& color = { 0.0f, 0.0f, 205.0f, 255.0f });
 	virtual ~Wall() = default;
 
 	void SetDimensions(float width, float height);

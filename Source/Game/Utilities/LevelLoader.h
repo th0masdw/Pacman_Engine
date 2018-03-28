@@ -11,17 +11,19 @@ public:
 	glm::vec2 GetPlayerPosition() const;
 	//More
 	const std::vector<glm::vec2>& GetWallPositions() const;
+	const std::vector<glm::vec2>& GetPelletPositions() const;
 	//More
 
 	//More
 	UINT GetWallAmount() const;
+	UINT GetPelletAmount() const;
 
 private:
 	enum class BlockType
 	{
 		PLAYER	= 0,
-		WALL	= 1
-		//UPDATE
+		WALL	= 1,
+		PELLET	= 2
 	};
 
 	std::ifstream m_Reader;

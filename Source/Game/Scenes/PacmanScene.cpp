@@ -3,7 +3,6 @@
 
 #include "Game/Gameplay/Actors/PacmanActor.h"
 #include "Game/Gameplay/Actors/GhostActor.h"
-#include "Game/Gameplay/Objects/Pellet.h"
 #include "Game/Gameplay/Objects/FPSObject.h"
 #include "Game/Utilities/LevelLoader.h"
 
@@ -13,7 +12,8 @@ PacmanScene::PacmanScene()
 	m_pGhost(nullptr),
 	m_pPellet(nullptr),
 	m_pFPS(nullptr),
-	m_WallPool()
+	m_WallPool(),
+	m_PelletPool()
 {
 	Initialize();
 }
@@ -22,6 +22,7 @@ PacmanScene::~PacmanScene()
 {
 	delete m_pLoader;
 	m_WallPool.DestroyPool();
+	m_PelletPool.DestroyPool();
 	FlushSceneObjects();
 }
 
@@ -29,6 +30,7 @@ void PacmanScene::Initialize()
 {
 	m_pLoader = new LevelLoader("../Resources/TestLevel.txt");
 	m_WallPool.Initialize(m_pLoader->GetWallAmount());
+	m_PelletPool.Initialize(m_pLoader->GetPelletAmount());
 
 	//Player
 	m_pPlayer = new PacmanActor(25, 150);
@@ -40,15 +42,13 @@ void PacmanScene::Initialize()
 	Wall* pWall = nullptr;
 	for (const glm::vec2& wallPos : m_pLoader->GetWallPositions()) {
 		pWall = m_WallPool.GetAvailableUnit();
-		pWall->SetDimensions(25, 25);
-		pWall->SetColor({ 0, 0, 255, 255 });
 		pWall->GetTransform()->Translate(wallPos);
 		AddObject(pWall);
 	}
 
 	//Ghost
-	m_pGhost = new GhostActor(m_pPlayer, 25, 150, { 255, 105, 180, 255 }, true);
-	m_pGhost->GetTransform()->Translate(87.5f, 237.5f);
+	m_pGhost = new GhostActor(m_pPlayer, 25, 150, { 255, 105, 180, 255 });
+	m_pGhost->GetTransform()->Translate(387.5f, 362.5f);
 	AddObject(m_pGhost);
 
 	//FPS Counter
@@ -56,9 +56,12 @@ void PacmanScene::Initialize()
 	AddObject(m_pFPS);
 
 	//Pellet
-	m_pPellet = new Pellet(5.0f);
-	m_pPellet->GetTransform()->Translate(100.0f, 100.0f);
-	AddObject(m_pPellet);
+	Pellet* pPellet = nullptr;
+	for (const glm::vec2& pelletPos : m_pLoader->GetPelletPositions()) {
+		pPellet = m_PelletPool.GetAvailableUnit();
+		pPellet->GetTransform()->Translate(pelletPos);
+		AddObject(pPellet);
+	}
 }
 
 void PacmanScene::Update(const GameTime& time) 

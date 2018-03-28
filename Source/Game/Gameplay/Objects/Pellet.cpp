@@ -5,7 +5,7 @@
 #include "Engine/Components/ColliderComponent.h"
 
 Pellet::Pellet(float size, const Color& color)
-	: GameObject(Tag::Pellet, Layer::Pickups)
+	: GameObject(Tag::Pellet, Layer::Pickups, true)
 {
 	ShapeComponent* pShape = new ShapeComponent(size, size, color);
 	AddComponent(pShape);
