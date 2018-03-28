@@ -45,7 +45,7 @@ void PacmanScene::Initialize()
 	}
 
 	//Ghost
-	m_pGhost = new GhostActor(m_pPlayer, 25, 150, { 255, 105, 180, 255 }, true);
+	m_pGhost = new GhostActor(m_pPlayer, 25, 150, { 255, 105, 180, 255 });
 	m_pGhost->GetTransform()->Translate(87.5f, 237.5f);
 	AddObject(m_pGhost);
 

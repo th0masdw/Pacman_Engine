@@ -7,7 +7,7 @@ public:
 	ObjectPool() = default;
 	~ObjectPool() = default;
 
-	void Initialize(unsigned int amount)
+	void Initialize(UINT amount)
 	{
 		if (m_IsInitialized)
 			return;
@@ -62,7 +62,7 @@ public:
 private:
 	T* m_pMemoryBlock = nullptr;
 	T* m_pFreeHead = nullptr;
-	unsigned int m_TotalAmountUnits = 0;
-	unsigned int m_CurrentAmountInUse = 0;
+	UINT m_TotalAmountUnits = 0;
+	UINT m_CurrentAmountInUse = 0;
 	bool m_IsInitialized = false;
 };

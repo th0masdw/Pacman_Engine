@@ -66,7 +66,7 @@ const std::vector<glm::vec2>& LevelLoader::GetWallPositions() const
 
 //More
 
-size_t LevelLoader::GetWallAmount() const
+UINT LevelLoader::GetWallAmount() const
 {
-	return m_WallPositions.size();
+	return static_cast<UINT>(m_WallPositions.size());
 }

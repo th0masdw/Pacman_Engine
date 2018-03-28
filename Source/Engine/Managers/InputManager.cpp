@@ -6,8 +6,10 @@
 
 bool InputManager::Update() 
 {
-	ZeroMemory(&m_CurrentState, sizeof(XINPUT_STATE));
-	XInputGetState(0, &m_CurrentState);
+	for (UINT i = 0; i < m_NrOfPlayers; ++i) {
+		ZeroMemory(&m_GamepadStates[i], sizeof(XINPUT_STATE));
+		XInputGetState(i, &m_GamepadStates[i]);
+	}
 
 	SDL_Event e;
 	while (SDL_PollEvent(&e)) {
@@ -47,8 +49,8 @@ bool InputManager::IsActionTriggered(const Input id)
 	auto it = m_InputActions.find(int(id));
 
 	if (it != m_InputActions.end()) {
-		if (it->second.useGamepad)
-			return m_CurrentState.Gamepad.wButtons & it->second.bitMask;
+		if (it->second.useGamepad && it->second.playerId < m_NrOfPlayers)
+			return m_GamepadStates[it->second.playerId].Gamepad.wButtons & it->second.bitMask;
 		else
 			return m_pKeyboard[it->second.bitMask];		
 	}

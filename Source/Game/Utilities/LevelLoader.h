@@ -14,7 +14,7 @@ public:
 	//More
 
 	//More
-	size_t GetWallAmount() const;
+	UINT GetWallAmount() const;
 
 private:
 	enum class BlockType

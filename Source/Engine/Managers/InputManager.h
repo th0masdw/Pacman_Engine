@@ -13,7 +13,10 @@ public:
 	bool IsActionTriggered(const Input id);
 
 private:
-	XINPUT_STATE m_CurrentState{};	//TODO: add second state for player 2
+	//XINPUT_STATE m_CurrentState{};	//TODO: add second state for player 2
+	static const int m_NrOfPlayers = 2;
+	XINPUT_STATE m_GamepadStates[m_NrOfPlayers];
+
 	const Uint8* m_pKeyboard{ SDL_GetKeyboardState(nullptr) };
 
 	std::map<int, InputAction> m_InputActions{};
