@@ -22,7 +22,7 @@ Grid::Grid(int width, int height)
 void Grid::PostInitialize()
 {
 	std::vector<glm::vec2> positions;
-	PhysicsManager::GetInstance().GetStaticSceneColliders(positions);
+	PhysicsManager::GetInstance().GetObstacles(positions);
 	
 	int x, y = 0;
 	for (const glm::vec2& pos : positions) {

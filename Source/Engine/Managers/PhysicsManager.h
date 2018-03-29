@@ -14,7 +14,7 @@ public:
 	void AddCollider(ColliderComponent* pCollider, const std::string& sceneName);
 	void RemoveCollider(ColliderComponent* pCollider, const std::string& sceneName);
 
-	void GetStaticSceneColliders(std::vector<glm::vec2>& positions) const;
+	void GetObstacles(std::vector<glm::vec2>& positions) const;
 
 private:
 	std::map<std::string, std::vector<ColliderComponent*>> m_pColliders;

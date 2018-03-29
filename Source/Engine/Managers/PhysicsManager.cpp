@@ -59,7 +59,7 @@ void PhysicsManager::RemoveCollider(ColliderComponent* pCollider, const std::str
 	}
 }
 
-void PhysicsManager::GetStaticSceneColliders(std::vector<glm::vec2>& positions) const
+void PhysicsManager::GetObstacles(std::vector<glm::vec2>& positions) const
 {
 	GameScene* pActiveScene = SceneManager::GetInstance().GetActiveScene();
 
@@ -69,8 +69,10 @@ void PhysicsManager::GetStaticSceneColliders(std::vector<glm::vec2>& positions) 
 
 		if (pColliders != m_pColliders.end()) {
 			for (ColliderComponent* pColl : pColliders->second) {
-				if (pColl->IsStatic()) {
-					positions.emplace_back(pColl->GetGameObject()->GetTransform()->GetPosition());
+				GameObject* pObject = pColl->GetGameObject();
+
+				if (pObject->GetTag() == Tag::Obstacle) {
+					positions.emplace_back(pObject->GetTransform()->GetPosition());
 				}
 			}
 		}
