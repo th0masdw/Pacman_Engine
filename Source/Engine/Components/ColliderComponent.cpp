@@ -33,11 +33,8 @@ void ColliderComponent::Update(const GameTime& time)
 void ColliderComponent::Draw() const 
 {
 	if (Debug::IsDebugRenderingEnabled()) {
-		TransformComponent* pComp = m_pGameObject->GetTransform();
-		glm::vec2 scale = pComp->GetScale();
-		glm::vec2 center = { m_Box.x - m_Box.width / 2, m_Box.y - m_Box.height / 2 };
-
-		Renderer::GetInstance().RenderRect(center, m_Box.width * scale.x, m_Box.height * scale.y, { 255.0f, 0.0f, 0.0f, 255.0f }, false);
+		glm::vec2 topLeft = { m_Box.x - m_Box.width / 2, m_Box.y - m_Box.height / 2 };
+		Renderer::GetInstance().RenderRect(topLeft, m_Box.width, m_Box.height, { 255.0f, 0.0f, 0.0f, 255.0f }, false);
 	}
 }
 

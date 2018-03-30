@@ -5,17 +5,19 @@
 #include "Game/Gameplay/Actors/GhostActor.h"
 #include "Game/Gameplay/Objects/FPSObject.h"
 #include "Game/Gameplay/Objects/PowerPellet.h"
+#include "Game/Gameplay/Objects/Fruit.h"
 #include "Game/Utilities/LevelLoader.h"
+#include "Game/Gameplay/UI/ScoreManager.h"
 
 PacmanScene::PacmanScene()
 	: GameScene("PacmanScene"),
 	m_pPlayer(nullptr),
 	m_pGhosts{},
-	m_pPellet(nullptr),
 	m_pPowerPellets{},
 	m_pFPS(nullptr),
 	m_WallPool(),
-	m_PelletPool()
+	m_PelletPool(),
+	m_pLoader(nullptr)
 {
 	Initialize();
 }
@@ -74,10 +76,21 @@ void PacmanScene::Initialize()
 		AddObject(pPower);
 	}
 
+	//Fruit
+	Fruit* pFruit = new Fruit();
+	pFruit->GetTransform()->Translate(m_pLoader->GetFruitPosition());
+	pFruit->GetTransform()->Scale(0.2f, 0.2f);
+	AddObject(pFruit);
+
 	//FPS Counter
 	m_pFPS = new FPSObject("../Resources/Lingua.otf", 20, { 0, 255, 0, 255 });
 	m_pFPS->GetTransform()->Translate({ 15.0f, 15.0f });
 	AddObject(m_pFPS);
+
+	//Scores
+	ScoreManager* pScoreManager = new ScoreManager();
+	pScoreManager->GetTransform()->Translate(35.0f, 350.0f);
+	AddObject(pScoreManager);
 }
 
 void PacmanScene::Update(const GameTime& time) 

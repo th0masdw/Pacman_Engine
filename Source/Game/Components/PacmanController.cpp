@@ -2,6 +2,7 @@
 #include "PacmanController.h"
 #include "Engine/Scenegraph/GameObject.h"
 #include "Engine/Managers/PhysicsManager.h"
+#include "Engine/Managers/EventManager.h"
 
 PacmanController::PacmanController(float speed)
 	: CharacterController(speed)
@@ -23,16 +24,38 @@ void PacmanController::CheckCollision(const glm::vec2& direction)
 				break;
 
 			case Tag::Pellet:
-				Debug::Log("Got pellet!");
+				EatPellet(pCollision);
 				break;
 
 			case Tag::PowerPellet:
-				Debug::Log("POWER");
+				EatPowerPellet(pCollision);
 				break;
 
 			case Tag::Fruit:
-				Debug::Log("Fruit!");
+				EatFruit(pCollision);
 				break;
 		}
 	}
+}
+
+void PacmanController::EatPellet(GameObject* pPellet)
+{
+	pPellet->SetActive(false);
+	EventManager::GetInstance().TriggerEvent("EatPellet");
+	//Play sound
+}
+
+void PacmanController::EatPowerPellet(GameObject* pPower)
+{
+	pPower->SetActive(false);
+	EventManager::GetInstance().TriggerEvent("EatPower");
+	//Play sound
+	//Power up pacman
+}
+
+void PacmanController::EatFruit(GameObject* pFruit)
+{
+	pFruit->SetActive(false);
+	EventManager::GetInstance().TriggerEvent("EatFruit");
+	//Play sound
 }

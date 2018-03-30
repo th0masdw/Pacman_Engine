@@ -13,7 +13,7 @@ public:
 	const std::vector<glm::vec2>& GetWallPositions() const;
 	const std::vector<glm::vec2>& GetPelletPositions() const;
 	const std::vector<glm::vec2>& GetPowerPelletPositions() const;
-	//More
+	glm::vec2 GetFruitPosition() const;
 
 	UINT GetGhostAmount() const;
 	UINT GetWallAmount() const;

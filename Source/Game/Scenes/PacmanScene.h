@@ -25,7 +25,6 @@ protected:
 private:
 	PacmanActor* m_pPlayer;
 	std::vector<GhostActor*> m_pGhosts;
-	Pellet* m_pPellet;
 	std::vector<PowerPellet*> m_pPowerPellets;
 	FPSObject* m_pFPS;
 

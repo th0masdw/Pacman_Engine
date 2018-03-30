@@ -50,9 +50,11 @@
     <ClCompile Include="Game\Gameplay\Actors\GhostActor.cpp" />
     <ClCompile Include="Game\Gameplay\Actors\PacmanActor.cpp" />
     <ClCompile Include="Game\Gameplay\Objects\FPSObject.cpp" />
+    <ClCompile Include="Game\Gameplay\Objects\Fruit.cpp" />
     <ClCompile Include="Game\Gameplay\Objects\Pellet.cpp" />
     <ClCompile Include="Game\Gameplay\Objects\PowerPellet.cpp" />
     <ClCompile Include="Game\Gameplay\Objects\Wall.cpp" />
+    <ClCompile Include="Game\Gameplay\UI\ScoreManager.cpp" />
     <ClCompile Include="Game\Scenes\PacmanScene.cpp" />
     <ClCompile Include="Game\Utilities\LevelLoader.cpp" />
     <ClCompile Include="MainGame.cpp" />
@@ -101,9 +103,11 @@
     <ClInclude Include="Game\Gameplay\Actors\GhostActor.h" />
     <ClInclude Include="Game\Gameplay\Actors\PacmanActor.h" />
     <ClInclude Include="Game\Gameplay\Objects\FPSObject.h" />
+    <ClInclude Include="Game\Gameplay\Objects\Fruit.h" />
     <ClInclude Include="Game\Gameplay\Objects\Pellet.h" />
     <ClInclude Include="Game\Gameplay\Objects\PowerPellet.h" />
     <ClInclude Include="Game\Gameplay\Objects\Wall.h" />
+    <ClInclude Include="Game\Gameplay\UI\ScoreManager.h" />
     <ClInclude Include="Game\Scenes\PacmanScene.h" />
     <ClInclude Include="Game\Utilities\LevelLoader.h" />
     <ClInclude Include="MainGame.h" />
