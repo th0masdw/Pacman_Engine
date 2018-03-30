@@ -3,11 +3,12 @@
 #include "Engine/Components/BaseComponent.h"
 #include "Engine/Scenegraph/GameScene.h"
 
-GameObject::GameObject(const Tag tag, const Layer layer, bool isPoolable)
+GameObject::GameObject(const Tag tag, const Layer layer, bool isActive, bool isPoolable)
 	: m_Tag{ tag },
 	m_Layer{ layer },
 	m_pParent(nullptr),
 	m_pScene(nullptr),
+	m_IsActive(isActive),
 	m_IsPoolable(isPoolable),
 	m_pTransform(nullptr),
 	m_pChildren{},
@@ -138,6 +139,11 @@ GameObject* GameObject::GetParent() const
 	return m_pParent;
 }
 
+GameScene* GameObject::GetScene() const
+{
+	return m_pScene;
+}
+
 Tag GameObject::GetTag() const
 {
 	return m_Tag;
@@ -146,6 +152,11 @@ Tag GameObject::GetTag() const
 Layer GameObject::GetLayer() const
 {
 	return m_Layer;
+}
+
+bool GameObject::IsActive() const
+{
+	return m_IsActive;
 }
 
 bool GameObject::IsPoolable() const
@@ -158,7 +169,7 @@ void GameObject::SetScene(GameScene* pScene)
 	m_pScene = pScene;
 }
 
-GameScene* GameObject::GetScene() const
+void GameObject::SetActive(bool value)
 {
-	return m_pScene;
+	m_IsActive = value;
 }

@@ -6,7 +6,7 @@ class ShapeComponent;
 class PowerPellet : public Pellet
 {
 public:
-	explicit PowerPellet(float size = 15.0f, const Color& color = { 253, 191, 166, 255 }, bool isPoolable = false);
+	explicit PowerPellet(float size = 15.0f, const Color& color = { 253, 191, 166, 255 });
 	virtual ~PowerPellet() = default;
 
 	void Update(const GameTime& time);

@@ -3,8 +3,8 @@
 #include "Engine/Helpers/Structs.h"
 #include "Engine/Components/ShapeComponent.h"
 
-PowerPellet::PowerPellet(float size, const Color& color, bool isPoolable)
-	: Pellet(size, color, Tag::PowerPellet, isPoolable),
+PowerPellet::PowerPellet(float size, const Color& color)
+	: Pellet(size, color, Tag::PowerPellet, false),
 	m_IsDrawing(true),
 	m_DrawTimer(0.25f)
 {

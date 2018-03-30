@@ -8,7 +8,7 @@ class GameScene;
 class GameObject
 {
 public:
-	explicit GameObject(const Tag tag = Tag::Empty, const Layer layer = Layer::Default, bool isPoolable = false);
+	explicit GameObject(const Tag tag = Tag::Empty, const Layer layer = Layer::Default, bool isActive = true, bool isPoolable = false);
 	virtual ~GameObject();
 
 	void PostInitialize();
@@ -23,12 +23,14 @@ public:
 
 	TransformComponent* GetTransform() const;
 	GameObject* GetParent() const;
+	GameScene* GetScene() const;
 	Tag GetTag() const;
 	Layer GetLayer() const;
+	bool IsActive() const;
 	bool IsPoolable() const;
 
 	void SetScene(GameScene* pScene);
-	GameScene* GetScene() const;
+	void SetActive(bool value);
 
 #pragma region Template Functions
 	template<class T> T* GetChild() {
@@ -78,6 +80,7 @@ protected:
 	Layer m_Layer;
 	GameObject* m_pParent;
 	GameScene* m_pScene;
+	bool m_IsActive;
 	bool m_IsPoolable;
 
 	TransformComponent* m_pTransform;

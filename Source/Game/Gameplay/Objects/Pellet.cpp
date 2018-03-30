@@ -5,7 +5,7 @@
 #include "Engine/Components/ColliderComponent.h"
 
 Pellet::Pellet(float size, const Color& color, const Tag tag, bool isPoolable)
-	: GameObject(tag, Layer::Pickups, isPoolable)
+	: GameObject(tag, Layer::Pickups, true, isPoolable)
 {
 	m_pShape = new ShapeComponent(size, size, color);
 	AddComponent(m_pShape);

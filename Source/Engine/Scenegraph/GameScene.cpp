@@ -10,7 +10,7 @@ GameScene::GameScene(const std::string& name)
 
 GameScene::~GameScene()
 {
-	for (GameObject* pObject : m_Objects) {
+	for (GameObject* pObject : m_pObjects) {
 		delete pObject;
 	}
 }
@@ -18,37 +18,39 @@ GameScene::~GameScene()
 void GameScene::FlushSceneObjects()
 {
 	for (auto poolIt : m_Poolables) {
-		m_Objects.erase(poolIt);
+		m_pObjects.erase(poolIt);
 	}
 }
 
 void GameScene::PostInitialize()
 {
-	for (GameObject* pObject : m_Objects) {
+	for (GameObject* pObject : m_pObjects) {
 		pObject->PostInitialize();
 	}
 }
 
 void GameScene::Update(const GameTime& time)
 {
-	for (GameObject* pObject : m_Objects) {
-		pObject->Update(time);
+	for (GameObject* pObject : m_pObjects) {
+		if (pObject->IsActive()) 
+			pObject->Update(time);
 	}
 }
 
 void GameScene::Draw() const 
 {
-	for (GameObject* pObject : m_Objects) {
-		pObject->Draw();
+	for (GameObject* pObject : m_pObjects) {
+		if (pObject->IsActive())
+			pObject->Draw();
 	}
 }
 
 void GameScene::AddObject(GameObject* pObject)
 {
-	auto it = find(m_Objects.begin(), m_Objects.end(), pObject);
+	auto it = find(m_pObjects.begin(), m_pObjects.end(), pObject);
 
-	if (it == m_Objects.end() && pObject) {
-		auto addIt = m_Objects.insert(pObject);
+	if (it == m_pObjects.end() && pObject) {
+		auto addIt = m_pObjects.insert(pObject);
 		pObject->SetScene(this);
 		AddToPhysicsScene(pObject);
 
@@ -60,10 +62,10 @@ void GameScene::AddObject(GameObject* pObject)
 
 void GameScene::RemoveObject(GameObject* pObject, bool deleteObject) 
 {
-	auto it = find(m_Objects.begin(), m_Objects.end(), pObject);
+	auto it = find(m_pObjects.begin(), m_pObjects.end(), pObject);
 
-	if (it != m_Objects.end()) {
-		m_Objects.erase(it);
+	if (it != m_pObjects.end()) {
+		m_pObjects.erase(it);
 		pObject->SetScene(nullptr);
 		RemoveFromPhysicsScene(pObject);
 

@@ -40,7 +40,7 @@ private:
 		}
 	};
 
-	std::multiset<GameObject*, ObjectCompare> m_Objects{};
+	std::multiset<GameObject*, ObjectCompare> m_pObjects{};
 	std::vector<std::multiset<GameObject*, ObjectCompare>::iterator> m_Poolables;
 
 	void AddToPhysicsScene(GameObject* pObject);

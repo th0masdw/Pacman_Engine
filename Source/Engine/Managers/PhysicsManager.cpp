@@ -18,10 +18,12 @@ GameObject* PhysicsManager::DoesCollide(GameObject* pTarget) const
 			GetSceneColliders(pColliders);
 
 			for (ColliderComponent* pComp : pColliders) {
-				if (DoCollide(pComp->GetShape(), pColl->GetShape())) {
-					pResult = (pComp->GetGameObject() != pTarget) ? pComp->GetGameObject() : nullptr;
+				if (pComp->GetGameObject()->IsActive()) {
+					if (DoCollide(pComp->GetShape(), pColl->GetShape())) {
+						pResult = (pComp->GetGameObject() != pTarget) ? pComp->GetGameObject() : nullptr;
 
-					if (pResult) break;
+						if (pResult) break;
+					}
 				}
 			}
 		}
