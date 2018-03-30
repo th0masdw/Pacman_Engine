@@ -45,3 +45,8 @@ void ShapeComponent::SetColor(const Color& color)
 {
 	m_Color = color;
 }
+
+Color ShapeComponent::GetColor() const
+{
+	return m_Color;
+}

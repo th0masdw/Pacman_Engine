@@ -7,28 +7,20 @@
 Wall::Wall(float width, float height, const Color& color)
 	: GameObject{ Tag::Obstacle, Layer::Walls, true }
 {
-	ShapeComponent* pShape = new ShapeComponent(width, height, color);
-	AddComponent(pShape);
+	m_pShape = new ShapeComponent(width, height, color);
+	AddComponent(m_pShape);
 
-	ColliderComponent* pCollider = new ColliderComponent(width, height);
-	AddComponent(pCollider);
+	m_pCollider = new ColliderComponent(width, height);
+	AddComponent(m_pCollider);
 }
 
 void Wall::SetDimensions(float width, float height)
 {
-	ShapeComponent* pShape = GetComponent<ShapeComponent>();
-	if (pShape)
-		pShape->SetDimensions(width, height);
-
-	ColliderComponent* pColl = GetComponent<ColliderComponent>();
-	if (pColl)
-		pColl->SetDimensions(width, height);
+	m_pShape->SetDimensions(width, height);
+	m_pCollider->SetDimensions(width, height);
 }
 
 void Wall::SetColor(const Color& color)
 {
-	ShapeComponent* pShape = GetComponent<ShapeComponent>();
-
-	if (pShape)
-		pShape->SetColor(color);
+	m_pShape->SetColor(color);
 }

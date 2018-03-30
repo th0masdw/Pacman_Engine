@@ -4,31 +4,28 @@
 #include "Engine/Components/ShapeComponent.h"
 #include "Engine/Components/ColliderComponent.h"
 
-Pellet::Pellet(float size, const Color& color)
-	: GameObject(Tag::Pellet, Layer::Pickups, true)
+Pellet::Pellet(float size, const Color& color, const Tag tag, bool isPoolable)
+	: GameObject(tag, Layer::Pickups, isPoolable)
 {
-	ShapeComponent* pShape = new ShapeComponent(size, size, color);
-	AddComponent(pShape);
+	m_pShape = new ShapeComponent(size, size, color);
+	AddComponent(m_pShape);
 
-	ColliderComponent* pCollider = new ColliderComponent(size, size);
-	AddComponent(pCollider);
+	m_pCollider = new ColliderComponent(size, size);
+	AddComponent(m_pCollider);
 }
 
 void Pellet::SetSize(float size)
 {
-	ShapeComponent* pShape = GetComponent<ShapeComponent>();
-	if (pShape)
-		pShape->SetDimensions(size, size);
-
-	ColliderComponent* pColl = GetComponent<ColliderComponent>();
-	if (pColl)
-		pColl->SetDimensions(size, size);
+	m_pShape->SetDimensions(size, size);
+	m_pCollider->SetDimensions(size, size);
 }
 
 void Pellet::SetColor(const Color& color)
 {
-	ShapeComponent* pShape = GetComponent<ShapeComponent>();
+	m_pShape->SetColor(color);
+}
 
-	if (pShape)
-		pShape->SetColor(color);
+Color Pellet::GetColor() const
+{
+	return m_pShape->GetColor();
 }

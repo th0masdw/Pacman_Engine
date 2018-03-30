@@ -42,12 +42,20 @@ void LevelLoader::ProcessFile()
 					m_PacmanPosition = { x, y };
 					break;
 
+				case BlockType::GHOST:
+					m_GhostPositions.emplace_back(x, y);
+					break;
+
 				case BlockType::WALL:
 					m_WallPositions.emplace_back(x, y);
 					break;
 
 				case BlockType::PELLET:
 					m_PelletPositions.emplace_back(x, y);
+					break;
+
+				case BlockType::POWER:
+					m_PowerPelletPositions.emplace_back(x, y);
 					break;
 			}
 		}
@@ -59,7 +67,10 @@ glm::vec2 LevelLoader::GetPlayerPosition() const
 	return m_PacmanPosition;
 }
 
-//More
+const std::vector<glm::vec2>& LevelLoader::GetGhostPositions() const
+{
+	return m_GhostPositions;
+}
 
 const std::vector<glm::vec2>& LevelLoader::GetWallPositions() const
 {
@@ -71,9 +82,17 @@ const std::vector<glm::vec2>& LevelLoader::GetPelletPositions() const
 	return m_PelletPositions;
 }
 
-//More
+const std::vector<glm::vec2>& LevelLoader::GetPowerPelletPositions() const
+{
+	return m_PowerPelletPositions;
+}
 
 //More
+
+UINT LevelLoader::GetGhostAmount() const
+{
+	return static_cast<UINT>(m_GhostPositions.size());
+}
 
 UINT LevelLoader::GetWallAmount() const
 {
@@ -83,4 +102,9 @@ UINT LevelLoader::GetWallAmount() const
 UINT LevelLoader::GetPelletAmount() const
 {
 	return static_cast<UINT>(m_PelletPositions.size());
+}
+
+UINT LevelLoader::GetPowerPelletAmount() const
+{
+	return static_cast<UINT>(m_PowerPelletPositions.size());
 }

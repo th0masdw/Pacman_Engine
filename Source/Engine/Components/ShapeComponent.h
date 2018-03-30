@@ -14,6 +14,7 @@ public:
 	void SetDimensions(float width, float height);
 	void SetDimensions(const glm::vec2& size);
 	void SetColor(const Color& color);
+	Color GetColor() const;
 
 	ShapeComponent(const ShapeComponent& other) = delete;
 	ShapeComponent(ShapeComponent&& other) = delete;

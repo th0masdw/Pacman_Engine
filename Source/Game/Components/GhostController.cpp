@@ -15,5 +15,7 @@ void GhostController::CheckCollision(const glm::vec2& direction)
 	if (pCollision) {
 		if (pCollision->GetTag() == Tag::Obstacle)
 			Move(-direction);
+
+		//TODO: collision with pacman when scared
 	}
 }

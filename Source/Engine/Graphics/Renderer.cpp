@@ -59,6 +59,7 @@ void Renderer::RenderRect(const glm::vec2& pos, float width, float height, const
 
 void Renderer::RenderRect(const SDL_Rect& rect, const Color& color, bool isFilled) const 
 {
+	SDL_SetRenderDrawBlendMode(m_pRenderer, SDL_BLENDMODE_BLEND);
 	SDL_SetRenderDrawColor(m_pRenderer, Uint8(color.r), Uint8(color.g), Uint8(color.b), Uint8(color.a));
 
 	if (isFilled)

@@ -9,21 +9,26 @@ public:
 	~LevelLoader() = default;
 
 	glm::vec2 GetPlayerPosition() const;
-	//More
+	const std::vector<glm::vec2>& GetGhostPositions() const;
 	const std::vector<glm::vec2>& GetWallPositions() const;
 	const std::vector<glm::vec2>& GetPelletPositions() const;
+	const std::vector<glm::vec2>& GetPowerPelletPositions() const;
 	//More
 
-	//More
+	UINT GetGhostAmount() const;
 	UINT GetWallAmount() const;
 	UINT GetPelletAmount() const;
+	UINT GetPowerPelletAmount() const;
 
 private:
 	enum class BlockType
 	{
 		PLAYER	= 0,
-		WALL	= 1,
-		PELLET	= 2
+		GHOST	= 1,
+		WALL	= 2,
+		PELLET	= 3,
+		POWER	= 4,
+		FRUIT	= 5
 	};
 
 	std::ifstream m_Reader;

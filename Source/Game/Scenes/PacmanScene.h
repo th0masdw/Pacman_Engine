@@ -8,6 +8,7 @@ class GameTime;
 class PacmanActor;
 class GhostActor;
 class FPSObject;
+class PowerPellet;
 class LevelLoader;
 
 class PacmanScene : public GameScene
@@ -23,8 +24,9 @@ protected:
 
 private:
 	PacmanActor* m_pPlayer;
-	GhostActor* m_pGhost;
+	std::vector<GhostActor*> m_pGhosts;
 	Pellet* m_pPellet;
+	std::vector<PowerPellet*> m_pPowerPellets;
 	FPSObject* m_pFPS;
 
 	ObjectPool<Wall> m_WallPool;

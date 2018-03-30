@@ -25,6 +25,14 @@ void PacmanController::CheckCollision(const glm::vec2& direction)
 			case Tag::Pellet:
 				Debug::Log("Got pellet!");
 				break;
+
+			case Tag::PowerPellet:
+				Debug::Log("POWER");
+				break;
+
+			case Tag::Fruit:
+				Debug::Log("Fruit!");
+				break;
 		}
 	}
 }

@@ -129,6 +129,9 @@
     <ClCompile Include="Game\Components\GhostController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Gameplay\Objects\PowerPellet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainGame.h">
@@ -258,6 +261,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Game\Components\GhostController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Gameplay\Objects\PowerPellet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

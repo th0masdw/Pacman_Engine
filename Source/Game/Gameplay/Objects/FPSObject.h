@@ -9,13 +9,11 @@ class TextComponent;
 class FPSObject : public GameObject
 {
 public:
-	explicit FPSObject(const std::string& fontFile, unsigned int fontSize, const Color& color, const glm::vec2& pos);
+	explicit FPSObject(const std::string& fontFile, unsigned int fontSize, const Color& color);
 	virtual ~FPSObject() = default;
 
 	void Update(const GameTime& time);
-
 	void SetColor(const Color& color);
-	void SetPosition(const glm::vec2& pos);
 
 private:
 	TextComponent* m_pTextComponent;

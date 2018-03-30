@@ -2,6 +2,8 @@
 
 #include "Engine/Scenegraph/GameObject.h"
 struct Color;
+class ShapeComponent;
+class ColliderComponent;
 
 class Wall : public GameObject
 {
@@ -11,4 +13,8 @@ public:
 
 	void SetDimensions(float width, float height);
 	void SetColor(const Color& color);
+
+private:
+	ShapeComponent* m_pShape;
+	ColliderComponent* m_pCollider;
 };
