@@ -4,10 +4,14 @@
 #include "Engine/Components/ColliderComponent.h"
 #include "Engine/Managers/InputManager.h"
 #include "Game/Components/PacmanController.h"
+#include "Engine/Managers/EventManager.h"
 
 PacmanActor::PacmanActor(float size, float speed)
 	: GameObject{ Tag::Player, Layer::Characters },
-	m_Direction{ 0.0f, 0.0f }
+	m_Direction{ 0.0f, 0.0f },
+	m_Lives(3),
+	m_IsPowered(false),
+	m_PoweredTimer(0.0f)
 {
 	ShapeComponent* pShape = new ShapeComponent(size, size, { 255.0f, 255.0f, 0.0f, 255.0f });
 	AddComponent(pShape);
@@ -15,7 +19,7 @@ PacmanActor::PacmanActor(float size, float speed)
 	ColliderComponent* pCollider = new ColliderComponent(size, size, false);
 	AddComponent(pCollider);
 
-	m_pController = new PacmanController(speed);
+	m_pController = new PacmanController(this, speed);
 	AddComponent(m_pController);
 
 	//Input
@@ -46,13 +50,47 @@ void PacmanActor::Update(const GameTime& time)
 		m_Direction = glm::vec2{ 1.0f, 0.0f };
 
 	m_pController->Move(m_Direction * time.GetElapsedTime());
+
+	//Power state
+	if (m_IsPowered) {
+		m_PoweredTimer += time.GetElapsedTime();
+
+		if (m_PoweredTimer > 10.0f) {
+			m_IsPowered = false;
+			m_PoweredTimer = 0.0f;
+			EventManager::GetInstance().TriggerEvent("LostPower");
+			Debug::Log("Lost power...");
+		}
+	}
 }
 
 void PacmanActor::Draw() const
 {
 }
 
+void PacmanActor::LoseLife()
+{
+	--m_Lives;
+
+	if (m_Lives > 0)
+		EventManager::GetInstance().TriggerEvent("Die");	//Level resets everything, UI updates life count
+	else
+		EventManager::GetInstance().TriggerEvent("GameOver");	//Level handles gameover
+}
+
+void PacmanActor::PowerUp()
+{
+	m_IsPowered = true;
+	m_PoweredTimer = 0.0f;
+	Debug::Log("Powered!");
+}
+
 glm::vec2 PacmanActor::GetPosition() const
 {
 	return GetTransform()->GetPosition();
+}
+
+bool PacmanActor::IsPowered() const
+{
+	return m_IsPowered;
 }

@@ -43,13 +43,13 @@ void PacmanScene::Initialize()
 	AddObject(m_pPlayer);
 
 	//Ghosts
-	/*GhostActor* pGhost = nullptr;
+	GhostActor* pGhost = nullptr;
 	for (const glm::vec2& ghostPos : m_pLoader->GetGhostPositions()) {
 		pGhost = new GhostActor(m_pPlayer, 25, 150, { 255, 105, 180, 255 });
 		pGhost->GetTransform()->Translate(ghostPos);
 		m_pGhosts.emplace_back(pGhost);
 		AddObject(pGhost);
-	}*/
+	}
 
 	//Walls
 	Wall* pWall = nullptr;

@@ -13,10 +13,16 @@ public:
 
 	void Update(const GameTime& time);
 	void Draw() const;
+	void LoseLife();
+	void PowerUp();
 
 	glm::vec2 GetPosition() const;
+	bool IsPowered() const;
 
 private:
 	CharacterController* m_pController;
 	glm::vec2 m_Direction;
+	int m_Lives;
+	bool m_IsPowered;
+	float m_PoweredTimer;
 };

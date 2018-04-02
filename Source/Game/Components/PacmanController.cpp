@@ -3,9 +3,11 @@
 #include "Engine/Scenegraph/GameObject.h"
 #include "Engine/Managers/PhysicsManager.h"
 #include "Engine/Managers/EventManager.h"
+#include "Game/Gameplay/Actors/PacmanActor.h"
 
-PacmanController::PacmanController(float speed)
-	: CharacterController(speed)
+PacmanController::PacmanController(PacmanActor* pActor, float speed)
+	: CharacterController(speed),
+	m_pPlayer(pActor)
 {
 }
 
@@ -20,7 +22,7 @@ void PacmanController::CheckCollision(const glm::vec2& direction)
 				break;
 
 			case Tag::Enemy:
-				Debug::Log("Dead");
+				GetHit();
 				break;
 
 			case Tag::Pellet:
@@ -38,6 +40,12 @@ void PacmanController::CheckCollision(const glm::vec2& direction)
 	}
 }
 
+void PacmanController::GetHit()
+{
+	if (!m_pPlayer->IsPowered())
+		m_pPlayer->LoseLife();
+}
+
 void PacmanController::EatPellet(GameObject* pPellet)
 {
 	pPellet->SetActive(false);
@@ -48,9 +56,9 @@ void PacmanController::EatPellet(GameObject* pPellet)
 void PacmanController::EatPowerPellet(GameObject* pPower)
 {
 	pPower->SetActive(false);
+	m_pPlayer->PowerUp();
 	EventManager::GetInstance().TriggerEvent("EatPower");
 	//Play sound
-	//Power up pacman
 }
 
 void PacmanController::EatFruit(GameObject* pFruit)

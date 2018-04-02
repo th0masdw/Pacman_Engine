@@ -6,12 +6,15 @@
 #include "Game/Gameplay/Actors/PacmanActor.h"
 #include "Engine/Managers/InputManager.h"
 #include "Game/Components/GhostController.h"
+#include "Engine/Managers/EventManager.h"
 
-GhostActor::GhostActor(PacmanActor* pPacman, float size, float speed, const Color& color, bool isPlayerControlled)
+GhostActor::GhostActor(PacmanActor* pPacman, float size, float speed, const Color& color, const glm::vec2& ghostHouse, bool isPlayerControlled)
 	: GameObject{ Tag::Enemy, Layer::Characters },
 	m_IsPlayerControlled(isPlayerControlled),
 	m_pController(nullptr),
-	m_Direction(0, 0)
+	m_Direction(0, 0),
+	m_GhostHouse(ghostHouse),
+	m_IsScared(false)
 {
 	ShapeComponent* pShape = new ShapeComponent(size, size, color);
 	AddComponent(pShape);
@@ -20,6 +23,10 @@ GhostActor::GhostActor(PacmanActor* pPacman, float size, float speed, const Colo
 	AddComponent(pCollider);
 
 	SetupBehaviour(pPacman, speed);
+
+	//Events
+	EventManager::GetInstance().StartListening("EatPower", "EatPowerCB", [this]() { m_IsScared = true; });
+	EventManager::GetInstance().StartListening("LostPower", "LostPowerCB", [this]() { m_IsScared = false; });
 }
 
 void GhostActor::Update(const GameTime& time)
@@ -53,10 +60,10 @@ void GhostActor::Draw() const
 void GhostActor::SetupBehaviour(PacmanActor* pActor, float speed)
 {
 	if (!m_IsPlayerControlled) {
-		AIComponent* pAI = new AIComponent(pActor, speed);
+		AIComponent* pAI = new AIComponent(this, pActor, speed);
 		AddComponent(pAI);
 	} else {
-		m_pController = new GhostController(speed);
+		m_pController = new GhostController(this, speed);
 		AddComponent(m_pController);
 
 		//Input
@@ -66,4 +73,14 @@ void GhostActor::SetupBehaviour(PacmanActor* pActor, float speed)
 		input.AddInputAction(InputAction{ Input::P2_Left, SDL_SCANCODE_A, 1, false });
 		input.AddInputAction(InputAction{ Input::P2_Right, SDL_SCANCODE_D, 1, false });
 	}
+}
+
+void GhostActor::Respawn()
+{
+	GetTransform()->Translate(m_GhostHouse);
+}
+
+bool GhostActor::IsScared() const
+{
+	return m_IsScared;
 }

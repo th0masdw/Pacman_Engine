@@ -1,14 +1,17 @@
 #pragma once
 
-#include "Engine/Components/BaseComponent.h"
+#include "Engine/Components/CharacterController.h"
 #include "Engine/Algorithms/Astar/Solver.h"
+class GhostActor;
 class PacmanActor;
 
-class AIComponent : public BaseComponent
+class AIComponent : public CharacterController
 {
 public:
-	AIComponent(PacmanActor* pPacman, float speed = 50.0f);
+	AIComponent(GhostActor* pGhost, PacmanActor* pPacman, float speed = 50.0f);
 	virtual ~AIComponent() = default;
+
+	virtual void CheckCollision(const glm::vec2& direction) override;
 
 	AIComponent(const AIComponent& other) = delete;
 	AIComponent(AIComponent&& other) = delete;
@@ -21,6 +24,7 @@ protected:
 	virtual void Draw() const override;
 
 private:
+	GhostActor* m_pGhost;
 	PacmanActor* m_pPacman;
 	float m_Speed;
 
@@ -29,8 +33,8 @@ private:
 	glm::vec2 m_CurrentTarget;
 
 	void UpdatePath();
-	void MoveToTarget(float deltaTime);
 	void CheckIfTargetReached();
 	glm::vec2 GetNextTarget();
 	glm::vec2 GetDirection() const;
+	void HandlePlayerHit();
 };
