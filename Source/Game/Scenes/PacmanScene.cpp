@@ -45,8 +45,9 @@ void PacmanScene::Initialize()
 	//Ghosts
 	GhostActor* pGhost = nullptr;
 	for (const glm::vec2& ghostPos : m_pLoader->GetGhostPositions()) {
-		pGhost = new GhostActor(m_pPlayer, 25, 150, { 255, 105, 180, 255 });
-		pGhost->GetTransform()->Translate(ghostPos);
+		UNREFERENCED_PARAMETER(ghostPos);
+		pGhost = new GhostActor(m_pPlayer, 25, 50, { 255, 105, 180, 255 });		//Speed: 150, transform: ghostPos
+		pGhost->GetTransform()->Translate(387.5f, 287.5f);
 		m_pGhosts.emplace_back(pGhost);
 		AddObject(pGhost);
 	}

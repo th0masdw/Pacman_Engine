@@ -24,17 +24,31 @@ protected:
 	virtual void Draw() const override;
 
 private:
+	enum class State
+	{
+		Wandering,
+		Chasing,
+		Scared
+	};
+
 	GhostActor* m_pGhost;
 	PacmanActor* m_pPacman;
 	float m_Speed;
+
+	State m_State;
+	float m_ChaseRadius;
+	std::vector<glm::vec2> m_Directions;
 
 	std::list<Node> m_Path;
 	Solver m_PathSolver;
 	glm::vec2 m_CurrentTarget;
 
+	void UpdateState();
 	void UpdatePath();
 	void CheckIfTargetReached();
 	glm::vec2 GetNextTarget();
 	glm::vec2 GetDirection() const;
+	glm::vec2 GetWanderPos() const;
+	glm::vec2 GetScaredPos() const;
 	void HandlePlayerHit();
 };

@@ -34,7 +34,7 @@ void Solver::GetPath(const glm::vec2& start, const glm::vec2& end, std::list<Nod
     Node goalNode(GetNodePosition(end));
 
     if (m_Grid.IsObstacle(startNode.GetPosition()) || m_Grid.IsObstacle(goalNode.GetPosition())) {
-        Debug::LogError("Astar Solver: Could not get path - start or endnode is obstructed");
+        //Debug::LogError("Astar Solver: Could not get path - start or endnode is obstructed");
         return;
     }
 

@@ -11,16 +11,16 @@ ScoreManager::ScoreManager()
 	AddComponent(m_pText);
 
 	//Events
-	EventManager::GetInstance().StartListening("EatPellet", "EatPelletCB", [this]() { UpdateScore(10); });
-	EventManager::GetInstance().StartListening("EatPower", "EatPowerCB", [this]() { UpdateScore(50); });
-	EventManager::GetInstance().StartListening("EatFruit", "EatFruitCB", [this]() { UpdateScore(100); });
+	EventManager::GetInstance().StartListening("EatPellet", "EatPelletUICB", [this]() { UpdateScore(10); });
+	EventManager::GetInstance().StartListening("EatPower", "EatPowerUICB", [this]() { UpdateScore(50); });
+	EventManager::GetInstance().StartListening("EatFruit", "EatFruitUICB", [this]() { UpdateScore(100); });
 }
 
 ScoreManager::~ScoreManager()
 {
-	EventManager::GetInstance().StopListening("EatPellet", "EatPelletCB", [this]() { UpdateScore(10); });
-	EventManager::GetInstance().StopListening("EatPower", "EatPowerCB", [this]() { UpdateScore(50); });
-	EventManager::GetInstance().StopListening("EatFruit", "EatFruitCB", [this]() { UpdateScore(100); });
+	EventManager::GetInstance().StopListening("EatPellet", "EatPelletUICB", [this]() { UpdateScore(10); });
+	EventManager::GetInstance().StopListening("EatPower", "EatPowerUICB", [this]() { UpdateScore(50); });
+	EventManager::GetInstance().StopListening("EatFruit", "EatFruitUICB", [this]() { UpdateScore(100); });
 }
 
 void ScoreManager::UpdateScore(int amount)
