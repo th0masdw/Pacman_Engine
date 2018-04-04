@@ -3,11 +3,11 @@
 #include "Engine/Scenegraph/GameObject.h"
 class TextComponent;
 
-class ScoreManager : public GameObject
+class ScoreWidget : public GameObject
 {
 public:
-	ScoreManager();
-	virtual ~ScoreManager();
+	ScoreWidget();
+	virtual ~ScoreWidget() = default;
 
 private:
 	int m_Score;

@@ -64,6 +64,12 @@ void AIComponent::Draw() const
 	}
 }
 
+void AIComponent::Reset()
+{
+	m_Path.clear();
+	m_CurrentTarget = {};
+}
+
 void AIComponent::CheckCollision(const glm::vec2& direction)
 {
 	UNREFERENCED_PARAMETER(direction);
@@ -162,6 +168,9 @@ glm::vec2 AIComponent::GetWanderPos() const
 
 glm::vec2 AIComponent::GetScaredPos() const
 {
+	//REMARK: Path does not get updated fast enough
+	//so sometimes ghosts will bump into pacman
+
 	if (m_Path.size() > 0)
 		return m_Path.front().GetPosition();
 
@@ -195,9 +204,8 @@ glm::vec2 AIComponent::GetScaredPos() const
 void AIComponent::HandlePlayerHit()
 {
 	if (m_pGhost->IsScared()) {
-		m_Path.clear();
-		m_CurrentTarget = {};
 		m_pGhost->Respawn();
+		EventManager::GetInstance().TriggerEvent("EatGhost");
 	}	
 }
 

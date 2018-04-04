@@ -61,6 +61,10 @@ void LevelLoader::ProcessFile()
 				case BlockType::FRUIT:
 					m_FruitPosition = { x, y };
 					break;
+
+				case BlockType::GHOSTHOUSE:
+					m_GhostHousePosition = { x, y };
+					break;
 			}
 		}
 	}
@@ -94,6 +98,11 @@ const std::vector<glm::vec2>& LevelLoader::GetPowerPelletPositions() const
 glm::vec2 LevelLoader::GetFruitPosition() const
 {
 	return m_FruitPosition;
+}
+
+glm::vec2 LevelLoader::GetGhostHousePosition() const
+{
+	return m_GhostHousePosition;
 }
 
 UINT LevelLoader::GetGhostAmount() const

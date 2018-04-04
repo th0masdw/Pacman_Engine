@@ -10,14 +10,16 @@
 
 GhostActor::GhostActor(PacmanActor* pPacman, float size, float speed, const Color& color, const glm::vec2& ghostHouse, bool isPlayerControlled)
 	: GameObject{ Tag::Enemy, Layer::Characters },
+	m_Color(color),
 	m_IsPlayerControlled(isPlayerControlled),
+	m_pAI(nullptr),
 	m_pController(nullptr),
 	m_Direction(0, 0),
 	m_GhostHouse(ghostHouse),
 	m_IsScared(false)
 {
-	ShapeComponent* pShape = new ShapeComponent(size, size, color);
-	AddComponent(pShape);
+	m_pShape = new ShapeComponent(size, size, color);
+	AddComponent(m_pShape);
 
 	ColliderComponent* pCollider = new ColliderComponent(size, size, false);
 	AddComponent(pCollider);
@@ -25,8 +27,8 @@ GhostActor::GhostActor(PacmanActor* pPacman, float size, float speed, const Colo
 	SetupBehaviour(pPacman, speed);
 
 	//Events
-	EventManager::GetInstance().StartListening("EatPower", "EatPowerActorCB", [this]() { m_IsScared = true; });
-	EventManager::GetInstance().StartListening("LostPower", "LostPowerActorCB", [this]() { m_IsScared = false; });
+	EventManager::GetInstance().StartListening("EatPower", "EatPowerActorCB", [this]() { GetScared(true); });
+	EventManager::GetInstance().StartListening("LostPower", "LostPowerActorCB", [this]() { GetScared(false); });
 }
 
 void GhostActor::Update(const GameTime& time)
@@ -57,11 +59,24 @@ void GhostActor::Draw() const
 {
 }
 
+void GhostActor::Respawn()
+{
+	GetTransform()->Translate(m_GhostHouse);
+
+	if (m_pAI)
+		m_pAI->Reset();
+}
+
+bool GhostActor::IsScared() const
+{
+	return m_IsScared;
+}
+
 void GhostActor::SetupBehaviour(PacmanActor* pActor, float speed)
 {
 	if (!m_IsPlayerControlled) {
-		AIComponent* pAI = new AIComponent(this, pActor, speed);
-		AddComponent(pAI);
+		m_pAI = new AIComponent(this, pActor, speed);
+		AddComponent(m_pAI);
 	} else {
 		m_pController = new GhostController(this, speed);
 		AddComponent(m_pController);
@@ -75,12 +90,10 @@ void GhostActor::SetupBehaviour(PacmanActor* pActor, float speed)
 	}
 }
 
-void GhostActor::Respawn()
+void GhostActor::GetScared(bool value)
 {
-	GetTransform()->Translate(m_GhostHouse);
-}
+	m_IsScared = value;
 
-bool GhostActor::IsScared() const
-{
-	return m_IsScared;
+	Color newColor = (m_IsScared) ? Color{ 255, 255, 255, 255 } : m_Color;
+	m_pShape->SetColor(newColor);
 }

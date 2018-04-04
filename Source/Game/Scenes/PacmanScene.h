@@ -10,6 +10,7 @@ class GhostActor;
 class FPSObject;
 class PowerPellet;
 class LevelLoader;
+class Fruit;
 
 class PacmanScene : public GameScene
 {
@@ -26,10 +27,15 @@ private:
 	PacmanActor* m_pPlayer;
 	std::vector<GhostActor*> m_pGhosts;
 	std::vector<PowerPellet*> m_pPowerPellets;
+	Fruit* m_pFruit;
 	FPSObject* m_pFPS;
+	bool m_PauseGame;
 
 	ObjectPool<Wall> m_WallPool;
 	ObjectPool<Pellet> m_PelletPool;
 	LevelLoader* m_pLoader;
+
+	void ResetLevel();
+	void GameOver();
 };
 

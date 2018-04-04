@@ -9,7 +9,7 @@
 PacmanActor::PacmanActor(float size, float speed)
 	: GameObject{ Tag::Player, Layer::Characters },
 	m_Direction{ 0.0f, 0.0f },
-	m_Lives(3),
+	m_Lives(4),
 	m_IsPowered(false),
 	m_PoweredTimer(0.0f)
 {
@@ -71,11 +71,10 @@ void PacmanActor::Draw() const
 void PacmanActor::LoseLife()
 {
 	--m_Lives;
+	EventManager::GetInstance().TriggerEvent("Die");
 
-	if (m_Lives > 0)
-		EventManager::GetInstance().TriggerEvent("Die");	//Level resets everything, UI updates life count
-	else
-		EventManager::GetInstance().TriggerEvent("GameOver");	//Level handles gameover
+	if (m_Lives <= 0)
+		EventManager::GetInstance().TriggerEvent("GameOver");
 }
 
 void PacmanActor::PowerUp()

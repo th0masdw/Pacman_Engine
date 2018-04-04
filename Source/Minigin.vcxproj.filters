@@ -135,7 +135,10 @@
     <ClCompile Include="Game\Gameplay\Objects\Fruit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Gameplay\UI\ScoreManager.cpp">
+    <ClCompile Include="Game\Gameplay\UI\ScoreWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Gameplay\UI\LivesWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -275,7 +278,10 @@
     <ClInclude Include="Game\Gameplay\Objects\Fruit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Gameplay\UI\ScoreManager.h">
+    <ClInclude Include="Game\Gameplay\UI\ScoreWidget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Gameplay\UI\LivesWidget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

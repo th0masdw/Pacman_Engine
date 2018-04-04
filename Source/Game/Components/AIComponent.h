@@ -11,6 +11,7 @@ public:
 	AIComponent(GhostActor* pGhost, PacmanActor* pPacman, float speed = 50.0f);
 	virtual ~AIComponent() = default;
 
+	void Reset();
 	virtual void CheckCollision(const glm::vec2& direction) override;
 
 	AIComponent(const AIComponent& other) = delete;

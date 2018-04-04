@@ -2,6 +2,7 @@
 #include "GhostController.h"
 #include "Engine/Scenegraph/GameObject.h"
 #include "Engine/Managers/PhysicsManager.h"
+#include "Engine/Managers/EventManager.h"
 #include "Game/Gameplay/Actors/GhostActor.h"
 
 GhostController::GhostController(GhostActor* pGhost, float speed)
@@ -29,6 +30,8 @@ void GhostController::CheckCollision(const glm::vec2& direction)
 
 void GhostController::GetHit()
 {
-	if (m_pGhost->IsScared())
+	if (m_pGhost->IsScared()) {
 		m_pGhost->Respawn();
+		EventManager::GetInstance().TriggerEvent("EatGhost");
+	}
 }
