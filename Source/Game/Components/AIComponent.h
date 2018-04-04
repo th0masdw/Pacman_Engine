@@ -46,9 +46,11 @@ private:
 	void UpdateState();
 	void UpdatePath();
 	void CheckIfTargetReached();
+	void HandlePlayerHit();
+
 	glm::vec2 GetNextTarget();
 	glm::vec2 GetDirection() const;
 	glm::vec2 GetWanderPos() const;
 	glm::vec2 GetScaredPos() const;
-	void HandlePlayerHit();
+	glm::vec2 GetRandomPosFromDirections(const std::vector<glm::vec2>& directions) const;
 };

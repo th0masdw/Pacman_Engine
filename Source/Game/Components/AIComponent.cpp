@@ -13,7 +13,7 @@ AIComponent::AIComponent(GhostActor* pGhost, PacmanActor* pPacman, float speed)
 	m_pPacman(pPacman),
 	m_Speed(speed),
 	m_State(State::Wandering),
-	m_ChaseRadius(200.0f),
+	m_ChaseRadius(300.0f),
 	m_PathSolver(Window::GetGridWidth(), Window::GetGridHeight()),
 	m_CurrentTarget(0, 0)
 {
@@ -21,7 +21,10 @@ AIComponent::AIComponent(GhostActor* pGhost, PacmanActor* pPacman, float speed)
 
 	//Events
 	EventManager::GetInstance().StartListening("EatPower", "EatPowerAICB", [this]() { m_State = State::Scared; });
-	EventManager::GetInstance().StartListening("LostPower", "LostPowerAICB", [this]() { m_State = State::Wandering; });
+	EventManager::GetInstance().StartListening("LostPower", "LostPowerAICB", [this]() { 
+		m_State = State::Wandering;
+		m_Path.clear();
+	});
 }
 
 void AIComponent::PostInitialize()
@@ -42,9 +45,10 @@ void AIComponent::Update(const GameTime& time)
 	}
 
 	CheckCollision({});
-	UNREFERENCED_PARAMETER(time);
 	Move(GetDirection() * time.GetElapsedTime());
 	CheckIfTargetReached();
+
+	//Debug::Log(std::to_string(static_cast<int>(m_State)));
 }
 
 void AIComponent::Draw() const
@@ -104,7 +108,6 @@ void AIComponent::UpdatePath()
 			break;
 
 		case State::Scared:
-			m_Path.clear();
 			endPos = GetScaredPos();
 			break;
 	}
@@ -152,34 +155,41 @@ glm::vec2 AIComponent::GetDirection() const
 glm::vec2 AIComponent::GetWanderPos() const
 {
 	if (m_Path.size() > 0)
-		return m_Path.front().GetPosition();
+		return m_Path.back().GetPosition();
 
-	int x, y;
-	glm::vec2 currentPos = m_pGameObject->GetTransform()->GetPosition();
-	Grid grid = m_PathSolver.GetGridCopy();
-	grid.ToIndexPos(currentPos, x, y);
-	int chaseRadius = static_cast<int>(m_ChaseRadius / grid.GetTileSize());
-
-	glm::vec2 wanderPos = {};
-	int randIndex = 0;
-	
-	while (HasZeroMagnitude(wanderPos)) {
-		randIndex = rand() % m_Directions.size();
-		int newX = x + static_cast<int>(m_Directions[randIndex].x) + rand() % chaseRadius * 2 - chaseRadius;
-		int newY = y + static_cast<int>(m_Directions[randIndex].y) + rand() % chaseRadius * 2 - chaseRadius;
-
-		if (!grid.IsObstacle({ newX, newY })) {
-			wanderPos = { newX, newY };
-			break;
-		}
-	}
-
-	return wanderPos * grid.GetTileSize();
+	return GetRandomPosFromDirections(m_Directions);
 }
 
 glm::vec2 AIComponent::GetScaredPos() const
 {
-	return { 387.5f, 362.5f };
+	if (m_Path.size() > 0)
+		return m_Path.front().GetPosition();
+
+	//Determine direction ghost should avoid
+	glm::vec2 pacmanPos = m_pPacman->GetTransform()->GetPosition();
+	glm::vec2 ghostPos = m_pGameObject->GetTransform()->GetPosition();
+
+	glm::vec2 pacmanDir = pacmanPos - ghostPos;
+	glm::vec2 forbidDir;
+
+	if (abs(pacmanDir.x) > abs(pacmanDir.y) || abs(pacmanDir.y) <= FLT_EPSILON)
+		forbidDir = { pacmanDir.x, 0.0f };
+	else if (abs(pacmanDir.x) <= abs(pacmanDir.y) || abs(pacmanDir.x) <= FLT_EPSILON)
+		forbidDir = { 0.0f, pacmanDir.y };
+	else
+		forbidDir = { 0, 1 };	//Default
+
+	Normalize(forbidDir);
+	
+	//Build allowed directions vector
+	std::vector<glm::vec2> directions;
+	for (UINT i = 0; i < m_Directions.size(); ++i) {
+		if (!AreEqual(m_Directions[i], forbidDir))
+			directions.emplace_back(m_Directions[i]);
+	}
+
+	//Debug::Log(std::to_string(directions.size()));
+	return GetRandomPosFromDirections(directions);
 }
 
 void AIComponent::HandlePlayerHit()
@@ -189,4 +199,29 @@ void AIComponent::HandlePlayerHit()
 		m_CurrentTarget = {};
 		m_pGhost->Respawn();
 	}	
+}
+
+glm::vec2 AIComponent::GetRandomPosFromDirections(const std::vector<glm::vec2>& directions) const
+{
+	int x, y;
+	glm::vec2 currentPos = m_pGameObject->GetTransform()->GetPosition();
+	Grid grid = m_PathSolver.GetGridCopy();
+	grid.ToIndexPos(currentPos, x, y);
+	int chaseRadius = static_cast<int>(m_ChaseRadius / grid.GetTileSize());
+
+	glm::vec2 newPos = {};
+	int randIndex = 0;
+	
+	while (HasZeroMagnitude(newPos)) {
+		randIndex = rand() % directions.size();
+		int newX = x + static_cast<int>(directions[randIndex].x) * rand() % chaseRadius + 1;
+		int newY = y + static_cast<int>(directions[randIndex].y) * rand() % chaseRadius + 1;
+
+		if (!grid.IsObstacle({ newX, newY })) {
+			newPos = { newX, newY };
+			break;
+		}
+	}
+
+	return newPos * grid.GetTileSize();
 }

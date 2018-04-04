@@ -42,8 +42,19 @@ inline bool HasZeroMagnitude(const glm::vec2& vector) {
 	return vector.x <= 0.0f && vector.y <= 0.0f;
 }
 
+inline void Normalize(glm::vec2& vector) {
+	float length = std::sqrt(pow(vector.x, 2) + (pow(vector.y, 2)));
+
+	if (length > 0.0f)
+		vector /= length;
+}
+
 inline float Distance(const glm::vec2& a, const glm::vec2& b) {
 	glm::vec2 delta = a - b;
 	float length = std::sqrt(pow(delta.x, 2) + (pow(delta.y, 2)));
 	return length;
+}
+
+inline bool AreEqual(const glm::vec2& a, const glm::vec2& b) {
+	return (abs(a.x - b.x) <= FLT_EPSILON && abs(a.y - b.y) <= FLT_EPSILON);
 }

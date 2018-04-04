@@ -37,7 +37,7 @@ void PacmanScene::Initialize()
 	m_PelletPool.Initialize(m_pLoader->GetPelletAmount());
 
 	//Player
-	m_pPlayer = new PacmanActor(25, 150);
+	m_pPlayer = new PacmanActor(25, 100);
 	glm::vec2 playerPos = m_pLoader->GetPlayerPosition();
 	m_pPlayer->GetTransform()->Translate(playerPos);
 	AddObject(m_pPlayer);
@@ -45,9 +45,8 @@ void PacmanScene::Initialize()
 	//Ghosts
 	GhostActor* pGhost = nullptr;
 	for (const glm::vec2& ghostPos : m_pLoader->GetGhostPositions()) {
-		UNREFERENCED_PARAMETER(ghostPos);
-		pGhost = new GhostActor(m_pPlayer, 25, 50, { 255, 105, 180, 255 });		//Speed: 150, transform: ghostPos
-		pGhost->GetTransform()->Translate(387.5f, 287.5f);
+		pGhost = new GhostActor(m_pPlayer, 25, 100, { 255, 105, 180, 255 });
+		pGhost->GetTransform()->Translate(ghostPos);
 		m_pGhosts.emplace_back(pGhost);
 		AddObject(pGhost);
 	}
