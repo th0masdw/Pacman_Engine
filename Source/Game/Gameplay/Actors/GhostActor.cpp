@@ -27,8 +27,8 @@ GhostActor::GhostActor(PacmanActor* pPacman, float size, float speed, const Colo
 	SetupBehaviour(pPacman, speed);
 
 	//Events
-	EventManager::GetInstance().StartListening("EatPower", "EatPowerActorCB", [this]() { GetScared(true); });
-	EventManager::GetInstance().StartListening("LostPower", "LostPowerActorCB", [this]() { GetScared(false); });
+	EventManager::GetInstance().StartListening(Event::EatPower(), "EatPowerActorCB", [this]() { GetScared(true); });
+	EventManager::GetInstance().StartListening(Event::LostPower(), "LostPowerActorCB", [this]() { GetScared(false); });
 }
 
 void GhostActor::Update(const GameTime& time)

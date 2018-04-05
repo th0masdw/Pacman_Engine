@@ -27,8 +27,8 @@ PacmanScene::PacmanScene()
 	Initialize();
 
 	//Events
-	EventManager::GetInstance().StartListening("Die", "DieSceneCB", [this]() { ResetLevel(); });
-	EventManager::GetInstance().StartListening("GameOver", "GameOverSceneCB", [this]() { GameOver(); });
+	EventManager::GetInstance().StartListening(Event::Die(), "DieSceneCB", [this]() { ResetLevel(); });
+	EventManager::GetInstance().StartListening(Event::GameOver(), "GameOverSceneCB", [this]() { GameOver(); });
 }
 
 PacmanScene::~PacmanScene()

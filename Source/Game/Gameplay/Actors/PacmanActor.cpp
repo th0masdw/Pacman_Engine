@@ -58,7 +58,7 @@ void PacmanActor::Update(const GameTime& time)
 		if (m_PoweredTimer > 10.0f) {
 			m_IsPowered = false;
 			m_PoweredTimer = 0.0f;
-			EventManager::GetInstance().TriggerEvent("LostPower");
+			EventManager::GetInstance().TriggerEvent(Event::LostPower());
 			Debug::Log("Lost power...");
 		}
 	}
@@ -71,10 +71,10 @@ void PacmanActor::Draw() const
 void PacmanActor::LoseLife()
 {
 	--m_Lives;
-	EventManager::GetInstance().TriggerEvent("Die");
+	EventManager::GetInstance().TriggerEvent(Event::Die());
 
 	if (m_Lives <= 0)
-		EventManager::GetInstance().TriggerEvent("GameOver");
+		EventManager::GetInstance().TriggerEvent(Event::GameOver());
 }
 
 void PacmanActor::PowerUp()

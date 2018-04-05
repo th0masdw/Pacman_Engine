@@ -11,10 +11,10 @@ ScoreWidget::ScoreWidget()
 	AddComponent(m_pText);
 
 	//Events
-	EventManager::GetInstance().StartListening("EatPellet", "EatPelletUICB", [this]() { UpdateScore(10); });
-	EventManager::GetInstance().StartListening("EatPower", "EatPowerUICB", [this]() { UpdateScore(50); });
-	EventManager::GetInstance().StartListening("EatFruit", "EatFruitUICB", [this]() { UpdateScore(100); });
-	EventManager::GetInstance().StartListening("EatGhost", "EatGhostUICB", [this]() { UpdateScore(200); });
+	EventManager::GetInstance().StartListening(Event::EatPellet(), "EatPelletUICB", [this]() { UpdateScore(10); });
+	EventManager::GetInstance().StartListening(Event::EatPower(), "EatPowerUICB", [this]() { UpdateScore(50); });
+	EventManager::GetInstance().StartListening(Event::EatFruit(), "EatFruitUICB", [this]() { UpdateScore(100); });
+	EventManager::GetInstance().StartListening(Event::EatGhost(), "EatGhostUICB", [this]() { UpdateScore(200); });
 }
 
 void ScoreWidget::UpdateScore(int amount)

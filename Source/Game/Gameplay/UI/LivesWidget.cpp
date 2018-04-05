@@ -17,7 +17,7 @@ LivesWidget::LivesWidget()
 	}
 
 	//Events
-	EventManager::GetInstance().StartListening("Die", "DieLivesCB", [this]() { UpdateLives(); });
+	EventManager::GetInstance().StartListening(Event::Die(), "DieLivesCB", [this]() { UpdateLives(); });
 }
 
 void LivesWidget::UpdateLives()

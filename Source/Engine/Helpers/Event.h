@@ -13,10 +13,15 @@ public:
 	void RemoveListener(const Callback& callback);
 	void Invoke();
 
-	/*Event(const Event& other) = delete;
-	Event(Event&& other) = delete;
-	Event& operator=(const Event& other) = delete;
-	Event& operator=(Event&& other) = delete;*/
+#pragma region Event Names
+	static std::string EatGhost() { return "EatGhost"; }
+	static std::string EatPellet() { return "EatPellet"; }
+	static std::string EatPower() { return "EatPower"; }
+	static std::string EatFruit() { return "EatFruit"; }
+	static std::string LostPower() { return "LostPower"; }
+	static std::string Die() { return "Die"; }
+	static std::string GameOver() { return "GameOver"; }
+#pragma endregion Event Names
 
 private:
 	std::set<Callback> m_Listeners;

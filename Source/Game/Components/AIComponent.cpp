@@ -20,8 +20,8 @@ AIComponent::AIComponent(GhostActor* pGhost, PacmanActor* pPacman, float speed)
 	m_Directions = { { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
 
 	//Events
-	EventManager::GetInstance().StartListening("EatPower", "EatPowerAICB", [this]() { m_State = State::Scared; });
-	EventManager::GetInstance().StartListening("LostPower", "LostPowerAICB", [this]() { 
+	EventManager::GetInstance().StartListening(Event::EatPower(), "EatPowerAICB", [this]() { m_State = State::Scared; });
+	EventManager::GetInstance().StartListening(Event::LostPower(), "LostPowerAICB", [this]() { 
 		m_State = State::Wandering;
 		m_Path.clear();
 	});
@@ -205,7 +205,7 @@ void AIComponent::HandlePlayerHit()
 {
 	if (m_pGhost->IsScared()) {
 		m_pGhost->Respawn();
-		EventManager::GetInstance().TriggerEvent("EatGhost");
+		EventManager::GetInstance().TriggerEvent(Event::EatGhost());
 	}	
 }
 

@@ -49,7 +49,7 @@ void PacmanController::GetHit()
 void PacmanController::EatPellet(GameObject* pPellet)
 {
 	pPellet->SetActive(false);
-	EventManager::GetInstance().TriggerEvent("EatPellet");
+	EventManager::GetInstance().TriggerEvent(Event::EatPellet());
 	//Play sound
 }
 
@@ -57,13 +57,13 @@ void PacmanController::EatPowerPellet(GameObject* pPower)
 {
 	pPower->SetActive(false);
 	m_pPlayer->PowerUp();
-	EventManager::GetInstance().TriggerEvent("EatPower");
+	EventManager::GetInstance().TriggerEvent(Event::EatPower());
 	//Play sound
 }
 
 void PacmanController::EatFruit(GameObject* pFruit)
 {
 	pFruit->SetActive(false);
-	EventManager::GetInstance().TriggerEvent("EatFruit");
+	EventManager::GetInstance().TriggerEvent(Event::EatFruit());
 	//Play sound
 }

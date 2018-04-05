@@ -32,6 +32,6 @@ void GhostController::GetHit()
 {
 	if (m_pGhost->IsScared()) {
 		m_pGhost->Respawn();
-		EventManager::GetInstance().TriggerEvent("EatGhost");
+		EventManager::GetInstance().TriggerEvent(Event::EatGhost());
 	}
 }
