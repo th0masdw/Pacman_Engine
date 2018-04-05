@@ -30,6 +30,7 @@ private:
 	Fruit* m_pFruit;
 	FPSObject* m_pFPS;
 	bool m_PauseGame;
+	int m_PelletCounter;
 
 	ObjectPool<Wall> m_WallPool;
 	ObjectPool<Pellet> m_PelletPool;
@@ -37,5 +38,6 @@ private:
 
 	void ResetLevel();
 	void GameOver();
+	void CheckIfGameWon();
 };
 

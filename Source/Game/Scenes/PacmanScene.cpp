@@ -20,6 +20,7 @@ PacmanScene::PacmanScene()
 	m_pFruit(nullptr),
 	m_pFPS(nullptr),
 	m_PauseGame(false),
+	m_PelletCounter(0),
 	m_WallPool(),
 	m_PelletPool(),
 	m_pLoader(nullptr)
@@ -29,6 +30,7 @@ PacmanScene::PacmanScene()
 	//Events
 	EventManager::GetInstance().StartListening(Event::Die(), "DieSceneCB", [this]() { ResetLevel(); });
 	EventManager::GetInstance().StartListening(Event::GameOver(), "GameOverSceneCB", [this]() { GameOver(); });
+	EventManager::GetInstance().StartListening(Event::EatPellet(), "EatPelletGameCB", [this]() { CheckIfGameWon(); });
 }
 
 PacmanScene::~PacmanScene()
@@ -44,6 +46,7 @@ void PacmanScene::Initialize()
 	m_pLoader = new LevelLoader("../Resources/TestLevel.txt");
 	m_WallPool.Initialize(m_pLoader->GetWallAmount());
 	m_PelletPool.Initialize(m_pLoader->GetPelletAmount());
+	m_PelletCounter = m_pLoader->GetPelletAmount();
 
 	//Player
 	m_pPlayer = new PacmanActor(25, 100);
@@ -154,4 +157,19 @@ void PacmanScene::GameOver()
 	AddObject(pGameOver);
 
 	Debug::Log("Game Over");
+}
+
+void PacmanScene::CheckIfGameWon()
+{
+	--m_PelletCounter;
+
+	if (m_PelletCounter <= 0) {
+		m_PauseGame = true;
+
+		GameObject* pWin = new GameObject(Tag::Empty, Layer::UI);
+		TextComponent* pText = new TextComponent("You win!", { 0, 255, 0, 255 }, "../Resources/Lingua.otf", 30);
+		pWin->AddComponent(pText);
+		pWin->GetTransform()->Translate(387.5f, 275.0f);
+		AddObject(pWin);
+	}
 }
