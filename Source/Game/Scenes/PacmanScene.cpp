@@ -1,6 +1,7 @@
 #include "MiniginPCH.h"
 #include "PacmanScene.h"
 
+#include "Engine/Managers/SoundManager.h"
 #include "Engine/Managers/EventManager.h"
 #include "Engine/Components/TextComponent.h"
 #include "Game/Gameplay/Actors/PacmanActor.h"
@@ -24,13 +25,10 @@ PacmanScene::PacmanScene()
 	m_WallPool(),
 	m_PelletPool(),
 	m_pLoader(nullptr)
-{
+{	
+	LoadSounds();
+	RegisterEvents();
 	Initialize();
-
-	//Events
-	EventManager::GetInstance().StartListening(Event::Die(), "DieSceneCB", [this]() { ResetLevel(); });
-	EventManager::GetInstance().StartListening(Event::GameOver(), "GameOverSceneCB", [this]() { GameOver(); });
-	EventManager::GetInstance().StartListening(Event::EatPellet(), "EatPelletGameCB", [this]() { CheckIfGameWon(); });
 }
 
 PacmanScene::~PacmanScene()
@@ -108,6 +106,9 @@ void PacmanScene::Initialize()
 	LivesWidget* pLives = new LivesWidget();
 	pLives->GetTransform()->Translate(735.0f, 400.0f);
 	AddObject(pLives);
+
+	//Play sound
+	PlaySound(SoundId::Background);
 }
 
 void PacmanScene::Update(const GameTime& time) 
@@ -171,5 +172,38 @@ void PacmanScene::CheckIfGameWon()
 		pWin->AddComponent(pText);
 		pWin->GetTransform()->Translate(387.5f, 275.0f);
 		AddObject(pWin);
+
+		SoundManager::GetInstance().StopChannel(static_cast<int>(SoundId::Background));
 	}
+}
+
+void PacmanScene::LoadSounds()
+{
+	SoundManager& soundManager = SoundManager::GetInstance();
+
+	soundManager.CreateSound(static_cast<int>(SoundId::Background), "../Resources/sounds/background.wav", FMOD_LOOP_NORMAL, true);
+	soundManager.CreateSound(static_cast<int>(SoundId::Chomp), "../Resources/sounds/chomp.wav");
+	soundManager.CreateSound(static_cast<int>(SoundId::Fruit), "../Resources/sounds/eatfruit.wav");
+	soundManager.CreateSound(static_cast<int>(SoundId::Ghost), "../Resources/sounds/eatghost.wav");
+}
+
+void PacmanScene::RegisterEvents()
+{
+	EventManager& eventManager = EventManager::GetInstance();
+
+	//Gameplay events
+	eventManager.StartListening(Event::Die(), "DieSceneCB", [this]() { ResetLevel(); });
+	eventManager.StartListening(Event::GameOver(), "GameOverSceneCB", [this]() { GameOver(); });
+	eventManager.StartListening(Event::EatPellet(), "EatPelletGameCB", [this]() { CheckIfGameWon(); });
+
+	//Sound events
+	eventManager.StartListening(Event::EatPower(), "EatPowerGameCB", [this]() { PlaySound(SoundId::Chomp); });
+	eventManager.StartListening(Event::EatFruit(), "EatFruitGameCB", [this]() { PlaySound(SoundId::Fruit); });
+	eventManager.StartListening(Event::EatGhost(), "EatGhostGameCB", [this]() { PlaySound(SoundId::Ghost); });
+}
+
+void PacmanScene::PlaySound(const SoundId id)
+{
+	int playId = static_cast<int>(id);
+	SoundManager::GetInstance().PlaySoundOnChannel(playId, playId);
 }

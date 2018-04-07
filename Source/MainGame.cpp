@@ -7,6 +7,7 @@
 #include "Engine/Managers/ResourceManager.h"
 #include "Engine/Managers/InputManager.h"
 #include "Engine/Managers/EventManager.h"
+#include "Engine/Managers/SoundManager.h"
 
 #include "Game/Scenes/PacmanScene.h"
 
@@ -20,6 +21,7 @@ MainGame::~MainGame()
 {
 	Renderer::GetInstance().Destroy();
 	SceneManager::GetInstance().Destroy();
+	SoundManager::GetInstance().Destroy();
 	SDL_DestroyWindow(m_pWindow);
 	SDL_Quit();
 }
@@ -31,6 +33,7 @@ void MainGame::Initialize()
 	Renderer::GetInstance().Initialize(m_pWindow);
 	ResourceManager::GetInstance().Initialize();
 	EventManager::GetInstance().Initialize();
+	SoundManager::GetInstance().Initialize();
 	Debug::Initialize();
 }
 

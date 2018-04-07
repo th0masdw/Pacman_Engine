@@ -24,6 +24,11 @@ protected:
 	virtual void Draw() const override;
 
 private:
+	enum class SoundId : int
+	{
+		Background, Chomp, Fruit, Ghost
+	};
+
 	PacmanActor* m_pPlayer;
 	std::vector<GhostActor*> m_pGhosts;
 	std::vector<PowerPellet*> m_pPowerPellets;
@@ -36,8 +41,11 @@ private:
 	ObjectPool<Pellet> m_PelletPool;
 	LevelLoader* m_pLoader;
 
+	void LoadSounds();
+	void RegisterEvents();
 	void ResetLevel();
 	void GameOver();
 	void CheckIfGameWon();
+	void PlaySound(const SoundId id);
 };
 
