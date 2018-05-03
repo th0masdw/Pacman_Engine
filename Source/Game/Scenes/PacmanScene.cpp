@@ -54,12 +54,19 @@ void PacmanScene::Initialize()
 
 	//Ghosts
 	GhostActor* pGhost = nullptr;
-	for (const glm::vec2& ghostPos : m_pLoader->GetGhostPositions()) {
-		pGhost = new GhostActor(m_pPlayer, 25, 100, { 255, 105, 180, 255 }, m_pLoader->GetGhostHousePosition());
-		pGhost->GetTransform()->Translate(ghostPos);
+	std::vector<glm::vec2> ghostPositions = m_pLoader->GetGhostPositions();
+	for (UINT i = 0; i < ghostPositions.size(); ++i) {
+		pGhost = new GhostActor(m_pPlayer, i, 25, 100, { 255, 255, 255, 255 }, ghostPositions[i]);
+		pGhost->GetTransform()->Translate(ghostPositions[i]);
 		m_pGhosts.emplace_back(pGhost);
 		AddObject(pGhost);
 	}
+
+	//Set ghost colors
+	m_pGhosts[0]->SetColor({ 255, 0, 0, 255 });
+	m_pGhosts[1]->SetColor({ 255, 153, 204, 255 });
+	m_pGhosts[2]->SetColor({ 102, 255, 255, 255 });
+	m_pGhosts[3]->SetColor({ 255, 153, 51, 255 });
 
 	//Walls
 	Wall* pWall = nullptr;

@@ -14,7 +14,6 @@ public:
 	const std::vector<glm::vec2>& GetPelletPositions() const;
 	const std::vector<glm::vec2>& GetPowerPelletPositions() const;
 	glm::vec2 GetFruitPosition() const;
-	glm::vec2 GetGhostHousePosition() const;
 
 	UINT GetGhostAmount() const;
 	UINT GetWallAmount() const;
@@ -29,8 +28,7 @@ private:
 		WALL		= 2,
 		PELLET		= 3,
 		POWER		= 4,
-		FRUIT		= 5,
-		GHOSTHOUSE	= 6
+		FRUIT		= 5
 	};
 
 	std::ifstream m_Reader;
@@ -42,7 +40,6 @@ private:
 	std::vector<glm::vec2> m_PelletPositions;
 	std::vector<glm::vec2> m_PowerPelletPositions;
 	glm::vec2 m_FruitPosition;
-	glm::vec2 m_GhostHousePosition;
 
 	void ProcessFile();
 };

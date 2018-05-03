@@ -8,14 +8,15 @@
 #include "Game/Components/GhostController.h"
 #include "Engine/Managers/EventManager.h"
 
-GhostActor::GhostActor(PacmanActor* pPacman, float size, float speed, const Color& color, const glm::vec2& ghostHouse, bool isPlayerControlled)
+GhostActor::GhostActor(PacmanActor* pPacman, int id, float size, float speed, const Color& color, const glm::vec2& spawnPos, bool isPlayerControlled)
 	: GameObject{ Tag::Enemy, Layer::Characters },
+	m_ID(id),
 	m_Color(color),
 	m_IsPlayerControlled(isPlayerControlled),
 	m_pAI(nullptr),
 	m_pController(nullptr),
 	m_Direction(0, 0),
-	m_GhostHouse(ghostHouse),
+	m_SpawnPosition(spawnPos),
 	m_IsScared(false)
 {
 	m_pShape = new ShapeComponent(size, size, color);
@@ -27,8 +28,8 @@ GhostActor::GhostActor(PacmanActor* pPacman, float size, float speed, const Colo
 	SetupBehaviour(pPacman, speed);
 
 	//Events
-	EventManager::GetInstance().StartListening(Event::EatPower(), "EatPowerActorCB", [this]() { GetScared(true); });
-	EventManager::GetInstance().StartListening(Event::LostPower(), "LostPowerActorCB", [this]() { GetScared(false); });
+	EventManager::GetInstance().StartListening(Event::EatPower(), "EatPowerActorCB" + std::to_string(id), [this]() { GetScared(true); });
+	EventManager::GetInstance().StartListening(Event::LostPower(), "LostPowerActorCB" + std::to_string(id), [this]() { GetScared(false); });
 }
 
 void GhostActor::Update(const GameTime& time)
@@ -59,9 +60,14 @@ void GhostActor::Draw() const
 {
 }
 
+int GhostActor::GetID() const
+{
+	return m_ID;
+}
+
 void GhostActor::Respawn()
 {
-	GetTransform()->Translate(m_GhostHouse);
+	GetTransform()->Translate(m_SpawnPosition);
 
 	if (m_pAI)
 		m_pAI->Reset();
@@ -70,6 +76,12 @@ void GhostActor::Respawn()
 bool GhostActor::IsScared() const
 {
 	return m_IsScared;
+}
+
+void GhostActor::SetColor(const Color& color)
+{
+	m_Color = color;
+	m_pShape->SetColor(color);
 }
 
 void GhostActor::SetupBehaviour(PacmanActor* pActor, float speed)

@@ -16,20 +16,34 @@ AIComponent::AIComponent(GhostActor* pGhost, PacmanActor* pPacman, float speed)
 	m_ChaseRadius(300.0f),
 	m_PathSolver(Window::GetGridWidth(), Window::GetGridHeight()),
 	m_CurrentTarget(0, 0)
+	//m_NavigationThread()
 {
 	m_Directions = { { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
+}
 
-	//Events
-	EventManager::GetInstance().StartListening(Event::EatPower(), "EatPowerAICB", [this]() { m_State = State::Scared; });
-	EventManager::GetInstance().StartListening(Event::LostPower(), "LostPowerAICB", [this]() { 
-		m_State = State::Wandering;
-		m_Path.clear();
-	});
+AIComponent::~AIComponent()
+{
+	//m_NavigationThread.Stop();
 }
 
 void AIComponent::PostInitialize()
 {
 	m_PathSolver.GetGridRef().PostInitialize();
+
+	GhostActor* pActor = static_cast<GhostActor*>(m_pGameObject);
+	int id = pActor->GetID();
+
+	//Events
+	EventManager::GetInstance().StartListening(Event::EatPower(), "EatPowerAICB" + std::to_string(id), [this]() { m_State = State::Scared; });
+	EventManager::GetInstance().StartListening(Event::LostPower(), "LostPowerAICB" + std::to_string(id), [this]() { 
+		m_State = State::Wandering;
+		m_Path.clear();
+	});
+
+	//Initialize thread
+	/*m_NavigationThread.AddTask(std::bind(&AIComponent::UpdateState, this));
+	m_NavigationThread.AddTask(std::bind(&AIComponent::UpdatePath, this));
+	m_NavigationThread.Start();*/
 }
 
 void AIComponent::Update(const GameTime& time)
@@ -37,16 +51,23 @@ void AIComponent::Update(const GameTime& time)
 	UpdateState();
 	UpdatePath();
 
-	if (HasZeroMagnitude(m_CurrentTarget)) {
-		m_CurrentTarget = GetNextTarget();
+	//if (m_NavigationThread.IsFinished()) {
+		if (HasZeroMagnitude(m_CurrentTarget)) {
+			m_CurrentTarget = GetNextTarget();
 
-		if (HasZeroMagnitude(m_CurrentTarget))
-			return;
-	}
+			if (HasZeroMagnitude(m_CurrentTarget)) {
+				//m_NavigationThread.Start();
+				return;
+			}				
+		}
 
-	CheckCollision({});
-	Move(GetDirection() * time.GetElapsedTime());
-	CheckIfTargetReached();
+		CheckCollision({});
+		Move(GetDirection() * time.GetElapsedTime());
+		CheckIfTargetReached();
+
+		//Restart thread
+		//m_NavigationThread.Start();
+	//}
 
 	//Debug::Log(std::to_string(static_cast<int>(m_State)));
 }

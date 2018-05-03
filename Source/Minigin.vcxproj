@@ -36,6 +36,7 @@
     <ClCompile Include="Engine\Helpers\Debug.cpp" />
     <ClCompile Include="Engine\Helpers\Event.cpp" />
     <ClCompile Include="Engine\Helpers\GameTime.cpp" />
+    <ClCompile Include="Engine\Helpers\Thread.cpp" />
     <ClCompile Include="Engine\Helpers\Window.cpp" />
     <ClCompile Include="Engine\Managers\EventManager.cpp" />
     <ClCompile Include="Engine\Managers\InputManager.cpp" />
@@ -90,6 +91,7 @@
     <ClInclude Include="Engine\Helpers\HelperFunctions.h" />
     <ClInclude Include="Engine\Helpers\Singleton.h" />
     <ClInclude Include="Engine\Helpers\Structs.h" />
+    <ClInclude Include="Engine\Helpers\Thread.h" />
     <ClInclude Include="Engine\Helpers\Window.h" />
     <ClInclude Include="Engine\Managers\EventManager.h" />
     <ClInclude Include="Engine\Managers\InputManager.h" />

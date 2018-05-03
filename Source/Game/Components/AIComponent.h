@@ -2,6 +2,7 @@
 
 #include "Engine/Components/CharacterController.h"
 #include "Engine/Algorithms/Astar/Solver.h"
+#include "Engine/Helpers/Thread.h"
 class GhostActor;
 class PacmanActor;
 
@@ -9,7 +10,7 @@ class AIComponent : public CharacterController
 {
 public:
 	AIComponent(GhostActor* pGhost, PacmanActor* pPacman, float speed = 50.0f);
-	virtual ~AIComponent() = default;
+	virtual ~AIComponent();
 
 	void Reset();
 	virtual void CheckCollision(const glm::vec2& direction) override;
@@ -31,6 +32,8 @@ private:
 		Chasing,
 		Scared
 	};
+
+	//Thread m_NavigationThread;
 
 	GhostActor* m_pGhost;
 	PacmanActor* m_pPacman;
