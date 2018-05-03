@@ -26,7 +26,7 @@ protected:
 private:
 	enum class SoundId : int
 	{
-		Background, Chomp, Fruit, Ghost
+		Background, Chomp, Fruit, Ghost, GameOver, Win
 	};
 
 	PacmanActor* m_pPlayer;
@@ -47,5 +47,6 @@ private:
 	void GameOver();
 	void CheckIfGameWon();
 	void PlaySound(const SoundId id);
+	void StopSound(const SoundId id);
 };
 

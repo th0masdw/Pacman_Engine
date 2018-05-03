@@ -157,6 +157,9 @@ void PacmanScene::GameOver()
 	pGameOver->GetTransform()->Translate(387.5f, 275.0f);
 	AddObject(pGameOver);
 
+	StopSound(SoundId::Background);
+	PlaySound(SoundId::GameOver);
+
 	Debug::Log("Game Over");
 }
 
@@ -173,7 +176,8 @@ void PacmanScene::CheckIfGameWon()
 		pWin->GetTransform()->Translate(387.5f, 275.0f);
 		AddObject(pWin);
 
-		SoundManager::GetInstance().StopChannel(static_cast<int>(SoundId::Background));
+		StopSound(SoundId::Background);
+		PlaySound(SoundId::Win);
 	}
 }
 
@@ -185,6 +189,8 @@ void PacmanScene::LoadSounds()
 	soundManager.CreateSound(static_cast<int>(SoundId::Chomp), "../Resources/sounds/chomp.wav");
 	soundManager.CreateSound(static_cast<int>(SoundId::Fruit), "../Resources/sounds/eatfruit.wav");
 	soundManager.CreateSound(static_cast<int>(SoundId::Ghost), "../Resources/sounds/eatghost.wav");
+	soundManager.CreateSound(static_cast<int>(SoundId::GameOver), "../Resources/sounds/gameover.wav");
+	soundManager.CreateSound(static_cast<int>(SoundId::Win), "../Resources/sounds/win.wav");
 }
 
 void PacmanScene::RegisterEvents()
@@ -206,4 +212,10 @@ void PacmanScene::PlaySound(const SoundId id)
 {
 	int playId = static_cast<int>(id);
 	SoundManager::GetInstance().PlaySoundOnChannel(playId, playId);
+}
+
+void PacmanScene::StopSound(const SoundId id)
+{
+	int playId = static_cast<int>(id);
+	SoundManager::GetInstance().StopChannel(playId);
 }
