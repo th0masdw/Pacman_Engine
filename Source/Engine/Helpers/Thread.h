@@ -1,8 +1,8 @@
 #pragma once
 
 #include <thread>
-#include <atomic>
 #include <functional>
+#include <mutex>
 
 class Thread
 {
@@ -19,7 +19,9 @@ private:
 	void Run();
 
 	std::vector<std::function<void()>> m_Tasks;
-	std::atomic<bool> m_IsRunning;
-	std::atomic<bool> m_IsFinished;
+	bool m_IsRunning;
+	bool m_DoWork;
+	std::mutex m_Mutex;
+	std::condition_variable m_Condition;
 	std::thread m_Thread;
 };

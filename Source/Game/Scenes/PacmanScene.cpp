@@ -167,6 +167,8 @@ void PacmanScene::GameOver()
 	StopSound(SoundId::Background);
 	PlaySound(SoundId::GameOver);
 
+	EventManager::GetInstance().TriggerEvent("Lose");
+
 	Debug::Log("Game Over");
 }
 
@@ -185,6 +187,8 @@ void PacmanScene::CheckIfGameWon()
 
 		StopSound(SoundId::Background);
 		PlaySound(SoundId::Win);
+
+		EventManager::GetInstance().TriggerEvent("Win");
 	}
 }
 
