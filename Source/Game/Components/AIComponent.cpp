@@ -15,15 +15,15 @@ AIComponent::AIComponent(GhostActor* pGhost, PacmanActor* pPacman, float speed)
 	m_State(State::Wandering),
 	m_ChaseRadius(300.0f),
 	m_PathSolver(Window::GetGridWidth(), Window::GetGridHeight()),
-	m_CurrentTarget(0, 0)
-	//m_NavigationThread()
+	m_CurrentTarget(0, 0),
+	m_NavigationThread()
 {
 	m_Directions = { { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
 }
 
 AIComponent::~AIComponent()
 {
-	//m_NavigationThread.Stop();
+	m_NavigationThread.Stop();
 }
 
 void AIComponent::PostInitialize()
@@ -41,22 +41,22 @@ void AIComponent::PostInitialize()
 	});
 
 	//Initialize thread
-	/*m_NavigationThread.AddTask(std::bind(&AIComponent::UpdateState, this));
+	m_NavigationThread.AddTask(std::bind(&AIComponent::UpdateState, this));
 	m_NavigationThread.AddTask(std::bind(&AIComponent::UpdatePath, this));
-	m_NavigationThread.Start();*/
+	m_NavigationThread.Start();
 }
 
 void AIComponent::Update(const GameTime& time)
 {
-	UpdateState();
-	UpdatePath();
+	//UpdateState();
+	//UpdatePath();
 
-	//if (m_NavigationThread.IsFinished()) {
+	if (m_NavigationThread.IsFinished()) {
 		if (HasZeroMagnitude(m_CurrentTarget)) {
 			m_CurrentTarget = GetNextTarget();
 
 			if (HasZeroMagnitude(m_CurrentTarget)) {
-				//m_NavigationThread.Start();
+				m_NavigationThread.Start();
 				return;
 			}				
 		}
@@ -66,8 +66,8 @@ void AIComponent::Update(const GameTime& time)
 		CheckIfTargetReached();
 
 		//Restart thread
-		//m_NavigationThread.Start();
-	//}
+		m_NavigationThread.Start();
+	}
 
 	//Debug::Log(std::to_string(static_cast<int>(m_State)));
 }

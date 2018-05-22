@@ -33,7 +33,7 @@ private:
 		Scared
 	};
 
-	//Thread m_NavigationThread;
+	Thread m_NavigationThread;
 
 	GhostActor* m_pGhost;
 	PacmanActor* m_pPacman;
