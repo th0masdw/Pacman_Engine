@@ -7,7 +7,7 @@ Fruit::Fruit()
 	: GameObject(Tag::Fruit, Layer::Pickups),
 	m_HasAppeared(false)
 {
-	SpriteComponent* pSprite = new SpriteComponent("../Resources/fruit.png");
+	SpriteComponent* pSprite = new SpriteComponent("Resources/Images/fruit.png");
 	AddComponent(pSprite);
 
 	ColliderComponent* pCollider = new ColliderComponent(34.0f, 34.0f);

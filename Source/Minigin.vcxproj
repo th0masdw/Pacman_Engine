@@ -260,7 +260,7 @@ xcopy "$(SolutionDir)Libraries\SDL2_ttf\lib\x64\*.dll" "$(OutputPath)" /R /Y</Co
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\Fmod\inc;$(SolutionDir)Libraries\SDL2_ttf\include;$(SolutionDir)Libraries\SDL2_image\include;$(SolutionDir)Libraries\glm;$(SolutionDir)Libraries\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Source\Game;$(SolutionDir)Libraries\Fmod\inc;$(SolutionDir)Libraries\SDL2_ttf\include;$(SolutionDir)Libraries\SDL2_image\include;$(SolutionDir)Libraries\glm;$(SolutionDir)Libraries\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>MiniginPCH.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
@@ -289,7 +289,7 @@ xcopy "$(SolutionDir)Libraries\SDL2_ttf\lib\x86\*.dll" "$(OutputPath)" /R /Y</Co
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\Fmod\inc;$(SolutionDir)Libraries\SDL2_ttf\include;$(SolutionDir)Libraries\SDL2_image\include;$(SolutionDir)Libraries\glm;$(SolutionDir)Libraries\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Source\Game;$(SolutionDir)Libraries\Fmod\inc;$(SolutionDir)Libraries\SDL2_ttf\include;$(SolutionDir)Libraries\SDL2_image\include;$(SolutionDir)Libraries\glm;$(SolutionDir)Libraries\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>MiniginPCH.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>

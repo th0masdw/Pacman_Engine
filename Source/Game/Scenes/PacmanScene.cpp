@@ -41,7 +41,7 @@ PacmanScene::~PacmanScene()
 
 void PacmanScene::Initialize()
 {
-	m_pLoader = new LevelLoader("../Resources/TestLevel.txt");
+	m_pLoader = new LevelLoader("Resources/TestLevel.txt");
 	m_WallPool.Initialize(m_pLoader->GetWallAmount());
 	m_PelletPool.Initialize(m_pLoader->GetPelletAmount());
 	m_PelletCounter = m_pLoader->GetPelletAmount();
@@ -100,7 +100,7 @@ void PacmanScene::Initialize()
 	AddObject(m_pFruit);
 
 	//FPS Counter
-	m_pFPS = new FPSObject("../Resources/Lingua.otf", 20, { 0, 255, 0, 255 });
+	m_pFPS = new FPSObject("Resources/Fonts/Lingua.otf", 20, { 0, 255, 0, 255 });
 	m_pFPS->GetTransform()->Translate({ 15.0f, 15.0f });
 	AddObject(m_pFPS);
 
@@ -159,7 +159,7 @@ void PacmanScene::GameOver()
 	m_PauseGame = true;
 
 	GameObject* pGameOver = new GameObject(Tag::Empty, Layer::UI);
-	TextComponent* pText = new TextComponent("Game Over!", { 255, 0, 0, 255 }, "../Resources/Lingua.otf", 30);
+	TextComponent* pText = new TextComponent("Game Over!", { 255, 0, 0, 255 }, "Resources/Fonts/Lingua.otf", 30);
 	pGameOver->AddComponent(pText);
 	pGameOver->GetTransform()->Translate(387.5f, 275.0f);
 	AddObject(pGameOver);
@@ -176,7 +176,7 @@ void PacmanScene::CheckIfGameWon()
 		m_PauseGame = true;
 
 		GameObject* pWin = new GameObject(Tag::Empty, Layer::UI);
-		TextComponent* pText = new TextComponent("You win!", { 0, 255, 0, 255 }, "../Resources/Lingua.otf", 30);
+		TextComponent* pText = new TextComponent("You win!", { 0, 255, 0, 255 }, "Resources/Fonts/Lingua.otf", 30);
 		pWin->AddComponent(pText);
 		pWin->GetTransform()->Translate(387.5f, 275.0f);
 		AddObject(pWin);
@@ -190,12 +190,12 @@ void PacmanScene::LoadSounds()
 {
 	SoundManager& soundManager = SoundManager::GetInstance();
 
-	soundManager.CreateSound(static_cast<int>(SoundId::Background), "../Resources/sounds/background.wav", FMOD_LOOP_NORMAL, true);
-	soundManager.CreateSound(static_cast<int>(SoundId::Chomp), "../Resources/sounds/chomp.wav");
-	soundManager.CreateSound(static_cast<int>(SoundId::Fruit), "../Resources/sounds/eatfruit.wav");
-	soundManager.CreateSound(static_cast<int>(SoundId::Ghost), "../Resources/sounds/eatghost.wav");
-	soundManager.CreateSound(static_cast<int>(SoundId::GameOver), "../Resources/sounds/gameover.wav");
-	soundManager.CreateSound(static_cast<int>(SoundId::Win), "../Resources/sounds/win.wav");
+	soundManager.CreateSound(static_cast<int>(SoundId::Background), "Resources/Sounds/background.wav", FMOD_LOOP_NORMAL, true);
+	soundManager.CreateSound(static_cast<int>(SoundId::Chomp), "Resources/Sounds/chomp.wav");
+	soundManager.CreateSound(static_cast<int>(SoundId::Fruit), "Resources/Sounds/eatfruit.wav");
+	soundManager.CreateSound(static_cast<int>(SoundId::Ghost), "Resources/Sounds/eatghost.wav");
+	soundManager.CreateSound(static_cast<int>(SoundId::GameOver), "Resources/Sounds/gameover.wav");
+	soundManager.CreateSound(static_cast<int>(SoundId::Win), "Resources/Sounds/win.wav");
 }
 
 void PacmanScene::RegisterEvents()

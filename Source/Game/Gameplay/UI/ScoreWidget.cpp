@@ -7,7 +7,7 @@ ScoreWidget::ScoreWidget()
 	: GameObject(Tag::Empty, Layer::UI),
 	m_Score(0)
 {
-	m_pText = new TextComponent("0", { 255, 255, 255, 255 }, "../Resources/Lingua.otf", 20);
+	m_pText = new TextComponent("0", { 255, 255, 255, 255 }, "Resources/Fonts/Lingua.otf", 20);
 	AddComponent(m_pText);
 
 	//Events
