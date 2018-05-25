@@ -58,9 +58,9 @@
     <ClCompile Include="Game\Gameplay\Objects\Wall.cpp" />
     <ClCompile Include="Game\Gameplay\UI\LivesWidget.cpp" />
     <ClCompile Include="Game\Gameplay\UI\ScoreWidget.cpp" />
+    <ClCompile Include="Game\MainGame.cpp" />
     <ClCompile Include="Game\Scenes\PacmanScene.cpp" />
     <ClCompile Include="Game\Utilities\LevelLoader.cpp" />
-    <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="Minigin.cpp" />
     <ClCompile Include="MiniginPCH.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -114,9 +114,9 @@
     <ClInclude Include="Game\Gameplay\Objects\Wall.h" />
     <ClInclude Include="Game\Gameplay\UI\LivesWidget.h" />
     <ClInclude Include="Game\Gameplay\UI\ScoreWidget.h" />
+    <ClInclude Include="Game\MainGame.h" />
     <ClInclude Include="Game\Scenes\PacmanScene.h" />
     <ClInclude Include="Game\Utilities\LevelLoader.h" />
-    <ClInclude Include="MainGame.h" />
     <ClInclude Include="MiniginPCH.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
