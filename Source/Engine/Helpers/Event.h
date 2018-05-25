@@ -21,7 +21,8 @@ public:
 	static std::string LostPower() { return "LostPower"; }
 	static std::string Die() { return "Die"; }
 	static std::string GameOver() { return "GameOver"; }
-#pragma endregion Event Names
+	static std::string Quit() { return "Quit"; }
+#pragma endregion
 
 private:
 	std::set<Callback> m_Listeners;

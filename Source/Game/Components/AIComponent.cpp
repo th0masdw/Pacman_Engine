@@ -39,11 +39,7 @@ void AIComponent::PostInitialize()
 		m_State = State::Wandering;
 		m_Path.clear();
 	});
-	EventManager::GetInstance().StartListening("Win", "WinAICB" + std::to_string(id), [this]() { 
-		m_NavigationThread.Start(); 
-		m_NavigationThread.Stop(); 
-	});
-	EventManager::GetInstance().StartListening("Lose", "LoseAICB" + std::to_string(id), [this]() { 
+	EventManager::GetInstance().StartListening(Event::Quit(), "QuitAICB" + std::to_string(id), [this]() { 
 		m_NavigationThread.Start(); 
 		m_NavigationThread.Stop(); 
 	});
